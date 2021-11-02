@@ -40,6 +40,7 @@
 struct soundHandle
 {
 	U32 soloudHandle = 0;
+	SoLoud::Wav* soloudWave = nullptr;
 };
 
 soundHandle gSoundHandleMapping[NB_VOICES + 1]; // because slot 0 is never used
@@ -128,11 +129,6 @@ S32	InitSampleDriver( char *driver_name )
 		return TRUE	;
 	}
 
-#ifdef	_WIN32
-
-	driver_name = driver_name ;
-
-	//yaz AIL_set_preference(DIG_USE_WAVEOUT, FALSE)	;
 retry:
 	if(InitDriver(SamplingRate, 16, 2))
 	{
@@ -151,72 +147,6 @@ retry:
 			}
 		}
 	}
-
-#else
- 	// Set application preferences
-	//yaz AIL_set_preference(DIG_HARDWARE_SAMPLE_RATE, SamplingRate) ;
-	//yaz AIL_set_preference(DIG_LATENCY,		     30		) ;
-    //yaz     AIL_set_preference(DIG_USE_16_BITS,          YES 	) ;
-	//yaz AIL_set_preference(DIG_USE_STEREO,           YES 	) ;
-	//yaz AIL_set_preference(DIG_MIXER_CHANNELS,       NB_VOICES	) ;
-	//yaz AIL_set_preference(AIL_SCAN_FOR_HARDWARE,    YES	) ;
-
-	// Initialize digital sound system
-	if(driver_name && strcmp(driver_name, ""))
-	{
-		strcpy(SampleDriverName, driver_name)	;
-		//yaz DigDriver = AIL_install_DIG_driver_file( driver_name, NULL ) ;
-	}
-	else
-	{
-		LONG res	;
-
-		SampleDriverName[0] = (char)0	;
-
-		/*yaz
-		res=AIL_install_DIG_INI(&DigDriver)	;
-		switch(res)
-		{
-		case AIL_INIT_SUCCESS:
-			break;
-		case AIL_NO_INI_FILE:
-			LogPuts( "No Digital Audio Driver specified. Digital Audio Disabled." );
-			return TRUE		;
-		default:
-			DigDriver = NULL	;
-			LogPuts("Please Run Setsound.exe again.");
-			break			;
-		}*/
-	}
-	if( DigDriver == NULL )
-	{
-		LogPuts( (char*)AIL_error )	;
-		return FALSE		;
-
-	}
-#endif
-	/*
-	{
-		char 	desc[128] = ""	;
-		S32	format		;
-		S32	rate		;
-
-		AIL_digital_configuration(DigDriver, &rate, &format, desc)	;
-
-		if(!desc[0])
-		{
-			strcpy(desc, SampleDriverName)	;
-		}
-
-		LogPrintf(	"Sample device         : %s\n"
-				"Digital configuration : %d bit, %s, %d Hz\n",
-				desc,
-				format & DIG_F_16BITS_MASK ? 16 : 8,
-				format & DIG_F_STEREO_MASK ? "Stereo" : "Mono",
-				rate	)	;
-	}
-	*/
-
 
 	for (Nb_Voices = 0; Nb_Voices < MAX_SAMPLE_VOICES; Nb_Voices++)
 	{
@@ -335,11 +265,10 @@ static U32 FindFreeHandle(U32 *pnum)
 		if(Sample_Handle[hnum].sample==0)
 			break;
 
-	//	ALint status;
-	//	alGetSourcei(Sample_Handle[hnum].handle, AL_SOURCE_STATE, &status);
-
-	//	if(status == AL_STOPPED)
-	//		break;
+		if (!gSoloud->isValidVoiceHandle(gSoundHandleMapping[Sample_Handle[hnum].handle].soloudHandle))
+		{
+			break;
+		}
 	}
 
 	// Found one?
@@ -395,11 +324,11 @@ ok:
 	handle = Sample_Handle[hnum].handle	;
 
 	// stop the sample (security)
-	if(gSoundHandleMapping[handle].soloudHandle)
-		gSoloud->stop(gSoundHandleMapping[handle].soloudHandle);
+	gSoloud->stop(gSoundHandleMapping[handle].soloudHandle);
 
 	// Clear internal structures
-	// gSoloud->stop should have done that already
+	delete gSoundHandleMapping[handle].soloudWave;
+	gSoundHandleMapping[handle].soloudWave = nullptr;
 
 	*pnum = hnum	;
 
@@ -677,8 +606,10 @@ U32	PlaySample(void *ptrsample, U32 usernum, S32 pitchbend, S32 nbrepeat, S32 vo
 	}
 
 	gSoundHandleMapping[handle].soloudHandle = gSoloud->play(*pAudioSource, -1, 0, true, 0);
+	gSoloud->setAutoStop(gSoundHandleMapping[handle].soloudHandle, true);
 
 	// link sample data with sample handle
+	gSoundHandleMapping[handle].soloudWave = pAudioSource;
 	/*
 	if(!AIL_set_sample_file(handle, ptrsample, -1 ))
 	{
@@ -887,8 +818,7 @@ void	StopOneSample( U32 sample )
 	if(hnum==-1)			return ;
 
 	// stop the sample
-	//handle = Sample_Handle[hnum].handle		;
-	//alSourceStop(handle);
+	gSoloud->stop(gSoundHandleMapping[Sample_Handle[hnum].handle].soloudHandle);
 	Sample_Handle[hnum].sample = 0			;
 }
 
@@ -906,11 +836,7 @@ void	StopSamples()
 	// Stop everything!
 	for(hnum=0; hnum<Nb_Voices; hnum++)
 	{
-		U32	handle	;
-
-		//handle = Sample_Handle[hnum].handle	;
-		//alSourceStop(handle);
-		//yaz AIL_end_sample(handle)			;
+		gSoloud->stop(gSoundHandleMapping[Sample_Handle[hnum].handle].soloudHandle);
 		Sample_Handle[hnum].sample = 0		;
 	}
 
@@ -934,7 +860,7 @@ void	PauseOneSample( U32 sample )
 	if(hnum==-1)			return	;
 
 	// stop the sample
-	//yaz AIL_stop_sample(Sample_Handle[hnum].handle)	;
+	gSoloud->setPause(gSoundHandleMapping[Sample_Handle[hnum].handle].soloudHandle, true);
 }
 
 //████████████████████████████████████████████████████████████████████████████
@@ -952,7 +878,7 @@ void	ResumeOneSample( U32 sample )
 	if(hnum==-1)			return	;
 
 	// stop the sample
-	//yaz AIL_resume_sample(Sample_Handle[hnum].handle)	;
+	gSoloud->setPause(gSoundHandleMapping[Sample_Handle[hnum].handle].soloudHandle, false);
 }
 
 //████████████████████████████████████████████████████████████████████████████
@@ -975,7 +901,7 @@ void	PauseSamples()
 	{
 		if(Sample_Handle[hnum].sample)
 		{
-			//alSourcePause(Sample_Handle[hnum].handle);
+			gSoloud->setPause(gSoundHandleMapping[Sample_Handle[hnum].handle].soloudHandle, true);
 		}
 	}
 }
@@ -1005,9 +931,8 @@ void	ResumeSamples()
 	{
 		if(Sample_Handle[hnum].sample)
 		{
-			//alSourcePlay(Sample_Handle[hnum].handle);
+			gSoloud->setPause(gSoundHandleMapping[Sample_Handle[hnum].handle].soloudHandle, false);
 		}
-		//yaz AIL_resume_sample(Sample_Handle[hnum].handle)	;
 	}
 }
 
@@ -1027,17 +952,14 @@ U32	IsSamplePlaying( U32 sample )
 	if(hnum==-1)			return 	FALSE 	;
 
 	// get sample status
-	//ALint status;
-	//alGetSourcei(Sample_Handle[hnum].handle, AL_SOURCE_STATE, &status);
-
-	//if(status == AL_STOPPED)
+	if(!gSoloud->isValidVoiceHandle(gSoundHandleMapping[Sample_Handle[hnum].handle].soloudHandle))
 	{
 		return 0;
 	}
-	/*else
+	else
 	{
 		return Sample_Handle[hnum].timer;
-	}*/
+	}
 }
 
 //████████████████████████████████████████████████████████████████████████████
