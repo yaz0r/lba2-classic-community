@@ -1,0 +1,431 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Asm">
+      <UniqueIdentifier>{829b1763-27cb-4f64-98a4-1a09482aa8ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3DExt">
+      <UniqueIdentifier>{c8c77b6f-e8c6-4c8a-8056-da0c33d76dcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3DExt\Asm">
+      <UniqueIdentifier>{67edec31-5b18-41f7-a907-8d66774809cc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ADDKEYS.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AMBIANCE.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ANIMTEX.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BEZIER.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BUGGY.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C_EXTERN.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CHEATCOD.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="COMMON.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="COMPORTE.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CONFIG.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CREDITS.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CRITICAL.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DART.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DEC.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DEC_XCF.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DEFINES.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DISKFUNC.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EXTFUNC.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EXTRA.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FICHE.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FIRE.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FLOW.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FUNC.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GAMEMENU.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GERELIFE.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GERETRAK.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GRILLE.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HERCULE.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HOLO.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IMPACT.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="INCRUST.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="INPUT.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="INTEXT.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="INVENT.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JOYSTICK.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="KEYB.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LZSS.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MEM.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MESSAGE.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MUSIC.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OBJECT.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PATCH.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PERSO.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PLAYACF.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="POF.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PTRFUNC.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RAIN.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SAVEGAME.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SCAN.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SORT.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VALIDPOS.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WAGON.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZV.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="3DEXT\boxzbuf.h">
+      <Filter>Source Files\3DExt</Filter>
+    </ClInclude>
+    <ClInclude Include="3DEXT\DECORS.H">
+      <Filter>Source Files\3DExt</Filter>
+    </ClInclude>
+    <ClInclude Include="3DEXT\defines.h">
+      <Filter>Source Files\3DExt</Filter>
+    </ClInclude>
+    <ClInclude Include="3DEXT\extern.h">
+      <Filter>Source Files\3DExt</Filter>
+    </ClInclude>
+    <ClInclude Include="3DEXT\lba_ext.h">
+      <Filter>Source Files\3DExt</Filter>
+    </ClInclude>
+    <ClInclude Include="3DEXT\LOADISLE.H">
+      <Filter>Source Files\3DExt</Filter>
+    </ClInclude>
+    <ClInclude Include="3DEXT\MAPTOOLS.H">
+      <Filter>Source Files\3DExt</Filter>
+    </ClInclude>
+    <ClInclude Include="3DEXT\SELECT.H">
+      <Filter>Source Files\3DExt</Filter>
+    </ClInclude>
+    <ClInclude Include="3DEXT\TERRAIN.H">
+      <Filter>Source Files\3DExt</Filter>
+    </ClInclude>
+    <ClInclude Include="3DEXT\VAR_EXT.H">
+      <Filter>Source Files\3DExt</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AMBIANCE.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ANIMTEX.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BEZIER.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BUGGY.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CHEATCOD.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="COMPORTE.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CONFIG.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CREDITS.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CRITICAL.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DART.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DISKFUNC.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EXTFUNC.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EXTRA.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FICHE.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FLOW.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GAMEMENU.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GERELIFE.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GERETRAK.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GLOBAL.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GRILLE.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HERCULE.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HOLOBODY.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HOLOGLOB.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HOLOPLAN.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IMPACT.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="INCRUST.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="INPUT.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="INTEXT.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="INVENT.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="JOYSTICK.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LZSS.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MEM.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MESSAGE.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MESSTWIN.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MUSIC.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OBJECT.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PATCH.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PERSO.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PLAYACF.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="POF.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="POUBELLE.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RAIN.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SAVEGAME.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SCAN.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SORT.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VALIDPOS.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VERSION.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WAGON.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZV.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="3DEXT\DECORS.CPP">
+      <Filter>Source Files\3DExt</Filter>
+    </ClCompile>
+    <ClCompile Include="3DEXT\drawsky.cpp">
+      <Filter>Source Files\3DExt</Filter>
+    </ClCompile>
+    <ClCompile Include="3DEXT\GLOBEXT.CPP">
+      <Filter>Source Files\3DExt</Filter>
+    </ClCompile>
+    <ClCompile Include="3DEXT\LOADISLE.CPP">
+      <Filter>Source Files\3DExt</Filter>
+    </ClCompile>
+    <ClCompile Include="3DEXT\MAPTOOLS.CPP">
+      <Filter>Source Files\3DExt</Filter>
+    </ClCompile>
+    <ClCompile Include="3DEXT\SELECT.CPP">
+      <Filter>Source Files\3DExt</Filter>
+    </ClCompile>
+    <ClCompile Include="3DEXT\TERRAIN.CPP">
+      <Filter>Source Files\3DExt</Filter>
+    </ClCompile>
+    <ClCompile Include="3DEXT\VAR_EXT.CPP">
+      <Filter>Source Files\3DExt</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="PLASMA.ASM">
+      <Filter>Source Files\Asm</Filter>
+    </MASM>
+    <MASM Include="KEYB.ASM">
+      <Filter>Source Files\Asm</Filter>
+    </MASM>
+    <MASM Include="HERCUL_A.ASM">
+      <Filter>Source Files\Asm</Filter>
+    </MASM>
+    <MASM Include="FUNC.ASM">
+      <Filter>Source Files\Asm</Filter>
+    </MASM>
+    <MASM Include="FLOW_A.ASM">
+      <Filter>Source Files\Asm</Filter>
+    </MASM>
+    <MASM Include="FIRE.ASM">
+      <Filter>Source Files\Asm</Filter>
+    </MASM>
+    <MASM Include="DEC_XCF.ASM">
+      <Filter>Source Files\Asm</Filter>
+    </MASM>
+    <MASM Include="DEC.ASM">
+      <Filter>Source Files\Asm</Filter>
+    </MASM>
+    <MASM Include="COPY.ASM">
+      <Filter>Source Files\Asm</Filter>
+    </MASM>
+    <MASM Include="COMPRESS.ASM">
+      <Filter>Source Files\Asm</Filter>
+    </MASM>
+    <MASM Include="GRILLE_A.ASM">
+      <Filter>Source Files\Asm</Filter>
+    </MASM>
+    <MASM Include="3DEXT\BOXZBUF.ASM">
+      <Filter>Source Files\3DExt\Asm</Filter>
+    </MASM>
+    <MASM Include="3DEXT\LINERAIN.ASM">
+      <Filter>Source Files\3DExt\Asm</Filter>
+    </MASM>
+  </ItemGroup>
+</Project>

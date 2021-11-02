@@ -145,7 +145,7 @@ extern  S32     EscTimer ;
 
 char    PathSave[_MAX_PATH] ;
 char    GamePathname[_MAX_PATH] ;
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 char    OldGamePathname[_MAX_PATH] ;
 #endif
 char    PlayerName[MAX_SIZE_PLAYER_NAME+1] ;
@@ -578,7 +578,7 @@ S32     InputPlayerName( S32 choice, char *name )
         S32     retval = FALSE ;
         S32     akey ;
         S32     memoasciimode = AsciiMode ;
-        S32     x, y ;
+        S32     x=0, y=0;
         S32     len ;
         S32     timeraff, timernoaff ;
 
@@ -588,7 +588,7 @@ S32     InputPlayerName( S32 choice, char *name )
 	strcpy( memoplayername, name ) ;
         strcpy( PlayerName, name ) ;
 
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 	FindPlayerFile() ;
 
 	// pour pouvoir effacer une sauvegarde sous Windows si le joueur
@@ -718,6 +718,7 @@ S32     InputPlayerName( S32 choice, char *name )
 
 S32     ChoosePlayerName( S32 mess, S32 flagflip, S32 flagnew )
 {
+#if 1 // yaz
         S32     flag = 3 ;
         char    *listplayername ;
         char    **ptrlist ;
@@ -735,7 +736,7 @@ S32     ChoosePlayerName( S32 mess, S32 flagflip, S32 flagnew )
         U32     newcube = NewCube ;
         char    memoplayername[MAX_SIZE_PLAYER_NAME+1] ;
 
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 	strcpy( OldGamePathname, "" ) ;
 #endif
 
@@ -1116,7 +1117,7 @@ S32     ChoosePlayerName( S32 mess, S32 flagflip, S32 flagnew )
                                                 {
                                                         strcpy( GamePathname, PathSave ) ;
 
-#ifdef  _WIN32  // Gestion des noms longs
+#ifdef  YAZ_WIN32  // Gestion des noms longs
                                                         strncat( GamePathname, PlayerName, _MAX_PATH-(strlen(GamePathname)+1) ) ;
 #else
                                                         strcat( GamePathname, "S" ) ;
@@ -1128,7 +1129,7 @@ S32     ChoosePlayerName( S32 mess, S32 flagflip, S32 flagnew )
                                         }
                                         else    // renommer une sauvegarde
 					{
-#ifdef  _WIN32  // Gestion des noms longs (renomme la sauvegarde)
+#ifdef  YAZ_WIN32  // Gestion des noms longs (renomme la sauvegarde)
 						strcpy( GamePathname, PathSave ) ;
 						strncat( GamePathname, PlayerName, _MAX_PATH-(strlen(GamePathname)+1) ) ;
 						AddExt( GamePathname, ".LBA" ) ;
@@ -1188,6 +1189,7 @@ S32     ChoosePlayerName( S32 mess, S32 flagflip, S32 flagnew )
         SelectPlayer = select-start ;
 
         return retval ;
+#endif
 }
 
 ////////************* TEMPO, devrait etre en LIB ?
@@ -1351,7 +1353,9 @@ void    DrawOneChoice( S32 x, S32 y, S32 type, S32 num, S32 select )
 						{
 							TimerSample = TimerRefHR ;
 
+#ifdef	CDROM // yaz
 							VoiceMenu = SAMPLE_VOICE_MENU+LanguageCD ;
+#endif
 
 							PanMenu    = 20+MyRnd(88) ;
 
@@ -1518,6 +1522,7 @@ void    DrawGameMenu( U16 *ptrmenu, S32 justone )
 
 S32     DoGameMenu( U16 *ptrmenu )
 {
+#if 1
         S32     flag = 1 ;
         U32     chrono ;
         S32     timerkey ;
@@ -1539,7 +1544,7 @@ S32     DoGameMenu( U16 *ptrmenu )
 
 	InitShakeChoice()       ;//     NEW
 
-#ifdef  _WIN32
+#ifdef  YAZ_WIN32
         AsciiMode = TRUE        ;
 #endif
 
@@ -1588,7 +1593,7 @@ S32     DoGameMenu( U16 *ptrmenu )
                                 if( !FlagBlackPal )     FadeToBlack( PtrPal ) ;
 
                                 FadeMenu = TRUE ;
-#ifdef  _WIN32
+#ifdef  YAZ_WIN32
                                 AsciiMode = FALSE ;
 #endif
                                 return 9999 ;
@@ -1863,7 +1868,7 @@ S32     DoGameMenu( U16 *ptrmenu )
                 OR  MyKey==K_NUMPAD_ENTER )
                 {
                         WaitNoInput() ;
-#ifdef  _WIN32
+#ifdef  YAZ_WIN32
                         AsciiMode = FALSE ;
 #endif
                         return ptrmenu[4 + 1 + selected*2] ; // num mess
@@ -1872,7 +1877,7 @@ S32     DoGameMenu( U16 *ptrmenu )
                 if( MyKey == K_ESC
                 OR  Input & I_MENUS )
                 {
-#ifdef  _WIN32
+#ifdef  YAZ_WIN32
                         AsciiMode = FALSE ;
 #endif
                         return 1000 ;
@@ -1884,7 +1889,7 @@ S32     DoGameMenu( U16 *ptrmenu )
                         // chargement d'un bug
                         if( MyKey == K_L )
                         {
-#ifdef  _WIN32
+#ifdef  YAZ_WIN32
                                 AsciiMode = FALSE ;
 #endif
                                 return 2000 ;
@@ -1893,7 +1898,7 @@ S32     DoGameMenu( U16 *ptrmenu )
                         // sauvegarde d'un bug
                         if( MyKey == K_G )
                         {
-#ifdef  _WIN32
+#ifdef  YAZ_WIN32
                                 AsciiMode = FALSE ;
 #endif
                                 return 2001 ;
@@ -1903,6 +1908,7 @@ S32     DoGameMenu( U16 *ptrmenu )
 
                 if( !DemoSlide AND MyKey )      GereCheatCode()         ;
         }
+#endif
 }
 
 /*══════════════════════════════════════════════════════════════════════════*/
@@ -2599,7 +2605,7 @@ load_game:                                      firstloop = FALSE ;
                                         {
                                                 NumVersion = NUM_VERSION|SAVE_COMPRESS ;
 						CopyScreen( Screen, Log ) ;
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 						if( FileSize(OldGamePathname) )	Delete( OldGamePathname ) ;
 #endif
                                                 SaveGame( TRUE ) ;

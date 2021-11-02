@@ -2,18 +2,18 @@
 
 		.386p
 
-		.model SMALL, SYSCALL
+		.model SMALL, C
 
 		.data
 
-		extrn   SYSCALL 	Log		:DWORD
-		extrn	SYSCALL 	TabOffLine	:DWORD
+		extrn   C 	Log		:DWORD
+		extrn	C 	TabOffLine	:DWORD
 
 FireSeed	dd	1876351
 
 		.code
 
-		public	SYSCALL	Do_Fire
+		public	C	Do_Fire
 
 ;══════════════════════════════════════════════════════════════════════════
 ;                           █▀▀▀▀  █    █▀▀▀█ █▀▀▀▀
@@ -34,11 +34,11 @@ Do_Fire		proc uses esi edi ebx ebp ,\
 		add	esi, 32*34
 		mov	edx, 32*2
 
-loopg:		mov	eax, [FireSeed]
+loopg:		mov	eax, [ds:FireSeed]
 		mov	cl, ah
 		rol	eax, cl
 		imul	ax, dx
-		add	[FireSeed], 5137827
+		add	[ds:FireSeed], 5137827
 		and	eax, 128
 		mov	[esi], al
 gena:
@@ -202,13 +202,13 @@ comment #/*
 
 		.386p
 
-		.model SMALL, SYSCALL
+		.model SMALL, C
 
 		.data
 
-		public	SYSCALL      Imagen
+		public	C      Imagen
 
-		extrn	SYSCALL	BufSpeak:DWORD
+		extrn	C	BufSpeak:DWORD
 
 ;Imagen  DB 320*50 DUP (0)
 ;Imagen2 DB 320*50 DUP (0)
@@ -220,8 +220,8 @@ loopy	dw	00
 
 		.code
 
-		public	SYSCALL	DoFire
-		public	SYSCALL	ComputeFire
+		public	C	DoFire
+		public	C	ComputeFire
 
 ComputeFire	proc	uses esi edi ebx edx
 

@@ -79,7 +79,7 @@ void	ChangeButtonFlags( T_MENU *ptrmenu, S32 handle, S32 flags, S32 flagaff )
 
 /*──────────────────────────────────────────────────────────────────────────*/
 //	Remise en fonction le 09/10/95
-S32	GetButtonFlags( T_MENU *ptrmenu, S32 handle )
+S32	GetButtonFlags(T_MENU* ptrmenu, S32 handle)
 {
 	S32	n, nblcb ;
 	T_CLICK_BOX	*ptrlcb ;
@@ -126,7 +126,7 @@ void	ChangeButtonString( T_MENU *ptrmenu, S32 handle, char *string, S32 flagaff 
 
 /*──────────────────────────────────────────────────────────────────────────*/
 //	Remise en fonction le 09/10/95
-char	*GetButtonString( T_MENU *ptrmenu, S32 handle )
+char* GetButtonString(T_MENU* ptrmenu, S32 handle)
 {
 	S32	n, nblcb ;
 	T_CLICK_BOX	*ptrlcb ;
@@ -160,7 +160,7 @@ void	InputString( T_MENU *ptrmenu, S32 handle, S32 maxcar )
 	S32		myclick, mykey ;
 	S32		memoasciimode ;
 
-	char		car ;
+	S32		car ;
 	char		string[256] ;
 	S32	memoclipxmin ;
 	S32	memoclipxmax ;
@@ -293,7 +293,7 @@ void	InputString( T_MENU *ptrmenu, S32 handle, S32 maxcar )
 			break ;
 		}
 
-		car = (char)mykey ;
+		car = mykey ;
 
 		if( (car >= 32) AND (car < 255) )
 		{
@@ -400,6 +400,7 @@ void	InputString( T_MENU *ptrmenu, S32 handle, S32 maxcar )
 	while( Key OR Click )
 	{
 		BoxUpdate()	;
+		ManageEvents();
 	}
 
 	SetClip(memoclipxmin, memoclipymin, memoclipxmax, memoclipymax)	;
@@ -436,7 +437,7 @@ void	Message( char *message, S32 flag )
 
 		CloseMenu(&menu)	;
 
-		while( Click OR Key)	;
+		while( Click OR Key)
 		{
 			BoxUpdate()	;
 		}
@@ -468,6 +469,7 @@ S32	Confirm( char *message, char *oui, char *non )
 	do
 	{
 		BoxUpdate()	;
+		ManageEvents();
 	}
 	while( Click OR Key )	;
 
@@ -492,6 +494,7 @@ S32	Confirm( char *message, char *oui, char *non )
 
 	do
 	{
+		ManageEvents();
 		BoxUpdate()	;
 	}
 	while( Click OR Key )	;

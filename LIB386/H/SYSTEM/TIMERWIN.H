@@ -29,10 +29,10 @@ extern		U32	LastTime	;
 extern		U32	LastEvaluate	;
 
 //──────────────────────────────────────────────────────────────────────────
-extern	WINDOW_PROC	TimerWindowProc	;
+//extern	WINDOW_PROC	TimerWindowProc	;
 
 //──────────────────────────────────────────────────────────────────────────
-extern	WINDOW_PROC_PTR	OldTimerWindowProc;
+//extern	WINDOW_PROC_PTR	OldTimerWindowProc;
 
 //──────────────────────────────────────────────────────────────────────────
 extern	void	ManageTime()	;
@@ -64,6 +64,6 @@ extern	void	SetTimerHR(U32 timer)	;
 #endif//LIB_SYSTEM_TIMERWIN
 
 //──────────────────────────────────────────────────────────────────────────
-#endif//_WIN32
+#endif//YAZ_WIN32
 
 //──────────────────────────────────────────────────────────────────────────

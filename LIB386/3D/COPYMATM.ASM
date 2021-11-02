@@ -2,7 +2,7 @@
 
 		.386p
 
-		.model SMALL, SYSCALL
+		.model SMALL, C
 
 		include mat.inc
 		INCLUDE	IAMMX.INC		; Pour pouvoir assembler du MMx
@@ -11,7 +11,7 @@
 
 		.CODE
 
-		public	SYSCALL	CopyMatrixM
+		public	C	CopyMatrixM
 
 ;*══════════════════════════════════════════════════════════════════════════*
 ;void	CopyMatrixM(S32 *MatDst, S32 *MatSrc) ;

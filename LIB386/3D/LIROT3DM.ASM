@@ -2,24 +2,24 @@
 
 		.386p
 
-		.model SMALL, SYSCALL
+		.model SMALL, C
 		INCLUDE	IAMMX.INC		; Pour pouvoir assembler du MMx
 
 ;*══════════════════════════════════════════════════════════════════════════*
 
 		.DATA
 
-		extrn SYSCALL	X0:DWORD
-		extrn SYSCALL	Y0:DWORD
-		extrn SYSCALL	Z0:DWORD
+		extrn C	X0:DWORD
+		extrn C	Y0:DWORD
+		extrn C	Z0:DWORD
 
-		extrn SYSCALL	MMX_DEMI2:DWORD
+		extrn C	MMX_DEMI2:DWORD
 
 ;*══════════════════════════════════════════════════════════════════════════*
 
 		.CODE
 
-		public SYSCALL	LongInverseRotatePointM
+		public C	LongInverseRotatePointM
 
 ;*══════════════════════════════════════════════════════════════════════════*
 ;void	LongInverseRotatePointM(S32 *Mat, S32 x, S32 y, S32 z)	;

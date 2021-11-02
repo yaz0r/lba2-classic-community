@@ -2,7 +2,7 @@
 
 			.386p
 
-			.model SMALL, SYSCALL
+			.model SMALL, C
 
 			include mat.inc
 			INCLUDE	IAMMX.INC		; Pour pouvoir assembler du MMx
@@ -11,13 +11,13 @@
 			.DATA
 
 ;*══════════════════════════════════════════════════════════════════════════*
-			extrn SYSCALL	MMX_DEMI:DWORD
+			extrn C	MMX_DEMI:DWORD
 
 ;*══════════════════════════════════════════════════════════════════════════*
 			.CODE
 
 ;*══════════════════════════════════════════════════════════════════════════*
-			public SYSCALL	MulMatrixM
+			public C	MulMatrixM
 
 
 ;*══════════════════════════════════════════════════════════════════════════*

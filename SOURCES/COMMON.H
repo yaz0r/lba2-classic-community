@@ -30,7 +30,7 @@
 #endif
 
 // Macro pour lancer une fonction de la lib Hercule
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 #define	HERCULE( func )
 #else
 #define	HERCULE( func )	if( ModeHercule )	func

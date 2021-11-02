@@ -1,37 +1,37 @@
 ;----------------------------------------------------------------------------
 			.386
 
-			.MODEL	FLAT, SYSCALL
+			.MODEL	FLAT, C
 
 ;----------------------------------------------------------------------------
 			.DATA
 
 ;----------------------------------------------------------------------------
-			extrn	SYSCALL	TabOffLine:DWORD
+			extrn	C	TabOffLine:DWORD
 
 ;----------------------------------------------------------------------------
 			.CODE
 
 ;----------------------------------------------------------------------------
-			public	SYSCALL	CopyBoxVESAI
+			public	C	CopyBoxVESAI
 
-                        public  SYSCALL CopyBoxVESAI1
-                        public  SYSCALL CopyBoxVESAI2
-                        public  SYSCALL CopyBoxVESAI3
-                        public  SYSCALL CopyBoxVESAI4
-                        public  SYSCALL CopyBoxVESAI5
-                        public  SYSCALL CopyBoxVESAI6
-
-;----------------------------------------------------------------------------
-			Extrn	SYSCALL	VirtualLinearFirst:PROC
+                        public  C CopyBoxVESAI1
+                        public  C CopyBoxVESAI2
+                        public  C CopyBoxVESAI3
+                        public  C CopyBoxVESAI4
+                        public  C CopyBoxVESAI5
+                        public  C CopyBoxVESAI6
 
 ;----------------------------------------------------------------------------
-IFDEF	_WIN32
-			extrn  SYSCALL	AllowPatchAndPatch:PROC
+			Extrn	C	VirtualLinearFirst:PROC
+
+;----------------------------------------------------------------------------
+IFDEF	YAZ_WIN32
+			extrn  C	AllowPatchAndPatch:PROC
 ENDIF
 
 ;----------------------------------------------------------------------------
-IFDEF	_WIN32
+IFDEF	YAZ_WIN32
 
 CopyBoxVESAIInit	proc
 
@@ -65,7 +65,7 @@ CopyBoxVESAI		PROC
 
 			mov	ebx, [ebx+4]		; ebx = (XMax, YMax)
 			mov	eax, ebp
-IFDEF	_WIN32
+IFDEF	YAZ_WIN32
 x:
 			org	CopyBoxVESAI
 

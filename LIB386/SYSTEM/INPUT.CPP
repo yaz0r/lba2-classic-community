@@ -2,7 +2,7 @@
 #include <system\initkeyb.h>
 #include <system\input.h>
 
-#ifndef	_WIN32
+#ifndef	YAZ_WIN32
 #include <system\dossys.h>
 #endif
 
@@ -42,7 +42,8 @@ void    GetInput(U32 norepeat)
         // Rebuild Input
         for(i=0; i<NbKeys; i++)
         {
-                if(CheckKey(InputKeys[i]))	Input |= InputMasks[i]	;
+                if(CheckKey(InputKeys[i]))
+					Input |= InputMasks[i]	;
         }
 
 	// compute new NoRepeatInput

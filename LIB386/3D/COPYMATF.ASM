@@ -2,7 +2,7 @@
 
 		.386p
 
-		.model SMALL, SYSCALL
+		.model SMALL, C
 
 		include mat.inc
 
@@ -10,7 +10,7 @@
 
 		.CODE
 
-		public	SYSCALL	CopyMatrixF
+		public	C	CopyMatrixF
 
 ;*══════════════════════════════════════════════════════════════════════════*
 ;void	CopyMatrixF(S32 *MatDst, S32 *MatSrc) ;

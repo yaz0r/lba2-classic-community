@@ -12,6 +12,7 @@
 ; IF YOU MODIFY ANY OF THE OPCODES HERE, MAKE SURE TO REFLECT THAT
 ; IN THE ValidMmxOpcode[] array in mm.c. 
 ;
+
 opc_Rdpmc     = 033H
 opc_Emms      = 077H
 opc_Movd_ld   = 06EH
@@ -66,7 +67,8 @@ opc_Punpckhdq = 06AH
 opc_Punpckhwd = 069H
 opc_Pxor      = 0EFH
 
-.486P
+.686p
+.MMX
 
 IFDEF APP_16BIT
 R0	TEXTEQU	<AX>
@@ -148,6 +150,7 @@ mM6	TEXTEQU	<SI>
 mM7	TEXTEQU	<DI>
 
 ELSE
+IFDEF BLAH
 MM0	TEXTEQU	<EAX>
 MM1	TEXTEQU	<ECX>
 MM2	TEXTEQU	<EDX>
@@ -183,7 +186,7 @@ mM4	TEXTEQU	<ESP>
 mM5	TEXTEQU	<EBP>
 mM6	TEXTEQU	<ESI>
 mM7	TEXTEQU	<EDI>
-
+ENDIF
 ENDIF
 
 

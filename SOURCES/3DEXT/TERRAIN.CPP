@@ -822,15 +822,46 @@ void DrawHorizon2ZBuf()
 
 	}
 
-/*#ifndef	_WIN32
+/*#ifndef	YAZ_WIN32
 if( ModeHercule )	HPrintf( "CubeBitField= %d\n", CubeBitField ) ;
 #endif
 */
 }
 
 /*──────────────────────────────────────────────────────────────────────────*/
-U32	MaskVisible(U8 *ptr)	;
+U32	MaskVisible(U8 *in_ptr)
+{
+	U32 mask;
 
+	__asm {
+		pusha
+		mov esi, in_ptr
+		mov     al, [esi]
+		mov     dl, [esi+65] 
+
+		mov	ah, al
+		and	al, dl
+
+		or	ah, dl
+		mov     dl, [esi+1] 
+
+		and     al, dl   
+		or	ah, dl	
+
+		mov     dl, [esi+66] 
+
+		or	ah, dl	
+		and     al, dl       
+
+		and     eax, 20FFh  
+
+		mov mask, eax
+		popa
+	}
+
+    return mask;
+}
+/*
 #pragma	aux MaskVisible	=		\
 "       mov     al, [esi]       "       \
 "       mov     dl, [esi+65]    "       \
@@ -851,7 +882,7 @@ U32	MaskVisible(U8 *ptr)	;
 "				"	\
 "       and     eax, 20FFh      "       \
 	parm		[esi]		\
-	modify exact	[eax edx]
+	modify exact	[eax edx]*/
 
 /*──────────────────────────────────────────────────────────────────────────*/
 void	AffichageTerrainZBuf( void )
@@ -920,8 +951,8 @@ void	AffichageTerrainZBuf( void )
 
 	ptra  = &SommetAffichable[0][0] ;
 	ptrs  = &SommetRot[0][0] ;
-
-	for(z=0; z<NB_COTE; z++)
+	
+	for(U32 z=0; z<NB_COTE; z++)
 	{
 		for(S32 x=0; x<NB_COTE; x++)
 		{

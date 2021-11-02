@@ -5,9 +5,9 @@
 //──────────────────────────────────────────────────────────────────────────
 #ifdef	_WIN32
 #include	<system\keybwin.h>
-#else //_WIN32
+#else //YAZ_WIN32
 #include	<system\keybdos.h>
-#endif//_WIN32
+#endif//YAZ_WIN32
 
 //──────────────────────────────────────────────────────────────────────────
 #ifdef	__cplusplus

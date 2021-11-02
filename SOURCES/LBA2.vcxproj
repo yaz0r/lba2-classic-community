@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{25FF38A5-E91E-46B4-A4B8-23F91076702B}</ProjectGuid>
+    <RootNamespace>LBA2</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\Lib386\;..\Lib386\H;..\SDL\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;OBJECT_PTR;LBA_GAME;CDROM;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StructMemberAlignment>1Byte</StructMemberAlignment>
+      <DisableSpecificWarnings>4068</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>soloud.lib;Setupapi.lib;Imm32.lib;Version.lib;Winmm.lib;Opengl32.lib;%(AdditionalDependencies);SDL2.lib;SDL2main.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\Win32\Debug;..\Debug\%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <MASM>
+      <IncludePaths>$(ProjectDir)..\Lib386\H;%(IncludePaths)</IncludePaths>
+    </MASM>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>..\Lib386\;..\Lib386\H;..\SDL\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <StructMemberAlignment>1Byte</StructMemberAlignment>
+      <DisableSpecificWarnings>4068</DisableSpecificWarnings>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;OBJECT_PTR;LBA_GAME;CDROM;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>false</EnableCOMDATFolding>
+      <OptimizeReferences>false</OptimizeReferences>
+      <AdditionalDependencies>Winmm.lib;Opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\SDL\Lib;..\openal-soft\lib\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <MASM>
+      <IncludePaths>$(ProjectDir)..\Lib386\H;%(IncludePaths)</IncludePaths>
+    </MASM>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <MASM Include="3DEXT\BOXZBUF.ASM" />
+    <MASM Include="3DEXT\LINERAIN.ASM" />
+    <MASM Include="COMPRESS.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="COPY.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="DEC.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="DEC_XCF.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="FIRE.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="FLOW_A.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="FUNC.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="GRILLE_A.ASM" />
+    <MASM Include="HERCUL_A.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="KEYB.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="PLASMA.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="3DEXT\boxzbuf.h" />
+    <ClInclude Include="3DEXT\DECORS.H" />
+    <ClInclude Include="3DEXT\defines.h" />
+    <ClInclude Include="3DEXT\extern.h" />
+    <ClInclude Include="3DEXT\lba_ext.h" />
+    <ClInclude Include="3DEXT\LOADISLE.H" />
+    <ClInclude Include="3DEXT\MAPTOOLS.H" />
+    <ClInclude Include="3DEXT\SELECT.H" />
+    <ClInclude Include="3DEXT\TERRAIN.H" />
+    <ClInclude Include="3DEXT\VAR_EXT.H" />
+    <ClInclude Include="ADDKEYS.H" />
+    <ClInclude Include="AMBIANCE.H" />
+    <ClInclude Include="ANIMTEX.H" />
+    <ClInclude Include="BEZIER.H" />
+    <ClInclude Include="BUGGY.H" />
+    <ClInclude Include="CHEATCOD.H" />
+    <ClInclude Include="COMMON.H" />
+    <ClInclude Include="COMPORTE.H" />
+    <ClInclude Include="CONFIG.H" />
+    <ClInclude Include="CREDITS.H" />
+    <ClInclude Include="CRITICAL.H" />
+    <ClInclude Include="C_EXTERN.H" />
+    <ClInclude Include="DART.H" />
+    <ClInclude Include="DEC.H" />
+    <ClInclude Include="DEC_XCF.H" />
+    <ClInclude Include="DEFINES.H" />
+    <ClInclude Include="DISKFUNC.H" />
+    <ClInclude Include="EXTFUNC.H" />
+    <ClInclude Include="EXTRA.H" />
+    <ClInclude Include="FICHE.H" />
+    <ClInclude Include="FIRE.H" />
+    <ClInclude Include="FLOW.H" />
+    <ClInclude Include="FUNC.H" />
+    <ClInclude Include="GAMEMENU.H" />
+    <ClInclude Include="GERELIFE.H" />
+    <ClInclude Include="GERETRAK.H" />
+    <ClInclude Include="GRILLE.H" />
+    <ClInclude Include="HERCULE.H" />
+    <ClInclude Include="HOLO.H" />
+    <ClInclude Include="IMPACT.H" />
+    <ClInclude Include="INCRUST.H" />
+    <ClInclude Include="INPUT.H" />
+    <ClInclude Include="INTEXT.H" />
+    <ClInclude Include="INVENT.H" />
+    <ClInclude Include="JOYSTICK.H" />
+    <ClInclude Include="KEYB.H" />
+    <ClInclude Include="LZSS.H" />
+    <ClInclude Include="MEM.H" />
+    <ClInclude Include="MESSAGE.H" />
+    <ClInclude Include="MUSIC.H" />
+    <ClInclude Include="OBJECT.H" />
+    <ClInclude Include="PATCH.H" />
+    <ClInclude Include="PERSO.H" />
+    <ClInclude Include="PLAYACF.H" />
+    <ClInclude Include="POF.H" />
+    <ClInclude Include="PTRFUNC.H" />
+    <ClInclude Include="RAIN.H" />
+    <ClInclude Include="SAVEGAME.H" />
+    <ClInclude Include="SCAN.H" />
+    <ClInclude Include="SORT.H" />
+    <ClInclude Include="VALIDPOS.H" />
+    <ClInclude Include="WAGON.H" />
+    <ClInclude Include="ZV.H" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="3DEXT\DECORS.CPP" />
+    <ClCompile Include="3DEXT\drawsky.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="3DEXT\GLOBEXT.CPP" />
+    <ClCompile Include="3DEXT\LOADISLE.CPP" />
+    <ClCompile Include="3DEXT\MAPTOOLS.CPP" />
+    <ClCompile Include="3DEXT\SELECT.CPP">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="3DEXT\TERRAIN.CPP" />
+    <ClCompile Include="3DEXT\VAR_EXT.CPP">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="AMBIANCE.CPP" />
+    <ClCompile Include="ANIMTEX.CPP" />
+    <ClCompile Include="BEZIER.CPP" />
+    <ClCompile Include="BUGGY.CPP" />
+    <ClCompile Include="CHEATCOD.CPP" />
+    <ClCompile Include="COMPORTE.CPP" />
+    <ClCompile Include="CONFIG.CPP" />
+    <ClCompile Include="CREDITS.CPP" />
+    <ClCompile Include="CRITICAL.CPP" />
+    <ClCompile Include="DART.CPP" />
+    <ClCompile Include="DISKFUNC.CPP" />
+    <ClCompile Include="EXTFUNC.CPP" />
+    <ClCompile Include="EXTRA.CPP" />
+    <ClCompile Include="FICHE.CPP" />
+    <ClCompile Include="FLOW.CPP" />
+    <ClCompile Include="GAMEMENU.CPP" />
+    <ClCompile Include="GERELIFE.CPP" />
+    <ClCompile Include="GERETRAK.CPP" />
+    <ClCompile Include="GLOBAL.CPP" />
+    <ClCompile Include="GRILLE.CPP" />
+    <ClCompile Include="HERCULE.CPP">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="HOLOBODY.CPP" />
+    <ClCompile Include="HOLOGLOB.CPP" />
+    <ClCompile Include="HOLOPLAN.CPP" />
+    <ClCompile Include="IMPACT.CPP" />
+    <ClCompile Include="INCRUST.CPP" />
+    <ClCompile Include="INPUT.CPP" />
+    <ClCompile Include="INTEXT.CPP" />
+    <ClCompile Include="INVENT.CPP" />
+    <ClCompile Include="JOYSTICK.CPP">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="LZSS.CPP" />
+    <ClCompile Include="MEM.CPP" />
+    <ClCompile Include="MESSAGE.CPP" />
+    <ClCompile Include="MESSTWIN.CPP">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="MUSIC.CPP" />
+    <ClCompile Include="OBJECT.CPP" />
+    <ClCompile Include="PATCH.CPP" />
+    <ClCompile Include="PERSO.CPP" />
+    <ClCompile Include="PLAYACF.CPP" />
+    <ClCompile Include="POF.CPP" />
+    <ClCompile Include="POUBELLE.CPP">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="RAIN.CPP" />
+    <ClCompile Include="SAVEGAME.CPP" />
+    <ClCompile Include="SCAN.CPP" />
+    <ClCompile Include="SORT.CPP" />
+    <ClCompile Include="VALIDPOS.CPP" />
+    <ClCompile Include="VERSION.CPP" />
+    <ClCompile Include="WAGON.CPP" />
+    <ClCompile Include="ZV.CPP" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lib386\Lib386.vcxproj">
+      <Project>{3697d988-1e10-4308-8b2c-a6c5ee57ac45}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
+  </ImportGroup>
+</Project>

@@ -23,7 +23,7 @@ volatile S32	CmptMemoTimerRef;
 
 //-------------------------------------------------------------------------
 static	U32	MemoTimerRefHR	;
-
+/*
 //----------------------------------------------------------------------------
 WINDOW_PROC_PTR	OldTimerWindowProc;
 
@@ -53,7 +53,7 @@ S32	TimerWindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	}
 
 	return OldTimerWindowProc(hWnd, message, wParam, lParam);
-}
+}*/
 
 //-------------------------------------------------------------------------
 void	ManageTime()

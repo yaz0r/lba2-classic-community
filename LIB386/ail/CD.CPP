@@ -8,15 +8,9 @@
 
 #include 	<stdlib.h>
 
-#ifdef	_WIN32
-#include	<ail\mssw.h>
-#else
-#include	<ail\mss.h>
-#endif
-
 //████████████████████████████████████████████████████████████████████████████
 
-static	HREDBOOK	Cd		;
+//static	HREDBOOK	Cd		;
 static	U32		Tracks		;
 static	U32		Track		;
 static	U32		PausedTrack	;
@@ -29,9 +23,10 @@ static	S32		OldVolumeCD	;
 
 static	S32	CheckCD()
 {
-	if(!Cd)	return	FALSE	;
+	//if(!Cd)	return	FALSE	;
 
-	return(AIL_redbook_status(Cd) != REDBOOK_ERROR) ;
+	//return(AIL_redbook_status(Cd) != REDBOOK_ERROR) ;
+	return 0;
 }
 
 //████████████████████████████████████████████████████████████████████████████
@@ -42,17 +37,17 @@ char	OpenCD(char *volume_name)
 
 	for(drive='A'; drive<='Z'; drive++)
 	{
-		Cd = AIL_redbook_open_drive(drive)	;
+		//Cd = AIL_redbook_open_drive(drive)	;
 		if(CheckCD())
 		{
-			Tracks = AIL_redbook_tracks(Cd)	;
+			//Tracks = AIL_redbook_tracks(Cd)	;
 
 			if(Tracks>1)
 			{
-				AIL_redbook_stop(Cd)	;
+				//AIL_redbook_stop(Cd)	;
 
 				if(!volume_name||!volume_name[0])	break	;
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 				{
 					char		rootpath[4]		;
 					char		volume[_MAX_PATH]	;
@@ -84,6 +79,7 @@ char	OpenCD(char *volume_name)
 					}
 				}
 #else
+				/* yaz
 				{
 					struct find_t	fileinfo	;
 					char		filter[7]	;
@@ -98,18 +94,19 @@ char	OpenCD(char *volume_name)
 						}
 					}
 				}
+				*/
 #endif
 			}
 		}
-error:
-		if(Cd)
+//error:
+		//if(Cd)
 		{
-			AIL_redbook_close(Cd)	;
-			Cd = NULL		;
+			//AIL_redbook_close(Cd)	;
+			//Cd = NULL		;
 		}
 	}
 
-	if(Cd)
+	/*if (Cd)
 	{
 		atexit(CloseCD)		;
 
@@ -117,7 +114,7 @@ error:
 
 		return	drive		;
 	}
-	else
+	else*/
 	{
 		return 0		;
 	}
@@ -127,7 +124,8 @@ error:
 
 void	CloseCD()
 {
-	if(!Cd)		return	;
+	return;
+	//if(!Cd)		return	;
 
 	StopCD()		;
 
@@ -135,9 +133,9 @@ void	CloseCD()
 
 	ChangeVolumeCD(OldVolumeCD);
 
-	AIL_redbook_close(Cd)	;
+	//AIL_redbook_close(Cd)	;
 
-	Cd = NULL		;
+	//Cd = NULL		;
 }
 
 //████████████████████████████████████████████████████████████████████████████
@@ -150,9 +148,9 @@ void	PlayCD(S32 track)
 
 	StopCD()		;
 
-	AIL_redbook_track_info(Cd, track, &start, &end);
+	//AIL_redbook_track_info(Cd, track, &start, &end);
 
-	AIL_redbook_play(Cd, start, end);
+	//AIL_redbook_play(Cd, start, end);
 	Track = track		;
 }
 
@@ -171,14 +169,14 @@ void	ChangeVolumeCD(S32 volume)
 		volume = 0	;
 	}
 
-	AIL_redbook_set_volume(Cd, volume)	;
+	//AIL_redbook_set_volume(Cd, volume)	;
 }
 
 //████████████████████████████████████████████████████████████████████████████
 
 S32	GetVolumeCD()
 {
-	return	AIL_redbook_volume(Cd)	;
+	return	0;//AIL_redbook_volume(Cd)	;
 }
 
 //████████████████████████████████████████████████████████████████████████████
@@ -187,7 +185,7 @@ void	StopCD()
 {
 	if( !CheckCD() || !Track)	return 	;
 
-	AIL_redbook_stop(Cd)	;
+	//AIL_redbook_stop(Cd)	;
 	Track = 0		;
 }
 
@@ -197,8 +195,8 @@ void	PauseCD()
 {
 	if( !CheckCD() || !Track || !IsCDPlaying())	return	;
 
-	AIL_redbook_track_info(Cd, Track, NULL, &End);
-	Cur = AIL_redbook_position(Cd)	;
+	//AIL_redbook_track_info(Cd, Track, NULL, &End);
+	//Cur = AIL_redbook_position(Cd)	;
 	PausedTrack = Track		;
 
 	StopCD()			;
@@ -210,7 +208,7 @@ void	ResumeCD()
 {
 	if( !CheckCD() || !PausedTrack)	return	;
 
-	AIL_redbook_play(Cd, Cur, End)	;
+	//AIL_redbook_play(Cd, Cur, End)	;
 	Track = PausedTrack		;
 	PausedTrack = 0			;
 }
@@ -223,7 +221,7 @@ S32	IsCDPlaying()
 
 	if( !CheckCD() || !Track)	return FALSE ;
 
-	playing = (AIL_redbook_status(Cd) != REDBOOK_STOPPED) || PausedTrack ;
+	//playing = (AIL_redbook_status(Cd) != REDBOOK_STOPPED) || PausedTrack ;
 
 	if(playing)
 	{

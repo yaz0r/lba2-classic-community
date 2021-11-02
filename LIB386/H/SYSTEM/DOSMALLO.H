@@ -12,7 +12,7 @@ extern	"C"	{
 
 #define	NormDosMalloc	NormMalloc
 
-#else //_WIN32
+#else //YAZ_WIN32
 
 extern	void	*NormDosMalloc(S32 size)	;
 
@@ -20,14 +20,14 @@ extern	void	*NormDosMalloc(S32 size)	;
 	parm caller	[ebx]			\
 	modify		[eax ecx edx esi edi]
 
-#endif//_WIN32
+#endif//YAZ_WIN32
 
 //──────────────────────────────────────────────────────────────────────────
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 
 #define	NormDosFree	NormFree
 
-#else //_WIN32
+#else //YAZ_WIN32
 
 extern	void	NormDosFree(void *ptr)		;
 
@@ -36,14 +36,14 @@ extern	void	NormDosFree(void *ptr)		;
 	modify 		[eax ebx ecx esi edi]
 
 
-#endif//_WIN32
+#endif//YAZ_WIN32
 
 //──────────────────────────────────────────────────────────────────────────
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 
 #define	NormDosMshrink	NormMshrink
 
-#else //_WIN32
+#else //YAZ_WIN32
 
 void	*NormDosMshrink(void *ptr, U32 size)	;
 
@@ -51,14 +51,14 @@ void	*NormDosMshrink(void *ptr, U32 size)	;
 	parm	[edx] [ebx]	  	\
 	modify 	[eax ecx esi edi]
 
-#endif//_WIN32
+#endif//YAZ_WIN32
 
 //──────────────────────────────────────────────────────────────────────────
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 
 #define	DosAvailableMem()	0
 
-#else //_WIN32
+#else //YAZ_WIN32
 
 extern	U32	DosAvailableMem()		;
 
@@ -66,7 +66,7 @@ extern	U32	DosAvailableMem()		;
 	modify 		[eax ebx ecx edx esi edi]
 
 
-#endif//_WIN32
+#endif//YAZ_WIN32
 
 //──────────────────────────────────────────────────────────────────────────
 #ifdef	__cplusplus

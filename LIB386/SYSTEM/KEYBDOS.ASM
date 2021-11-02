@@ -1,31 +1,32 @@
-;//───────────────────────────────────────────────────────────────────────
+;//──────────────────────────────────────────────────────────────────────?
 		.386p
-		.model  SMALL, SYSCALL
+		.model  SMALL, C
 
-;//───────────────────────────────────────────────────────────────────────
+;//──────────────────────────────────────────────────────────────────────?
 		.DATA
 
-;//───────────────────────────────────────────────────────────────────────
-		public	SYSCALL		KeybDataStart	; for VMM_lock
-		public	SYSCALL		KeybDataEnd
+;//──────────────────────────────────────────────────────────────────────?
+		public	C		KeybDataStart	; for VMM_lock
+		public	C		KeybDataEnd
 
-		public	SYSCALL		TabKeys
+		public	C		TabKeys
 
-		public	SYSCALL		Stack
+		public	C		Stack
 
-		public	SYSCALL		Key
+		public	C		Key
 
-		public	SYSCALL		KeyOff
+		public	C		KeyOff
 
-		public	SYSCALL		AsciiMode
+		public	C		AsciiMode
 
-		public	SYSCALL		Old_PM09_Off
-		public	SYSCALL		Old_PM09_Sel
+		public	C		Old_PM09_Off
+		public	C		Old_PM09_Sel
 
-		public	SYSCALL		FlagExtendScan
+		public	C		FlagExtendScan
 
+		ASSUME DS:SEG FlagExtendScan
 
-;//───────────────────────────────────────────────────────────────────────
+;//──────────────────────────────────────────────────────────────────────?
 KeybDataStart	label	dword
 
 TabKeys		dd	8 DUP (0)
@@ -46,32 +47,32 @@ FlagExtendScan	db	00
 
 KeybDataEnd	label	dword
 
-;//───────────────────────────────────────────────────────────────────────
+;//──────────────────────────────────────────────────────────────────────?
 KB_DATA		equ     60H
 
-;//───────────────────────────────────────────────────────────────────────
+;//──────────────────────────────────────────────────────────────────────?
 		.CODE
 
-;//───────────────────────────────────────────────────────────────────────
-		public	SYSCALL		KeybHandler
-		public	SYSCALL		GetAscii
-		public	SYSCALL		ClearAsciiBuffer
+;//──────────────────────────────────────────────────────────────────────?
+		public	C		KeybHandler
+		public	C		GetAscii
+		public	C		ClearAsciiBuffer
 
-;//───────────────────────────────────────────────────────────────────────
-		public	SYSCALL		KeybCodeStart	; for VMM_lock
-		public	SYSCALL		KeybCodeEnd
+;//──────────────────────────────────────────────────────────────────────?
+		public	C		KeybCodeStart	; for VMM_lock
+		public	C		KeybCodeEnd
 
-;//───────────────────────────────────────────────────────────────────────
-		public	SYSCALL		PatchExtended
+;//──────────────────────────────────────────────────────────────────────?
+		public	C		PatchExtended
 
-;//───────────────────────────────────────────────────────────────────────
+;//──────────────────────────────────────────────────────────────────────?
 ifdef	REG_CALL
-		extrn	SYSCALL		exit_:PROC
+		extrn	C		exit_:PROC
 else ;	REG_CALL
-		extrn	SYSCALL		exit:PROC
+		extrn	C		exit:PROC
 endif;	REG_CALL
 
-;//───────────────────────────────────────────────────────────────────────
+;//──────────────────────────────────────────────────────────────────────?
 KeybCodeStart	label	dword
 
 KeybHandler	PROC    FAR
@@ -84,7 +85,7 @@ KeybHandler	PROC    FAR
 
 		cld				; reset direction
 
-		mov	ecx, _DATA		; reset data segment
+;yaz		mov	ecx, _DATA		; reset data segment
 		xor	eax, eax
 		mov     ds, ecx
 
@@ -173,7 +174,7 @@ reset:
 		test	TabKeys[4], 01000000h	; ALT ?
 		jz	lexit2
 
-		mov	eax, _DATA		; ok try to call exit
+;yaz		mov	eax, _DATA		; ok try to call exit
 		mov	ss, eax
 		mov	esp, Stack		; reset the stack to a "safe" spot
 		sti				; enable interrupts
@@ -203,7 +204,7 @@ KeybHandler 	endp
 
 KeybCodeEnd	label	dword
 
-;//───────────────────────────────────────────────────────────────────────
+;//──────────────────────────────────────────────────────────────────────?
 GetAscii	proc
 
 		mov	ah, 1
@@ -217,7 +218,7 @@ nokey:
 
 GetAscii	endp
 
-;//───────────────────────────────────────────────────────────────────────
+;//──────────────────────────────────────────────────────────────────────?
 ClearAsciiBuffer proc
 
 cab0:		mov	ah, 1
@@ -231,6 +232,6 @@ nokey1:
 
 ClearAsciiBuffer endp
 
-;//───────────────────────────────────────────────────────────────────────
+;//──────────────────────────────────────────────────────────────────────?
 ;			The
        			End

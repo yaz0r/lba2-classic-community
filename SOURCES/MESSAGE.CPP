@@ -11,11 +11,10 @@
 /*-------------------------------------------------------------------------*/
 #endif
 
-//#define LORAN 1
 //#define LBA_EDITOR 1
 /*-------------------------------------------------------------------------*/
 
-#ifdef  LORAN
+#if  0
 #include "f:\projet\lib386\lib_sys4\adeline.h"
 #include "f:\projet\lib386\lib_sys4\lib_sys.h"
 #include "f:\projet\lib386\lib_svg5\lib_svga.h"
@@ -52,7 +51,7 @@ S32     QuickMessage  = 0               ;
 S32     FlagRestoreCD = 0               ;
 
 /*-------------------------------------------------------------------------*/
-//======================== Issus de Dial 
+//======================== Issus de Dial
 #define DIAL_DEF        (1<<0)  // Texte normal (defaut)
 #define DIAL_BIG        (1<<1)  // Texte affiche en BigMessage
 #define DIAL_FUL        (1<<2)  // Texte affiche en BigMessage sans cadre (Full Screen)
@@ -77,7 +76,7 @@ S32     DialNbLine ;    // pour la version demo le 02/08/96
 
 //extern        Struc_Point Tab_Points[] ;
 
-#ifdef  LORAN
+#if  0
 //================================================================= L O R A N
 #define PathConfigFile  "c:\\adeline.def"
 //#define       CDROM   1
@@ -129,7 +128,7 @@ char    PathVoxCD[_MAX_PATH] ;
 #define NAME_HQR_TEXT   "TEXT.HQR"
 
 #define INTER_LINE      38
-#define INTER_SPACE     7               //  16/08/94  de 5 a 7 !
+#define INTER_SPACE     7               // 16/08/94  de 5 a 7 !
 #define INTER_LEAVE     2
 #define CODE_HARD_SPACE 42              // Space with unchangable size (7)
 
@@ -170,12 +169,13 @@ static char     FileText[256]   ;
 S32     Language = 1    ;               // English
 S32     LastFileInit=-1 ;
 
+// yaz: can't change the encoding of those, else it breaks the language cfg reading
 char    *TabLanguage[] = {
                         //      Ne pas toucher l'ordre cause HQR
         "English",
-        "Français",
+        "Fran""\x87""ais",
         "Deutsch",
-        "Español",
+        "Espa""\xA4""ol",
         "Italiano",
         "Portugues"     }       ;
 
@@ -287,7 +287,7 @@ S32     NbMess = 0 ;            // nombre de messages dans le .txt
 #endif
 
 /*-------------------------------------------------------------------------*/
-#ifdef  _WIN32
+#ifdef  YAZ_WIN32
 
 /*-------------------------------------------------------------------------*/
 U32     GetHDFreeSize()
@@ -304,7 +304,7 @@ U32     GetHDFreeSize()
 }
 
 /*-------------------------------------------------------------------------*/
-#endif//_WIN32
+#endif//YAZ_WIN32
 
 /*-------------------------------------------------------------------------*/
 #ifdef  CDROM
@@ -446,6 +446,7 @@ S32    FindText( S32 text )
 //      Pour prendre en compte les eventuels fichiers déjà sur HD
 void    InitVoiceFile()
 {
+#if 0 // yaz
         char    pathname[_MAX_PATH];
         struct  find_t  fileinfo;
         U32     rc              ;
@@ -474,11 +475,12 @@ void    InitVoiceFile()
                 time.tm_isdst = -1      ;
 
                 AddFileNameOnHD( pathname, fileinfo.size, mktime(&time) ) ;
-#ifdef  LORAN
+#ifdef  0
                 AffStatusVoiceFile()            ;
 #endif
                 rc = _dos_findnext( &fileinfo ) ;
         }
+#endif
 }
 /*-------------------------------------------------------------------------*/
 void    ClearVoiceFile()
@@ -523,7 +525,7 @@ void    CalcTotalSizeFileOnHD()
 
 }
 /*-------------------------------------------------------------------------*/
-#ifdef  LORAN
+#if  0
 void    AffStatusVoiceFile()
 {
         T_FILEONHD *pt  ;
@@ -1212,8 +1214,8 @@ void    GetNextWord(char *ptchaine, char *mot)
                 while ( *ptchaine == ' ' )
                 {
 
-                        if ( FlagGui )  pt = strchr( "!?);:\"", *(ptchaine+1))  ;
-                        else            pt = strchr( "!?);:", *(ptchaine+1))    ;
+                        if ( FlagGui )  pt = (char*)strchr( "!?);:\"", *(ptchaine+1))  ;
+                        else            pt = (char*)strchr( "!?);:", *(ptchaine+1))    ;
 
                         if ( pt )
                         {
@@ -1269,7 +1271,7 @@ void    AffOneCar( S32 x, S32 y, char c, S32 coul )
 #ifdef  LBA_EDITOR
                 if ( !(OptionsDebug&OPT_QUICK_MESSAGES) )
 #endif
-#ifdef  LORAN
+#if  0
                 if ( !QuickMessage )
 #endif
                 {
@@ -1475,7 +1477,7 @@ S32    GetText( S32 text )
 
         PtText = BufText+offset0        ;
 
-        FlagDial = *PtText++            ; //  attribut pour GereFlagDial()
+        FlagDial = *PtText++            ; // attribut pour GereFlagDial()
 
         SizeText = offset1-offset0-1    ; // -1 pour virer octet d'attribut
 
@@ -1486,7 +1488,7 @@ S32    GetText( S32 text )
 #define AffFleche()     DrawAngles( Dial_X0, Dial_Y0, Dial_X1, Dial_Y1, ARROW_ID/*|A_FLIP*/ ) ;
 
 /*-------------------------------------------------------------------------*/
-//----- : incrust vignette Radio
+//----- incrust vignette Radio
 void    TestAndDrawRadio( void )
 {
         if( FlagDial&DIAL_RAD )         // Message Radio
@@ -1737,7 +1739,7 @@ void    GetNextLine()
 
         LenLine = strlen(BufLine)       ;
         PtLine = BufLine                ;
-        DialNbLine++ ;  //  pour la version demo le 02/08/96
+        DialNbLine++ ;  // pour la version demo le 02/08/96
 }
 /*-------------------------------------------------------------------------*/
 void    InitEndPage()
@@ -1863,7 +1865,7 @@ S32     NextDialCar()
                                         break   ;
                                 }
 
-                                GetDxDyMask( *PtLine, &dx, &dy, LbaFont );
+                                GetDxDyMask( *(U8*)PtLine, &dx, &dy, LbaFont );
 
                                 if ( *PtLine != ' ' )
                                 {
@@ -2029,7 +2031,7 @@ void    Dial( S32 text, S32 drawscene )
         NormalWinDial( )        ;//     By default
         FlagMessageShade = TRUE ;
 
-        if( !GetText( text ) )  return ;        // Test rajouté  pour
+        if( !GetText( text ) )  return ;        // Test rajouté pour
                                                 // éviter plantage.
         if( GereFlagDial( text ) )      return ;
 
@@ -2047,7 +2049,7 @@ void    Dial( S32 text, S32 drawscene )
         }
 //-----
 
-        DialNbLine = 0 ;        //  pour la démo le 02/08/96
+        DialNbLine = 0 ;        // pour la démo le 02/08/96
 
         SaveTimer( ) ;
 
@@ -2347,7 +2349,7 @@ void    CleanMessage( char *string, S32 flag )
 #ifndef COMPILATOR
 #ifdef  LBA_EDITOR
 /*-------------------------------------------------------------------------*/
-/*--- PARTIE RESERVEE A L'EDITION DES MESSAGES (le 03/05/95) ----------*/
+/*--- PARTIE RESERVEE A L'EDITION DES MESSAGES  ----------*/
 
 #define GetTxtNextLine(ptr)     (strchr(ptr,0x0A)+1)
 

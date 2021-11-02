@@ -7,9 +7,9 @@
 #include	<svga\mouse.h>
 
 //──────────────────────────────────────────────────────────────────────────
-static	S32	LibMouseXDep, LibMouseYDep			;
+S32	LibMouseXDep, LibMouseYDep			;
 static	S32	MouseBoxX0, MouseBoxX1, MouseBoxY0, MouseBoxY1	;
-
+#if YAZ
 //──────────────────────────────────────────────────────────────────────────
 WINDOW_PROC_PTR	OldMouseWindowProc;
 
@@ -53,7 +53,7 @@ S32	MouseWindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 	return OldMouseWindowProc(hWnd, message, wParam, lParam);
 }
-
+#endif
 //──────────────────────────────────────────────────────────────────────────
 void	ShowMouse( S32 flag )
 {
@@ -78,7 +78,7 @@ void	SetMousePos( S32 x, S32 y )
 	if(MouseY<MouseBoxY0)		MouseY = MouseBoxY0;
 	else if(MouseY>MouseBoxY1)	MouseY = MouseBoxY1;
 
-	SetCursorPos(160, 100)	;
+	//yaz SetCursorPos(160, 100)	;
 }
 
 //──────────────────────────────────────────────────────────────────────────
@@ -87,7 +87,7 @@ void	GetMouseDep()
 	MouseXDep = LibMouseXDep	;
 	MouseYDep = LibMouseYDep	;
 
-	SetCursorPos(160, 100)		;
+	//yaz SetCursorPos(160, 100)		;
 
 	LibMouseXDep = 0		;
 	LibMouseYDep = 0		;

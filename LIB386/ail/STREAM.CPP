@@ -1,19 +1,21 @@
 #include	<system\adeline.h>
 
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 #include	<system\winsys.h>
-#include	<ail\mssw.h>
 #else
 #include	<system\dossys.h>
-#include	<ail\mss.h>
 #endif
 
 #include	<ail\common.h>
 #include	<ail\sample.h>
 #include	<ail\stream.h>
 
+#include	<assert.h>
+
 #include 	<stdlib.h>
 #include 	<string.h>
+
+#include	<stdio.h>
 
 //████████████████████████████████████████████████████████████████████████████
 
@@ -21,12 +23,11 @@
 
 //████████████████████████████████████████████████████████████████████████████
 
-extern	HDIGDRIVER	DigDriver	;// Handle to digital audio driver
 extern	S32		LibWaveMasterVolume	;
 
 //████████████████████████████████████████████████████████████████████████████
 
-static	HSTREAM		Stream			;
+static	char*		Stream			;
 static	S32		StreamVolume = 127	;
 static	S32		PausedPos		;
 static	char		StreamPathName[_MAX_PATH];
@@ -46,7 +47,7 @@ static void	ManageStream()
 {
 	if( Sample_Driver_Enabled && Stream )
 	{
-		AIL_service_stream(Stream, 0)	;
+		//yaz AIL_service_stream(Stream, 0)	;
 	}
 
 	if(StreamManageProc)
@@ -63,21 +64,108 @@ static void PlayThisStream(char *name, S32 pos)
 
 	StopStream()	;
 
-	Stream = AIL_open_stream(DigDriver, name, 0)	;
+	{
+		FILE * pFile = fopen(name, "rb");
+		if(pFile == NULL)
+			return;
+
+		fseek(pFile, 0, SEEK_END);
+		int fileSize = ftell(pFile);
+		fseek(pFile, 0, SEEK_SET);
+
+		char* ptrsample = (char*)malloc(fileSize);
+		fread(ptrsample, fileSize, 1, pFile);
+		fclose(pFile);
+
+		///
+
+		int numChannels = *(short*)((char*)ptrsample + 22);
+		int sampleRate = *(U32*)((char*)ptrsample + 24);
+		int bitsPerSample = *(short*)((char*)ptrsample + 34);
+
+		char* dataPtr =  ((char*)ptrsample + 36);
+		while(*(U32*)dataPtr != 'atad')
+		{
+			dataPtr++;
+		}
+
+		int samplesSize = *(U32*)(dataPtr + 4);
+		char * samplesPtr = dataPtr + 8;
+
+		
+		////
+		int numSamples = samplesSize * 2;
+		Stream = samplesPtr = (char*)malloc(numSamples * 4);
+
+		S16 stepIndex = 0;
+		S16 predicted = 0;
+
+		int adpcm_decode_init(int numChannels);
+		int adpcm_decode_frame(void *data, int *data_size,unsigned char *buf, int buf_size);
+
+		short* decompressedData = (short*)samplesPtr;
+		unsigned char* inputData = (unsigned char*)dataPtr+8;
+
+		int sizeLeftToDecode = samplesSize;
+
+		int maxFrameSize= 0x400;
+		if(sampleRate == 44100)
+		{
+			maxFrameSize *=2;
+		}
+
+		adpcm_decode_init(numChannels);
+		while(sizeLeftToDecode)
+		{
+			int frameSize = maxFrameSize;
+
+			if(frameSize > sizeLeftToDecode)
+				frameSize = sizeLeftToDecode;
+
+			int decodedSize;
+			adpcm_decode_frame(decompressedData, &decodedSize, inputData, frameSize);
+
+			inputData+=frameSize;
+			sizeLeftToDecode-=frameSize;
+			decompressedData+=decodedSize/2;
+		}
+
+
+		samplesSize = (char*)decompressedData - samplesPtr;
+
+		/*
+		if(streamSource == 0)
+		{
+			alGenSources(1, &streamSource);
+		}
+
+		alGenBuffers(1, &streamBuffer);
+
+		ALenum error = alGetError();
+		alBufferData(streamBuffer, AL_FORMAT_STEREO16, samplesPtr, samplesSize, sampleRate);
+		error = alGetError();
+		alSourcei(streamSource, AL_BUFFER, streamBuffer);
+		error = alGetError();
+
+		alSourcePlay(streamSource);
+		*/
+		free(ptrsample);
+		
+	}
 
 	if(!Stream)			return	;
 
 	strcpy(StreamPathName, name)		;
 
-	AIL_set_stream_position(Stream, pos)	;
+	//yaz AIL_set_stream_position(Stream, pos)	;
 
 	ChangeVolumeStream(
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 			UseWaveMixer?StreamVolume:
-#endif//_WIN32
+#endif//YAZ_WIN32
 			Scale(StreamVolume, LibWaveMasterVolume, 7));
 
-	AIL_start_stream(Stream)		;
+	//yaz AIL_start_stream(Stream)		;
 
 	ManageStream()				;
 }
@@ -90,8 +178,8 @@ void	OpenStream()
 
 	if(init)
 	{
-		StreamManageProc = ManageProc	;
-		ManageProc	 = ManageStream	;
+//yaz		StreamManageProc = ManageProc	;
+//yaz		ManageProc	 = ManageStream	;
 		init 		 = FALSE	;
 	}
 }
@@ -120,11 +208,11 @@ void	ChangeVolumeStream(S32 volume)
 
 	if( !Sample_Driver_Enabled || !Stream )	return ;
 
-	AIL_set_stream_volume(Stream,
-#ifdef	_WIN32
-			UseWaveMixer?StreamVolume:
-#endif//_WIN32
-			Scale(StreamVolume, LibWaveMasterVolume, 7));
+	//yaz AIL_set_stream_volume(Stream,
+#ifdef	YAZ_WIN32
+	//yaz 		UseWaveMixer?StreamVolume:
+#endif//YAZ_WIN32
+	//yaz 		Scale(StreamVolume, LibWaveMasterVolume, 7));
 
 }
 
@@ -141,7 +229,11 @@ void	StopStream()
 {
 	if( !Sample_Driver_Enabled || !Stream )	return ;
 
-	AIL_close_stream(Stream)	;
+	//alSourceStop(streamSource);
+	
+	free(Stream);
+	//alDeleteBuffers(1, &streamBuffer);
+	//streamBuffer = 0;
 
 	Stream = NULL		;
 	StreamPathName[0] = 0	;
@@ -153,11 +245,12 @@ void	PauseStream()
 {
 	if(!IsStreamPlaying())		return	;
 
-	AIL_pause_stream(Stream, TRUE)		;
+	//yaz AIL_pause_stream(Stream, TRUE)		;
+	//alSourcePause(streamSource);
 
 	ManageStream()				;
 
-	PausedPos = AIL_stream_position(Stream)	;
+	//PausedPos = AIL_stream_position(Stream)	;
 	strcpy(PausedPathName, StreamPathName)	;
 
 	StopStream()				;
@@ -178,13 +271,16 @@ void	ResumeStream()
 
 S32	IsStreamPlaying()
 {
-	S32	playing	;
+	S32	playing = false	;
 
 	if( !Sample_Driver_Enabled || !Stream )	return FALSE ;
 
 	ManageStream()			;
 
-	playing = (AIL_stream_status(Stream) != SMP_DONE) ;
+	//ALint status;
+	//alGetSourcei(streamSource, AL_SOURCE_STATE, &status);
+
+	//playing = (status != AL_STOPPED);
 
 	if(!playing)	StopStream()	;
 

@@ -1,27 +1,29 @@
 ;*══════════════════════════════════════════════════════════════════════════*
 		.386p
 
-		.model SMALL, SYSCALL
+		.model SMALL, C
 
 ;*══════════════════════════════════════════════════════════════════════════*
 		.DATA
 
 ;*══════════════════════════════════════════════════════════════════════════*
-		public	SYSCALL LongProjectList
+		public	C LongProjectList
 LongProjectList	dd	offset LongProjectListInit
+
+ASSUME ds:SEG temp
 
 ;*══════════════════════════════════════════════════════════════════════════*
 temp		dd	?
 
 ;*══════════════════════════════════════════════════════════════════════════*
-		extrn	SYSCALL	LongProjectList3D:DWORD
+		extrn	C	LongProjectList3D:DWORD
 
 ;*══════════════════════════════════════════════════════════════════════════*
 		.CODE
 
 ;*══════════════════════════════════════════════════════════════════════════*
 
-		public	SYSCALL	LongProjectListInit
+		public	C	LongProjectListInit
 
 ;*══════════════════════════════════════════════════════════════════════════*
 LongProjectListInit proc

@@ -17,7 +17,7 @@ void	*NormMalloc(U32 size)
 
 	if(!temp)
 	{
-		return	NULL	;
+		return	0	;
 	}
 
 	addr = (temp+MALLOC_ALIGN)&MALLOC_MASK	;
@@ -63,7 +63,7 @@ void	*NormMshrink(void *addr, U32 size)
 
 		if(!_expand(temp, (size_t)(size+MALLOC_ALIGN)))
 		{
-			addr = NULL	;
+			addr = 0	;
 		}
 #ifndef	_WIN32
 	}

@@ -8,7 +8,7 @@
 #include <string.h>
 
 //--------------------------------------------------------------------------//
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 
 //--------------------------------------------------------------------------//
 S32	OpenMode( char *name, int mode)
@@ -108,14 +108,16 @@ void	Touch(char *name)
 }
 
 //--------------------------------------------------------------------------//
-#else// _WIN32
+#else// YAZ_WIN32
+
+#include <assert.h>
 
 //--------------------------------------------------------------------------//
 S32    OpenMode( char *name, int mode)
 {
 	S32	handle	;
 
-	handle = open( name, mode, S_IRUSR|S_IWUSR|S_IRGRP|S_IWGRP|S_IROTH)	;
+	handle = _open(name, mode, S_IREAD | S_IWRITE);
 
 	return handle == -1 ? 0 : handle	;
 }
@@ -136,6 +138,6 @@ U32   FileSize( char *name )
 }
 
 //--------------------------------------------------------------------------//
-#endif//_WIN32
+#endif//YAZ_WIN32
 
 //--------------------------------------------------------------------------//

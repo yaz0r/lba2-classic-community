@@ -17,16 +17,16 @@
 #include	<limits.h>
 
 //****************************************************************************
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 #include	<system\winsys.h>
 #include	<svga\ddraw.h>
 
-#else //_WIN32
+#else //YAZ_WIN32
 #include	<system\dossys.h>
 #include	<svga\copybov.h>
 #include	<svga\cleabov.h>
 
-#endif//_WIN32
+#endif//YAZ_WIN32
 
 //****************************************************************************
 #ifdef	__cplusplus
@@ -683,7 +683,7 @@ S32 BoxInit( S32 nbBox )
 	}
 
 	SetBoxScreenGet(NULL)			;
-	SetBoxScreenRelease(NULL)		;
+	//yaz I set that in screen init SetBoxScreenRelease(NULL)		;
 	SetBoxScreenFlip(NULL)			;
 	SetBoxOneBlit(NULL)			;
 	SetBoxOneClean(NULL)			;

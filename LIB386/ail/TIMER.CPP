@@ -1,15 +1,9 @@
 #include	<system\adeline.h>
 #include	<system\exit.h>
 #include	<system\initimer.h>
-#include	<system\timerdos.h>
+#include	<system\timerwin.h> //yaz
 
 #include	<ail\timer.h>
-
-#ifdef	_WIN32
-#include	<ail\mssw.h>
-#else//	_WIN32
-#include	<ail\mss.h>
-#endif//_WIN32
 
 //████████████████████████████████████████████████████████████████████████████
 VOID_FUNC	ClearAIL;
@@ -17,7 +11,7 @@ VOID_FUNC	ClearAIL;
 //████████████████████████████████████████████████████████████████████████████
 void	InitAIL()
 {
-	AIL_startup()	;
+	//AIL_startup()	;
 
 	RegisterInitClear( InitAIL, ClearAIL ) ;
 }
@@ -25,7 +19,7 @@ void	InitAIL()
 //████████████████████████████████████████████████████████████████████████████
 void	ClearAIL()
 {
-	AIL_shutdown()	;
+	//AIL_shutdown()	;
 }
 
 //████████████████████████████████████████████████████████████████████████████

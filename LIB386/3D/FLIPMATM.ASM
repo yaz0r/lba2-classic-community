@@ -2,7 +2,7 @@
 
 			.586
 
-			.model SMALL, SYSCALL
+			.model SMALL, C
 
 			include mat.inc
 			INCLUDE	IAMMX.INC	; Pour pouvoir assembler du MMx
@@ -16,7 +16,7 @@
 
 			.CODE
 
-			public	SYSCALL	FlipMatrixM
+			public	C	FlipMatrixM
 
 ;*══════════════════════════════════════════════════════════════════════════*
 ;void	FlipMatrixM(S32 *MatDst, S32 *MatSrc) ;

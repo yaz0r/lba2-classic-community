@@ -87,6 +87,7 @@ char    KeyStrings[MAX_INPUT*2][50] ;   // 14 char max
 //▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 U8      ScanKnown[] =
 {
+#if 0 //yaz
         K_NUMPAD_1      ,
         K_NUMPAD_2      ,
         K_NUMPAD_3      ,
@@ -165,7 +166,7 @@ U8      ScanKnown[] =
         K_SHIFT         ,
         K_CTRL          ,
         K_ALT           ,
-
+#endif
         0               // End
 } ;
 
@@ -212,7 +213,7 @@ void    DrawConfigFire( S32 xmin, S32 ymin, S32 xmax, S32 ymax, S32 coul )
 
         FixePlasmaPtrMap() ;
 
-        Fill_Poly( POLY_TEXTURE, 0, 4, TabPoint );
+        //yaz Fill_Poly( POLY_TEXTURE, 0, 4, TabPoint );
 }
 
 //▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
@@ -222,7 +223,7 @@ void    GetKeyText(char *string, U32 scan)
 
         if( scan )
         {
-#ifdef  _WIN32
+#ifdef  YAZ_WIN32
                 if((scan>=VK_F1)&&(scan<=VK_F24))
                 {
                         sprintf(string, "F%d", scan-VK_F1+1) ;
@@ -654,14 +655,15 @@ void    MenuConfig( void )
                 BoxUpdate()     ;
 
                 oldkey = MyKey  ;
-#ifdef  _WIN32
+#ifdef  YAZ_WIN32
                 DetectJoys()    ;
 #endif
                 MyGetInput()    ;
 
-#ifdef  _WIN32
+#ifdef  YAZ_WIN32
                 switch(MyKey)
                 {
+#if 0 // yaz
                 case K_NUMPAD_8:
                         MyKey = K_UP;
                         break   ;
@@ -695,6 +697,7 @@ void    MenuConfig( void )
                 case K_SPACE:
                         MyKey = K_ENTER;
                         break   ;
+#endif
                 case K_UP:
                 case K_DOWN:
                 case K_LEFT:
@@ -711,9 +714,10 @@ void    MenuConfig( void )
                         MyKey = 0       ;
                         break   ;
                 }
-#else// _WIN32
+#else// YAZ_WIN32
                 switch(MyKey)
                 {
+#if 0//yaz
                 case K_GRAY_UP:
                         MyKey = K_UP;
                         break   ;
@@ -744,6 +748,7 @@ void    MenuConfig( void )
                         MyKey = K_SUPPR;
                         break   ;
                 case K_NUMPAD_ENTER:
+#endif
                 case K_SPACE:
                         MyKey = K_ENTER;
                         break   ;
@@ -763,7 +768,7 @@ void    MenuConfig( void )
                         MyKey = 0       ;
                         break   ;
                 }
-#endif//_WIN32
+#endif//YAZ_WIN32
 
 #if defined(DEBUG_TOOLS)||defined(TEST_TOOLS)
 		CheckSaveLogPcx( PtrPalNormal ) ;
@@ -793,9 +798,10 @@ void    MenuConfig( void )
                         }
                 }
 
-#ifdef  _WIN32
+#ifdef  YAZ_WIN32
                 if(!MyKey)
                 {
+#if 0 // yaz					
                         S32     i       ;
                         U32     *joys   ;
 
@@ -829,8 +835,9 @@ void    MenuConfig( void )
                                         break   ;
                                 }
                         }
+#endif
                 }
-#endif//_WIN32
+#endif//YAZ_WIN32
                 ManageTime()    ;
                 time = TimerRefHR;
 
@@ -897,13 +904,13 @@ void    MenuConfig( void )
 
                                 *ptr = 0 ;
 
-#ifdef  _WIN32
+#ifdef  YAZ_WIN32
                                 KeyDown()       ;
                                 MyKey = 0       ;
 #endif
                                 while( !MyKey )
                                 {
-#ifdef  _WIN32
+#ifdef  YAZ_WIN32
                                         MyKey = KeyDown()       ;
 #else
                                         MyGetInput()            ;
@@ -1128,7 +1135,7 @@ S32     ConfirmMenu( char *ask, char *ok, char *cancel )
         S32     select = 0      ;
         S32     oldselect = 1   ;
         S32     flag = -1       ;
-#ifndef _WIN32
+#ifndef YAZ_WIN32
         S32     firstaff  = TRUE;
 #endif
 
@@ -1142,7 +1149,7 @@ S32     ConfirmMenu( char *ask, char *ok, char *cancel )
 
 	DrawCadreConfig( x0, y0, x1, by1, FALSE ) ;
 
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 	BoxStaticAdd( x0, y0, x1, by1 ) ;
 #endif
 
@@ -1182,7 +1189,8 @@ S32     ConfirmMenu( char *ask, char *ok, char *cancel )
                         case K_END:
 
                         // touches de controle
-#ifdef  _WIN32                        
+#if 0 //yaz
+#ifdef  YAZ_WIN32                        
                         case K_NUMPAD_8:
                         case K_NUMPAD_2:
                         case K_NUMPAD_9:
@@ -1197,6 +1205,7 @@ S32     ConfirmMenu( char *ask, char *ok, char *cancel )
                         case K_GRAY_HOME:
                         case K_GRAY_END:
 #endif
+#endif
                         case K_TAB:
                                 select ^= 1 ;
                                 break ;
@@ -1204,7 +1213,7 @@ S32     ConfirmMenu( char *ask, char *ok, char *cancel )
 
                 if( select!=oldselect )
 		{
-#ifndef _WIN32
+#ifndef YAZ_WIN32
                         if( firstaff )
                         {
                                 FadeToPal( PtrPalNormal) ;
@@ -1239,7 +1248,7 @@ S32     AskForCD( void )
 
         // ATTENTION: pour entrer là, le InitDial(0) doit etre fait avant !
 
-#ifndef _WIN32
+#ifndef YAZ_WIN32
         Load_HQR( SCREEN_HQR_NAME, Log, PCR_CDROM ) ;
         BoxStaticAdd( 0, 0, ModeDesiredX-1, ModeDesiredY-1 ) ;
 #endif
@@ -1262,7 +1271,7 @@ S32     AskForCD( void )
 
         ret = ConfirmMenu( ask_txt, ok_txt, cancel_txt ) ;
 
-#ifdef  _WIN32
+#ifdef  YAZ_WIN32
         Load_HQR( SCREEN_HQR_NAME, Log, PCR_CDROM ) ;
         BoxStaticFullflip() ;
 #else

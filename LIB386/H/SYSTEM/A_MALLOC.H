@@ -31,15 +31,15 @@ extern	"C"	{
 #endif//DEBUG_MALLOC
 
 //──────────────────────────────────────────────────────────────────────────
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 
 #define	SmartMalloc(size)	Malloc(size)
 
-#else// _WIN32
+#else// YAZ_WIN32
 
 extern	void	*SmartMalloc(S32 size)		;
 
-#endif//_WIN32
+#endif//YAZ_WIN32
 
 //──────────────────────────────────────────────────────────────────────────
 #ifdef	__cplusplus

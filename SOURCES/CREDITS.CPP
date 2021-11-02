@@ -240,6 +240,7 @@ S32     GamePlayCredits( char *file_name, S32 mode )
 			BoxStaticAdd( 0,0, ModeDesiredX-1, ModeDesiredY-1 ) ;
 */
 			Switch_Fillers( FILL_POLY_FOG_NZW ) ;
+
 			SetCLUT( PalLevel ) ;
 
 			// display Zoe + babycar

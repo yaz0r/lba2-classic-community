@@ -24,6 +24,7 @@ static char *CriticalErrMsg[] = {
 S32	CriticalErrorCount = 0 ;
 char	msg[255]  ;
 
+#if YAZ
 int __far CriticalErrorHandler(	unsigned int deverr,
 				unsigned int errcode,
 				unsigned int __far *devhdr )
@@ -70,3 +71,4 @@ HERCULE( HStringf( 0, 0, "CriticalErrorCount: %d  ", CriticalErrorCount ) ) ;
 	// return to program
 	return( _HARDERR_RETRY ) ;
 }
+#endif

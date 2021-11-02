@@ -160,7 +160,7 @@ void	ChangeVolumePanSample(	U32 sample,
 //
 //	Returns	:			HSAMPLE (see MSS doc)
 //--------------------------------------------------------------------------
-HSAMPLE	GetSampleMSSHandle( 	U32 sample 	)	;
+//FMOD::Sound*	GetSampleMSSHandle( 	U32 sample 	)	;
 
 //--------------------------------------------------------------------------
 //	StopOneSample :			stop a sample

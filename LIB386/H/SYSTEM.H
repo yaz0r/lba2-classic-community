@@ -5,7 +5,7 @@
 //──────────────────────────────────────────────────────────────────────────
 #ifndef	_BUILDING_LIB
 
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 
 #ifdef	__SW_3R
 #pragma library ("NT_SYSR.LIB")
@@ -15,7 +15,7 @@
 
 #pragma library ("MSS32.LIB")
 
-#else//	_WIN32
+#else//	YAZ_WIN32
 
 #ifdef	__SW_3R
 #pragma library ("DOS_SYSR.LIB")
@@ -25,7 +25,7 @@
 
 #pragma library ("MSS.LIB")
 
-#endif//_WIN32
+#endif//YAZ_WIN32
 
 #endif//_BUILDING_LIB
 
@@ -33,7 +33,9 @@
 #include	<stdlib.h>
 
 //──────────────────────────────────────────────────────────────────────────
+
 #include	<SYSTEM\ADELINE.H>
+#include	<yaz.h>
 #include	<SYSTEM\FASTCPY.H>
 #include	<SYSTEM\FASTSET.H>
 #include	<SYSTEM\AVAILMEM.H>
@@ -70,13 +72,13 @@
 #include	<SYSTEM\CMDLINE.H>
 #include	<SYSTEM\DISKDIR.H>
 
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 #include	<SYSTEM\WINSYS.H>
 #include	<AIL\MSSW.H>
-#else// _WIN32
+#else// YAZ_WIN32
 #include	<SYSTEM\DOSSYS.H>
-#include	<AIL\MSS.H>
-#endif//_WIN32
+//#include	<AIL\MSS.H>
+#endif//YAZ_WIN32
 
 //──────────────────────────────────────────────────────────────────────────
 #define INIT_SVGA               (1<<0)

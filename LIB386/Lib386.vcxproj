@@ -1,0 +1,1152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="3D\ARCSIN.ASM">
+      <FileType>Document</FileType>
+      <EnableMASM51Compatibility Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </EnableMASM51Compatibility>
+    </MASM>
+    <MASM Include="3D\CAMERA.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\COPYMAT.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\COPYMATF.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\COPYMATI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\COPYMATM.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="3D\DATAMAT.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\DISTANCE.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\FLIPMAT.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\FLIPMATI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\FLIPMATM.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="3D\GETANG2D.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\GETANG3D.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\GMATTRA.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\GMATTRAF.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\GMATTRAI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\GMATTRAM.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="3D\IMAT.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\IMAT3DS.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\IMAT3DSF.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\IMAT3DSI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\IMAT3DSM.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="3D\IMATSTD.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\IMATSTDF.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\IMATSTDI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\IMATSTDM.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="3D\IMATTRA.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\IMATTRAF.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\IMATTRAI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\IMATTRAM.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="3D\IROT3D.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\IROT3DI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\IROT3DM.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="3D\LIGHT.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LIROT3D.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LIROT3DF.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LIROT3DI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LIROT3DM.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="3D\LITLIST.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LITLISTF.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LITLISTI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LITLISTM.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="3D\LPRLI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LPRLI3D.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LPRLI3DF.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LPRLI3DI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LPRLIISO.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LPROJ.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LPROJ3D.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LPROJ3DF.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LPROJ3DI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LPROJISO.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LROT2D.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LROT2DF.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LROT2DI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LROT2DM.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="3D\LROT3D.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LROT3DF.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LROT3DI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LROT3DM.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="3D\LROTLIS.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LROTLISF.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LROTLISI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LROTLISM.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="3D\LROTRLI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LROTRLIF.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LROTRLII.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LROTRLIM.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="3D\LRPRO.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LRPRO3D.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LRPRO3DF.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LRPRO3DI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LRPRO3DM.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="3D\LRPROIS.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LRPROISF.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LRPROISI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LRPROISM.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="3D\LWRPRO.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\LWRPRO3D.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\MULMAT.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\MULMATF.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\MULMATI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\MULMATM.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="3D\PRLI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\PRLI3D.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\PRLI3DF.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\PRLI3DI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\PRLIISO.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\PROJ.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\REALVAL.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\ROT2D.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\ROT2DI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\ROT2DM.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="3D\ROT3D.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\ROT3DI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\ROT3DM.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="3D\ROTLIST.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\ROTLISTF.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\ROTLISTI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\ROTLISTM.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="3D\ROTMAT.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\ROTMATI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\ROTMATU.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\ROTRALI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\ROTRALIF.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\ROTRALII.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\ROTRALIM.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="3D\ROTVECT.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\RPRO.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\RPRO3D.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\RPRO3DI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\RPRO3DM.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="3D\RPROIS.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\RPROISI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\RPROISM.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="3D\SINTAB.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\SINTABF.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\SQRROOT.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\TANTAB.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\WRPRO.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="3D\WRPRO3D.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="ANIM\ANIM.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="ANIM\BODY.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="ANIM\CLEAR.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="ANIM\FRAME.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="ANIM\INTANIM.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="ANIM\INTERDEP.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="ANIM\INTFRAME.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="ANIM\LIBINIT.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="ANIM\STOFRAME.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="ANIM\TEXTURE.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="SVGA\COPYMASK.ASM" />
+    <MASM Include="SVGA\CPYBLOCI.ASM" />
+    <MASM Include="SVGA\CPYBLOCK.ASM" />
+    <MASM Include="SVGA\FONT.ASM" />
+    <MASM Include="SVGA\GRAPH.ASM" />
+    <MASM Include="SVGA\LOGPHYS.ASM">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="SVGA\MASK.ASM" />
+    <MASM Include="SVGA\MOUSEDAT.ASM" />
+    <MASM Include="SVGA\RESBLOCK.ASM" />
+    <MASM Include="SVGA\SAVBLOCK.ASM" />
+    <MASM Include="SVGA\SCALEBOX.ASM" />
+    <MASM Include="SVGA\SCALESPI.ASM" />
+    <MASM Include="SVGA\SCALESPT.ASM" />
+    <MASM Include="SVGA\SCREENXY.ASM" />
+    <MASM Include="SVGA\SHADE.ASM" />
+    <MASM Include="SVGA\VESA.ASM">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <None Include="H\3D.INC" />
+    <None Include="H\AFF_OBJ.INC" />
+    <None Include="H\ALIGN.INC" />
+    <None Include="H\CPU.INC" />
+    <None Include="H\FILLER.INC" />
+    <None Include="H\IAMMX.INC" />
+    <None Include="H\MAT.INC" />
+    <MASM Include="MENU\SORT.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="OBJECT\3D_OBJ.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="OBJECT\AFF_OBJ.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="pol_work\POLY.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="pol_work\POLYCLIP.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="pol_work\POLYDISC.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="pol_work\POLYFLAT.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="pol_work\POLYGOUR.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="pol_work\POLYGTEX.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="pol_work\POLYLINE.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="pol_work\POLYTEXT.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="pol_work\POLYTEXZ.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="pol_work\POLYTZF.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="pol_work\POLYTZG.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="pol_work\POLY_HDR.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="pol_work\POLY_JMP.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="pol_work\TESTVUE.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="pol_work\TESTVUEF.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="pol_work\TESTVUEI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="pol_work\TESTVUEM.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="SVGA\AFFSTR.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="SVGA\BLITBOV.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="SVGA\BLITBOVF.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="SVGA\BLITBOVI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="SVGA\BLITBOVM.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="SVGA\BLITBOX.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="SVGA\BLITBOXF.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="SVGA\BLITBOXI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="SVGA\BLITBOXM.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="SVGA\BOX.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="SVGA\CALCMASK.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="SVGA\CLEABOV.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="SVGA\CLEABOVF.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="SVGA\CLEABOVI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="SVGA\CLEABOVM.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="SVGA\CLIP.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="SVGA\CLRBOX.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="SVGA\CLRBOXF.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="SVGA\CLRBOXI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="SVGA\CLRBOXM.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="SVGA\COPYBOV.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="SVGA\COPYBOVF.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="SVGA\COPYBOVI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="SVGA\COPYBOVM.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="SVGA\COPYBOX.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="SVGA\COPYBOXF.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="SVGA\COPYBOXI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="SVGA\COPYBOXM.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="SYSTEM\CHOOSER.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="SYSTEM\CPU.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="SYSTEM\DOSMALLO.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="SYSTEM\FASTCPY.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="SYSTEM\FASTCPYF.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="SYSTEM\FASTCPYI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="SYSTEM\FASTCPYM.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="SYSTEM\FASTSET.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="SYSTEM\FASTSETF.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="SYSTEM\FASTSETI.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="SYSTEM\FASTSETM.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="SYSTEM\KEYBDOS.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="SYSTEM\LZ.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+	<MASM Include="3D\REGLE3.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="SYSTEM\PATCH.ASM">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="SYSTEM\TIMERDOS.ASM">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="3D\MOVE.CPP" />
+    <ClCompile Include="adpcm.cpp" />
+    <ClCompile Include="ail\CD.CPP">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="ail\COMMON.CPP">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="ail\MIDDIG.CPP">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="ail\MIDI.CPP">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="ail\MIXER.CPP">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="ail\SAMPLE.CPP">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="ail\STREAM.CPP">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="ail\TIMER.CPP">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="FILEIO\LOADPCX.CPP" />
+    <ClCompile Include="FILEIO\PCX.CPP" />
+    <ClCompile Include="FILEIO\SAVEPCX.CPP" />
+    <ClCompile Include="H\INITADEL.C">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="MENU\MENUFUNC.CPP" />
+    <ClCompile Include="MENU\MENULIB.CPP" />
+    <ClCompile Include="MENU\SELECTOR.CPP" />
+    <ClCompile Include="SVGA\DDRAW.CPP">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="SVGA\DIRTYBOX.CPP" />
+    <ClCompile Include="SVGA\GPRINTF.CPP" />
+    <ClCompile Include="SVGA\INIMOUSE.CPP" />
+    <ClCompile Include="SVGA\INITMODE.CPP" />
+    <ClCompile Include="SVGA\MOUSEDOS.CPP">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="SVGA\MOUSEWIN.CPP" />
+    <ClCompile Include="SVGA\PAL.CPP">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="SVGA\PLOT.CPP" />
+    <ClCompile Include="SVGA\RECT.CPP" />
+    <ClCompile Include="SYSTEM\AVAILMEM.CPP">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\A_MALLOC.CPP">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\CMDLINE.CPP" />
+    <ClCompile Include="SYSTEM\DEFFILE.CPP" />
+    <ClCompile Include="SYSTEM\DISKDIR.CPP" />
+    <ClCompile Include="SYSTEM\DISPCPU.CPP" />
+    <ClCompile Include="SYSTEM\DISPOS.CPP" />
+    <ClCompile Include="SYSTEM\DLLLOAD.C">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\DOSSYS.CPP">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\EXIT.CPP" />
+    <ClCompile Include="SYSTEM\FILEBAK.cpp" />
+    <ClCompile Include="SYSTEM\FILECOPY.cpp" />
+    <ClCompile Include="SYSTEM\FILENAME.cpp" />
+    <ClCompile Include="SYSTEM\FILES.CPP" />
+    <ClCompile Include="SYSTEM\HQFILE.CPP" />
+    <ClCompile Include="SYSTEM\HQMEM.CPP" />
+    <ClCompile Include="SYSTEM\HQRLOAD.CPP" />
+    <ClCompile Include="SYSTEM\HQRMEM.cpp" />
+    <ClCompile Include="SYSTEM\HQRMLOAD.cpp" />
+    <ClCompile Include="SYSTEM\HQRRESS.CPP" />
+    <ClCompile Include="SYSTEM\INITIMER.CPP">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\INITKEYB.CPP">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\INPUT.CPP" />
+    <ClCompile Include="SYSTEM\ITOA.CPP" />
+    <ClCompile Include="SYSTEM\KEYBWIN.CPP">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\LOADMALL.CPP" />
+    <ClCompile Include="SYSTEM\LOADSAVE.cpp" />
+    <ClCompile Include="SYSTEM\LOGPRINT.CPP" />
+    <ClCompile Include="SYSTEM\N_MALLOC.CPP" />
+    <ClCompile Include="SYSTEM\SCANINP.CPP">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\S_MALLOC.CPP">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\TIMERWIN.CPP" />
+    <ClCompile Include="SYSTEM\WIN.CPP">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\WINSYS.CPP">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="yaz.cpp" />
+    <ClCompile Include="yaz_screen.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
+      <DebugInformationFormat Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EditAndContinue</DebugInformationFormat>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ail\MIXER.H" />
+    <ClInclude Include="FILEIO\PCXHEAD.H" />
+    <ClInclude Include="glext.h" />
+    <ClInclude Include="H\3D.H" />
+    <ClInclude Include="H\3D\ARCSIN.H" />
+    <ClInclude Include="H\3D\CAMERA.H" />
+    <ClInclude Include="H\3D\COPYMAT.H" />
+    <ClInclude Include="H\3D\DATAMAT.H" />
+    <ClInclude Include="H\3D\DISTANCE.H" />
+    <ClInclude Include="H\3D\FLIPMAT.H" />
+    <ClInclude Include="H\3D\GETANG2D.H" />
+    <ClInclude Include="H\3D\GETANG3D.H" />
+    <ClInclude Include="H\3D\GMATTRA.H" />
+    <ClInclude Include="H\3D\IMAT.H" />
+    <ClInclude Include="H\3D\IMAT3DS.H" />
+    <ClInclude Include="H\3D\IMATSTD.H" />
+    <ClInclude Include="H\3D\IMATTRA.H" />
+    <ClInclude Include="H\3D\INVCAM.H" />
+    <ClInclude Include="H\3D\IROT3D.H" />
+    <ClInclude Include="H\3D\LIGHT.H" />
+    <ClInclude Include="H\3D\LIROT3D.H" />
+    <ClInclude Include="H\3D\LPROJ.H" />
+    <ClInclude Include="H\3D\LROT2D.H" />
+    <ClInclude Include="H\3D\LROT3D.H" />
+    <ClInclude Include="H\3D\LROTLIST.H" />
+    <ClInclude Include="H\3D\LROTRALI.H" />
+    <ClInclude Include="H\3D\MAT.H" />
+    <ClInclude Include="H\3D\MOVE.H" />
+    <ClInclude Include="H\3D\MULMAT.H" />
+    <ClInclude Include="H\3D\PROJ.H" />
+    <ClInclude Include="H\3D\REALVAL.H" />
+    <ClInclude Include="H\3D\REGLE3.H" />
+    <ClInclude Include="H\3D\ROT2D.H" />
+    <ClInclude Include="H\3D\ROT3D.H" />
+    <ClInclude Include="H\3D\ROTLIST.H" />
+    <ClInclude Include="H\3D\ROTMAT.H" />
+    <ClInclude Include="H\3D\ROTRALIS.H" />
+    <ClInclude Include="H\3D\ROTVECT.H" />
+    <ClInclude Include="H\3D\SINTAB.H" />
+    <ClInclude Include="H\3D\SINTABF.H" />
+    <ClInclude Include="H\3D\SQRROOT.H" />
+    <ClInclude Include="H\3D\TANTAB.H" />
+    <ClInclude Include="H\AIL.H" />
+    <ClInclude Include="H\ANIM.H" />
+    <ClInclude Include="H\ANIM\ANIM.H" />
+    <ClInclude Include="H\ANIM\BODY.H" />
+    <ClInclude Include="H\ANIM\CLEAR.H" />
+    <ClInclude Include="H\ANIM\FRAME.H" />
+    <ClInclude Include="H\ANIM\INTANIM.H" />
+    <ClInclude Include="H\ANIM\INTERDEP.H" />
+    <ClInclude Include="H\ANIM\INTFRAME.H" />
+    <ClInclude Include="H\ANIM\LIBINIT.H" />
+    <ClInclude Include="H\ANIM\STOFRAME.H" />
+    <ClInclude Include="H\ANIM\TEXTURE.H" />
+    <ClInclude Include="H\FILEIO.H" />
+    <ClInclude Include="H\MENU.H" />
+    <ClInclude Include="H\MENU\MENUFUNC.H" />
+    <ClInclude Include="H\MENU\MENULIB.H" />
+    <ClInclude Include="H\MENU\SELECTOR.H" />
+    <ClInclude Include="H\OBJECT.H" />
+    <ClInclude Include="H\POLYGON.H" />
+    <ClInclude Include="H\POLYGON\CLIPPERZ.H" />
+    <ClInclude Include="H\POLYGON\POLY.H" />
+    <ClInclude Include="H\POLYGON\TESTVUE.H" />
+    <ClInclude Include="H\SMACKER.H" />
+    <ClInclude Include="H\SVGA.H" />
+    <ClInclude Include="H\SVGA\AFFSTR.H" />
+    <ClInclude Include="H\SVGA\BLITBOV.H" />
+    <ClInclude Include="H\SVGA\BLITBOX.H" />
+    <ClInclude Include="H\SVGA\BOX.H" />
+    <ClInclude Include="H\SVGA\CALCMASK.H" />
+    <ClInclude Include="H\SVGA\CLEABOV.H" />
+    <ClInclude Include="H\SVGA\CLIP.H" />
+    <ClInclude Include="H\SVGA\CLRBOX.H" />
+    <ClInclude Include="H\SVGA\copybov.h" />
+    <ClInclude Include="H\SVGA\COPYBOX.H" />
+    <ClInclude Include="H\SVGA\COPYMASK.H" />
+    <ClInclude Include="H\SVGA\CPYBLOCI.H" />
+    <ClInclude Include="H\SVGA\CPYBLOCK.H" />
+    <ClInclude Include="H\SVGA\DDRAW.H" />
+    <ClInclude Include="H\SVGA\DIRTYBOX.H" />
+    <ClInclude Include="H\SVGA\FIL_LINE.H" />
+    <ClInclude Include="H\SVGA\FONT.H" />
+    <ClInclude Include="H\SVGA\GPRINTF.H" />
+    <ClInclude Include="H\SVGA\GRAPH.H" />
+    <ClInclude Include="H\SVGA\INIMOUSE.H" />
+    <ClInclude Include="H\SVGA\INITMODE.H" />
+    <ClInclude Include="H\SVGA\LOGPHYS.H" />
+    <ClInclude Include="H\SVGA\MASK.H" />
+    <ClInclude Include="H\SVGA\MOUSE.H" />
+    <ClInclude Include="H\SVGA\PAL.H" />
+    <ClInclude Include="H\SVGA\PLOT.H" />
+    <ClInclude Include="H\SVGA\RECT.H" />
+    <ClInclude Include="H\SVGA\RESBLOCK.H" />
+    <ClInclude Include="H\SVGA\SAVBLOCK.H" />
+    <ClInclude Include="H\SVGA\SCALEBOX.H" />
+    <ClInclude Include="H\SVGA\SCALESPI.H" />
+    <ClInclude Include="H\SVGA\SCALESPT.H" />
+    <ClInclude Include="H\SVGA\SCREENXY.H" />
+    <ClInclude Include="H\SVGA\SHADE.H" />
+    <ClInclude Include="H\SVGA\VESA.H" />
+    <ClInclude Include="H\SYSTEM.H" />
+    <ClInclude Include="H\SYSTEM\ADELINE.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\AVAILMEM.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\A_MALLOC.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\CMDLINE.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\CPU.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\DEFFILE.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\DISKDIR.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\DISPCPU.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\DISPOS.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\DOSMALLO.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\DOSSYS.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\EXIT.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\FASTCPY.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\FASTSET.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\FILEBAK.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\FILECOPY.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\FILENAME.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\FILES.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\HQFILE.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\HQMEM.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\HQR.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\HQRLOAD.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\HQRMEM.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\HQRMLOAD.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\HQRRESS.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\INITIMER.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\INITKEYB.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\INPUT.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\ITOA.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\KEYBDOS.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\KEYBWIN.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\LOADMALL.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\LOADSAVE.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\LOGPRINT.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\LZ.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\N_MALLOC.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\PATCH.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\S_MALLOC.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\TIMERDOS.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\TIMERWIN.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\WINSYS.H">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="yaz.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{3697D988-1E10-4308-8B2C-A6C5EE57AC45}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Lib386</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
+  </ImportGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)\H;$(ProjectDir);..\SDL\Include;..\soloud\include</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4068</DisableSpecificWarnings>
+      <StructMemberAlignment>1Byte</StructMemberAlignment>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <MASM>
+      <IncludePaths>$(ProjectDir)\H</IncludePaths>
+      <MakeAllSymbolsPublic>false</MakeAllSymbolsPublic>
+      <PreprocessorDefinitions>_WIN32</PreprocessorDefinitions>
+    </MASM>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StructMemberAlignment>1Byte</StructMemberAlignment>
+      <DisableSpecificWarnings>4068</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>$(ProjectDir)\H;$(ProjectDir);..\SDL\Include;..\soloud\include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <MASM>
+      <IncludePaths>$(ProjectDir)\H</IncludePaths>
+      <PreprocessorDefinitions>_WIN32</PreprocessorDefinitions>
+    </MASM>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
+  </ImportGroup>
+</Project>

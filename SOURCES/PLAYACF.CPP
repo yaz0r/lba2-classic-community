@@ -58,7 +58,7 @@ void	InitAcf( void )
 				sprintf( PathAcf, "%c:\\TWINSEN\\VIDEO\\VIDEO.HQR", CDDrive ) ;
 		}
 
-		if( !FileSize( PathAcf ) )	TheEnd( PROGRAM_OK, MessageNoCD ) ;
+		//yaz if( !FileSize( PathAcf ) )	TheEnd( PROGRAM_OK, MessageNoCD ) ;
 #endif
 #else
 		// default path Acf
@@ -80,7 +80,9 @@ void	InitAcf( void )
 
 	SmackRegisterMemory( (void*)BufferSmack, SIZE_BUFFER_SMACK ) ;
 #else
+#if 0 // yaz
 	SmackRegisterMemory( MainBuffer, SizeOfMemAllocated ) ;
+#endif
 #endif
 }
 
@@ -217,6 +219,8 @@ void	PlayAllAcf( void )
 
 S32	PlayAcf( char *name )
 {
+	return 0;
+#if 0
 	Smack		*smk	      	;
 	U32		frame	      	;
 	S32		n 		;
@@ -346,7 +350,7 @@ S32	PlayAcf( char *name )
 	{
 		S32	vol ;
 
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 		if( UseWaveMixer )
 		{
 			vol = SampleVolume ;
@@ -389,7 +393,7 @@ S32	PlayAcf( char *name )
 #endif
 				Palette(smk->Palette) ;
 			}
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 			BlitBox( (void*)Phys, (void*)decompbuf ) ;
 #else
 			BlitBoxVESA( (void*)Phys, (void*)decompbuf ) ;
@@ -485,6 +489,7 @@ fin_play:
 #endif
 
 	return ret ;
+#endif
 }
 
 //---------------------------------------------------------------------------

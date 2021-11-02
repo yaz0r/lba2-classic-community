@@ -1,7 +1,7 @@
 ;----------------------------------------------------------------------------
 			.386
 
-			.MODEL	FLAT, SYSCALL
+			.MODEL	FLAT, C
 
 			include	iammx.inc
 
@@ -11,18 +11,18 @@
 			.DATA
 
 ;----------------------------------------------------------------------------
-			extrn	SYSCALL TabOffPhysLine:DWORD
+			extrn	C TabOffPhysLine:DWORD
 
 ;----------------------------------------------------------------------------
 			.CODE
 
 ;----------------------------------------------------------------------------
-			extrn	SYSCALL	VirtualLinearFirst:PROC
+			extrn	C	VirtualLinearFirst:PROC
 
 ;----------------------------------------------------------------------------
-			public	SYSCALL	BlitBoxVESAM
-			public	SYSCALL	BlitBoxVESAM1
-			public	SYSCALL	BlitBoxVESAM2
+			public	C	BlitBoxVESAM
+			public	C	BlitBoxVESAM1
+			public	C	BlitBoxVESAM2
 
 ;----------------------------------------------------------------------------
 ;void	BlitBoxVESAM(void *dst, void *src) ;

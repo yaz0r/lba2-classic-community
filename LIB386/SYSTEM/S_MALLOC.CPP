@@ -47,7 +47,7 @@ error:		SafeErrorMalloc("Trying to Free or Mshrink a block not allocated with Ma
 			goto error	;
 		}
 		break;
-#ifndef	_WIN32
+#ifndef	YAZ_WIN32
 	case 1:
 		if(*((U8*)ptr-1))
 		{

@@ -16,7 +16,7 @@ extern	"C"	{
 #endif
 
 //--------------------------------------------------------------------------//
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 
 //--------------------------------------------------------------------------//
 enum	{	MODE_READ,
@@ -50,7 +50,7 @@ extern	void	Touch(char *name)				;
 #define	Delete(name)			DeleteFile(name)
 
 //--------------------------------------------------------------------------//
-#else// _WIN32
+#else// YAZ_WIN32
 
 //--------------------------------------------------------------------------//
 #define	MODE_READ			(O_RDONLY|O_BINARY)
@@ -101,7 +101,7 @@ extern	U32	Delete(char *name)		;
 #define Touch(filename)                 utime(filename, NULL)
 
 //--------------------------------------------------------------------------//
-#endif//_WIN32
+#endif//YAZ_WIN32
 
 //--------------------------------------------------------------------------//
 #define	OpenRead(name)			OpenMode(name, MODE_READ)

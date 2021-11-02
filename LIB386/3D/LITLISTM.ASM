@@ -1,7 +1,7 @@
 ;*══════════════════════════════════════════════════════════════════════════*
 			.386p
 
-			.model SMALL, SYSCALL
+			.model SMALL, C
 
 			INCLUDE	IAMMX.INC		; Pour pouvoir assembler du MMx
 			include mat.inc

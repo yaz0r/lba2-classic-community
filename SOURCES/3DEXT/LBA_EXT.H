@@ -5,6 +5,7 @@
 /*──────────────────────────────────────────────────────────────────────────*/
 
 S32	Min3( S32 a, S32 b, S32 c ) ;
+/*
 #pragma aux	Min3=					\
 		"cmp	eax, edx"			\
 		"jge	m0"				\
@@ -20,8 +21,9 @@ S32	Min3( S32 a, S32 b, S32 c ) ;
 	"mex:"						\
 		parm caller [eax] [edx] [ecx]		\
 		modify exact [eax]
-
+*/
 S32	Max3( S32 a, S32 b, S32 c ) ;
+/*
 #pragma aux	Max3=					\
 		"cmp	eax, edx"			\
 		"jle	m0"				\
@@ -37,7 +39,7 @@ S32	Max3( S32 a, S32 b, S32 c ) ;
 	"mex:"						\
 		parm caller [eax] [edx] [ecx]		\
 		modify exact [eax]
-
+*/
 // maxima
 
 #define	MAX_OBJ_DECORS		200

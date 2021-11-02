@@ -5,20 +5,15 @@
 
 #include	<stdlib.h>
 
-#ifdef	_WIN32
-#include	<ail\mssw.h>
-#else
-#include	<ail\mss.h>
-#endif
 
 //████████████████████████████████████████████████████████████████████████████
-HMDIDRIVER	MdiDriver		= NULL		;// Handle to midi driver
+//HMDIDRIVER	MdiDriver		= NULL		;// Handle to midi driver
 S32	       	Midi_Driver_Enabled	= FALSE		;
 S32	       	Midi_Driver_Type	= MIDI		;
 
-HDIGDRIVER	DigDriver		= NULL		;// Handle to digital audio driver
+//HDIGDRIVER	DigDriver		= NULL		;// Handle to digital audio driver
 S32	       	Sample_Driver_Enabled	= FALSE		;
-S32		SamplingRate		= 22050		;
+S32		SamplingRate		= 22050 * 2;
 
 char		MidiDriverName[_MAX_PATH]=""		;
 char		SampleDriverName[_MAX_PATH]=""		;

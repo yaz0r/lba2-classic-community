@@ -6,19 +6,24 @@
 #include 	<stdlib.h>
 #include 	<string.h>
 
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 #include 	"mixer.h"
 #include	<system\winsys.h>
 #include	<system\timerwin.h>
-#include	<ail\mssw.h>
 #else
-#include	<system\timerdos.h>
-#include	<ail\mss.h>
+#include	<system\timerwin.h> //yaz
 #endif
 
 #include	<ail\common.h>
 #include	<ail\sample.h>
 #include	<ail\stream.h>
+
+#pragma pack(8)
+#include	"soloud.h"
+#include	"soloud_wav.h"
+#pragma pack(1)
+
+#include	<assert.h>
 
 //████████████████████████████████████████████████████████████████████████████
 
@@ -32,11 +37,16 @@
 
 #define	NB_VOICES	MAX_SAMPLE_VOICES+MAX_SYNTHESIZER_VOICES+MAX_STREAMING_VOICES
 
-extern HDIGDRIVER	DigDriver 			;// Handle to digital audio driver
+struct soundHandle
+{
+	U32 soloudHandle = 0;
+};
+
+soundHandle gSoundHandleMapping[NB_VOICES + 1]; // because slot 0 is never used
 
 //████████████████████████████████████████████████████████████████████████████
 typedef	struct		{
-				HSAMPLE	handle	;
+				U32	handle	;
 				U32	sample	;
 				U32	timer	;
 			}
@@ -47,18 +57,18 @@ typedef	struct		{
 
 //████████████████████████████████████████████████████████████████████████████
 	S32		LibWaveMasterVolume = 128	;
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 	S32		UseWaveMixer = FALSE		;
-#endif//_WIN32
+#endif//YAZ_WIN32
 
 //████████████████████████████████████████████████████████████████████████████
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 static	VOLUMECONTROL	WaveVolume			;
 static	S32		OldWaveVolume			;
-#endif//_WIN32
+#endif//YAZ_WIN32
 
 //████████████████████████████████████████████████████████████████████████████
-static	HTIMER		HandleTimer	= NULL		;
+//static	HTIMER		HandleTimer	= NULL		;
 static	void		*Timer_ptrsample		;
 static	U32		Timer_usernum	     		;
 static	S32		Timer_pitchbend			;
@@ -95,26 +105,16 @@ VOID_FUNC	SpecialInitSampleDriver	;
 
 #ifdef	_WIN32
 
+SoLoud::Soloud* gSoloud = NULL;
+
 S32	InitDriver(S32 rate, S32 bits, S32 chans)
 {
-	static	PCMWAVEFORMAT	sPCMWF	;
-	S32			res	;
+	S32 result = 0;
 
-	sPCMWF.wf.wFormatTag      = WAVE_FORMAT_PCM;
-	sPCMWF.wf.nChannels       = (U16)chans;
-	sPCMWF.wf.nSamplesPerSec  = rate;
-	sPCMWF.wf.nAvgBytesPerSec = rate * (bits >> 3) * chans;
-	sPCMWF.wf.nBlockAlign     = (U16)( (bits >> 3) * chans );
-	sPCMWF.wBitsPerSample     = (U16)bits;
+	gSoloud = new SoLoud::Soloud();
+	result = gSoloud->init(SoLoud::Soloud::CLIP_ROUNDOFF, SoLoud::Soloud::BACKENDS::AUTO, rate, 0, chans);
 
-	res = AIL_waveOutOpen(&DigDriver, NULL, 0, (LPWAVEFORMAT) &sPCMWF);
-
-	if(res)
-	{
-		DigDriver = NULL	;
-	}
-
-	return res	;
+	return result;
 }
 
 #endif
@@ -132,7 +132,7 @@ S32	InitSampleDriver( char *driver_name )
 
 	driver_name = driver_name ;
 
-	AIL_set_preference(DIG_USE_WAVEOUT, FALSE)	;
+	//yaz AIL_set_preference(DIG_USE_WAVEOUT, FALSE)	;
 retry:
 	if(InitDriver(SamplingRate, 16, 2))
 	{
@@ -141,11 +141,11 @@ retry:
 			if(InitDriver(SamplingRate/2, 8, 1))
 			{
 
-				if(!AIL_get_preference(DIG_USE_WAVEOUT))
+/*				if(!AIL_get_preference(DIG_USE_WAVEOUT))
 				{
-					AIL_set_preference(DIG_USE_WAVEOUT, TRUE) ;
+					//yaz AIL_set_preference(DIG_USE_WAVEOUT, TRUE) ;
 					goto retry	;
-				}
+				}*/
 				LogPuts( "Could find a compatible Digital Audio Driver. Digital Audio Disabled." );
 				return TRUE		;
 			}
@@ -154,18 +154,18 @@ retry:
 
 #else
  	// Set application preferences
-	AIL_set_preference(DIG_HARDWARE_SAMPLE_RATE, SamplingRate) ;
-	AIL_set_preference(DIG_LATENCY,		     30		) ;
-        AIL_set_preference(DIG_USE_16_BITS,          YES 	) ;
-	AIL_set_preference(DIG_USE_STEREO,           YES 	) ;
-	AIL_set_preference(DIG_MIXER_CHANNELS,       NB_VOICES	) ;
-	AIL_set_preference(AIL_SCAN_FOR_HARDWARE,    YES	) ;
+	//yaz AIL_set_preference(DIG_HARDWARE_SAMPLE_RATE, SamplingRate) ;
+	//yaz AIL_set_preference(DIG_LATENCY,		     30		) ;
+    //yaz     AIL_set_preference(DIG_USE_16_BITS,          YES 	) ;
+	//yaz AIL_set_preference(DIG_USE_STEREO,           YES 	) ;
+	//yaz AIL_set_preference(DIG_MIXER_CHANNELS,       NB_VOICES	) ;
+	//yaz AIL_set_preference(AIL_SCAN_FOR_HARDWARE,    YES	) ;
 
 	// Initialize digital sound system
 	if(driver_name && strcmp(driver_name, ""))
 	{
 		strcpy(SampleDriverName, driver_name)	;
-		DigDriver = AIL_install_DIG_driver_file( driver_name, NULL ) ;
+		//yaz DigDriver = AIL_install_DIG_driver_file( driver_name, NULL ) ;
 	}
 	else
 	{
@@ -173,6 +173,7 @@ retry:
 
 		SampleDriverName[0] = (char)0	;
 
+		/*yaz
 		res=AIL_install_DIG_INI(&DigDriver)	;
 		switch(res)
 		{
@@ -185,7 +186,7 @@ retry:
 			DigDriver = NULL	;
 			LogPuts("Please Run Setsound.exe again.");
 			break			;
-		}
+		}*/
 	}
 	if( DigDriver == NULL )
 	{
@@ -194,6 +195,7 @@ retry:
 
 	}
 #endif
+	/*
 	{
 		char 	desc[128] = ""	;
 		S32	format		;
@@ -213,18 +215,13 @@ retry:
 				format & DIG_F_STEREO_MASK ? "Stereo" : "Mono",
 				rate	)	;
 	}
+	*/
 
 
-	for(Nb_Voices=0; Nb_Voices<MAX_SAMPLE_VOICES; Nb_Voices++)
+	for (Nb_Voices = 0; Nb_Voices < MAX_SAMPLE_VOICES; Nb_Voices++)
 	{
-		HSAMPLE	handle	;
-
-		handle = AIL_allocate_sample_handle(DigDriver)	;
-
-		if(!handle)	break ;
-
-		Sample_Handle[Nb_Voices].handle = handle;
-		Sample_Handle[Nb_Voices].sample	= 0	;
+		Sample_Handle[Nb_Voices].handle = Nb_Voices + 1; // so that it's never 0
+		Sample_Handle[Nb_Voices].sample = 0;
 	}
 
 	SampleSeed		= 0x1000000	;
@@ -233,7 +230,7 @@ retry:
 
 	RegisterInitClear( SpecialInitSampleDriver, ClearSampleDriver );// Automatic clear
 
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 	UseWaveMixer = GetMixerVolDevice(&WaveVolume, MIXERLINE_COMPONENTTYPE_SRC_WAVEOUT) ;
 	if(UseWaveMixer)
 	{
@@ -246,23 +243,23 @@ retry:
 	}
 
         PauseSamplesPtr	= PauseSamples	;
-	if(PauseMiles)
+/*yaz	if(PauseMiles)
 	{
 		PauseMiles	= PauseBothMiles;
 	}
 	else
 	{
 	        PauseMiles	= PauseSamples	;
-	}
+	}*/
         ResumeSamplesPtr= ResumeSamples	;
-	if(ResumeMiles)
+/*yaz	if(ResumeMiles)
 	{
 		ResumeMiles	= ResumeBothMiles;
 	}
 	else
 	{
 	        ResumeSamplesPtr= ResumeSamples	;
-	}
+	}*/
 #endif
 
 	return TRUE	;
@@ -281,13 +278,13 @@ void	ClearSampleDriver()
 {
 	if( !Sample_Driver_Enabled )	return	;
 
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 	// Restore mixer volume
 	if(UseWaveMixer)
 	{
 		 SetMixerVolume(&WaveVolume, OldWaveVolume)	;
 	}
-#endif//_WIN32
+#endif//YAZ_WIN32
 
 	Sample_Driver_Enabled = FALSE 		;
 }
@@ -325,9 +322,9 @@ static S32 GetHandleIndice(U32 sample)
 
 //████████████████████████████████████████████████████████████████████████████
 
-static HSAMPLE FindFreeHandle(U32 *pnum)
+static U32 FindFreeHandle(U32 *pnum)
 {
-	HSAMPLE		handle	;
+	U32	handle = 0	;
 	U32		hnum	;
 
 	if( !Sample_Driver_Enabled )	return 0 ;
@@ -337,8 +334,12 @@ static HSAMPLE FindFreeHandle(U32 *pnum)
 	{
 		if(Sample_Handle[hnum].sample==0)
 			break;
-		if(AIL_sample_status(Sample_Handle[hnum].handle)==SMP_DONE)
-			break;
+
+	//	ALint status;
+	//	alGetSourcei(Sample_Handle[hnum].handle, AL_SOURCE_STATE, &status);
+
+	//	if(status == AL_STOPPED)
+	//		break;
 	}
 
 	// Found one?
@@ -355,9 +356,9 @@ static HSAMPLE FindFreeHandle(U32 *pnum)
 		// search a one shot
 		for(hnum=0; hnum<Nb_Voices; hnum++)
 		{
-			if(    (bestsample>Sample_Handle[hnum].sample)
-			    && (AIL_sample_loop_count(Sample_Handle[hnum].handle) == 1) )
-				bestsample=Sample_Handle[hnum].sample	;
+			//yaz if(    (bestsample>Sample_Handle[hnum].sample)
+			//yaz     && (AIL_sample_loop_count(Sample_Handle[hnum].handle) == 1) )
+			//yaz 	bestsample=Sample_Handle[hnum].sample	;
 		}
 		if(bestsample != 0xFFFFFFFF)
 		{
@@ -367,9 +368,9 @@ static HSAMPLE FindFreeHandle(U32 *pnum)
 		// search a sample that is not in infinite loop
 		for(hnum=0; hnum<Nb_Voices; hnum++)
 		{
-			if(    (bestsample>Sample_Handle[hnum].sample)
-			    && AIL_sample_loop_count(Sample_Handle[hnum].handle) )
-				bestsample=Sample_Handle[hnum].sample	;
+			//yaz if(    (bestsample>Sample_Handle[hnum].sample)
+			//yaz     && AIL_sample_loop_count(Sample_Handle[hnum].handle) )
+			//yaz 	bestsample=Sample_Handle[hnum].sample	;
 		}
 		if(bestsample != 0xFFFFFFFF)
 		{
@@ -394,10 +395,11 @@ ok:
 	handle = Sample_Handle[hnum].handle	;
 
 	// stop the sample (security)
-	AIL_end_sample(handle)			;
+	if(gSoundHandleMapping[handle].soloudHandle)
+		gSoloud->stop(gSoundHandleMapping[handle].soloudHandle);
 
 	// Clear internal structures
-	AIL_init_sample(handle)			;
+	// gSoloud->stop should have done that already
 
 	*pnum = hnum	;
 
@@ -435,12 +437,12 @@ static void ScaleVolumeSamples( S32 fadevol )
 	// update all the volumes
 	for(hnum=0; hnum<Nb_Voices; hnum++)
 	{
-		HSAMPLE	handle	;
+		//HSAMPLE	handle	;
 		S32	volume	;
 
-		handle = Sample_Handle[hnum].handle	;
-		volume = AIL_sample_user_data( handle, USER_DATA_VOLUME);
-		AIL_set_sample_volume( handle, Scale(volume, fadevol, 7));
+//yaz		handle = Sample_Handle[hnum].handle	;
+		//yaz volume = AIL_sample_user_data( handle, USER_DATA_VOLUME);
+		//yaz AIL_set_sample_volume( handle, Scale(volume, fadevol, 7));
 	}
 }
 
@@ -449,7 +451,7 @@ static void ScaleVolumeSamples( S32 fadevol )
 
 void	SetMasterVolumeSample( S32 volume )
 {
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 	if(UseWaveMixer)
 	{
 		SetMixerVolume(&WaveVolume, volume)	;
@@ -488,7 +490,7 @@ void	SetMasterVolumeSample( S32 volume )
 
 S32	GetMasterVolumeSample()
 {
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 	if(UseWaveMixer)
 	{
 		return GetMixerVolume(&WaveVolume) ;
@@ -596,9 +598,15 @@ void	InverseStereoSample( S32 inverse )
 
 //████████████████████████████████████████████████████████████████████████████
 
+void dsp_adpcm_ima_decode(S16 *out, void *in, int size, S16 *step_index, S16 *predicted_value);
+
+extern "C" {
+#include "../adpcm.h"
+};
+
 U32	PlaySample(void *ptrsample, U32 usernum, S32 pitchbend, S32 nbrepeat, S32 volume, S32 pan)
 {
-	HSAMPLE		handle	;
+	U32		handle	;
 	U32		hnum	;
 
 	// get one available handle
@@ -607,42 +615,106 @@ U32	PlaySample(void *ptrsample, U32 usernum, S32 pitchbend, S32 nbrepeat, S32 vo
 	// if none, exit
 	if(!handle)	return	NULL	;
 
+	int numChannels = *(short*)((char*)ptrsample + 22);
+	int sampleRate = *(U32*)((char*)ptrsample + 24);
+	int bitsPerSample = *(short*)((char*)ptrsample + 34);
+
+	char* dataPtr =  ((char*)ptrsample + 36);
+	while(*(U32*)dataPtr != 'atad')
+	{
+		dataPtr++;
+	}
+
+	int samplesSize = *(U32*)(dataPtr + 4);
+	char * samplesPtr = dataPtr + 8;
+
+	SoLoud::Wav* pAudioSource = new SoLoud::Wav();
+	if(numChannels == 1 && bitsPerSample == 16)
+	{
+		pAudioSource->loadRawWave16((short*)samplesPtr, samplesSize, sampleRate, 1);
+	}
+	if(numChannels == 1 && bitsPerSample == 8)
+	{
+		pAudioSource->loadRawWave8((unsigned char*)samplesPtr, samplesSize, sampleRate, 1);
+	}
+	if(numChannels == 1 && bitsPerSample == 4)
+	{
+		int numSamples = samplesSize * 2;
+		samplesPtr = (char*)malloc(numSamples * 4);
+
+		S16 stepIndex = 0;
+		S16 predicted = 0;
+
+		int adpcm_decode_init(int numChannels);
+		int adpcm_decode_frame(void *data, int *data_size,unsigned char *buf, int buf_size);
+
+		short* decompressedData = (short*)samplesPtr;
+		unsigned char* inputData = (unsigned char*)dataPtr+8;
+
+		int sizeLeftToDecode = samplesSize;
+
+		adpcm_decode_init(1);
+		while(sizeLeftToDecode)
+		{
+			int frameSize = 0x200;
+
+			if(frameSize > sizeLeftToDecode)
+				frameSize = sizeLeftToDecode;
+
+			int decodedSize;
+			adpcm_decode_frame(decompressedData, &decodedSize, inputData, frameSize);
+
+			inputData+=frameSize;
+			sizeLeftToDecode-=frameSize;
+			decompressedData+=decodedSize/2;
+		}
+	
+
+		samplesSize = (char*)decompressedData - samplesPtr;
+
+
+		pAudioSource->loadRawWave16((short*)samplesPtr, samplesSize, sampleRate, 1);
+	}
+
+	gSoundHandleMapping[handle].soloudHandle = gSoloud->play(*pAudioSource, -1, 0, true, 0);
+
 	// link sample data with sample handle
+	/*
 	if(!AIL_set_sample_file(handle, ptrsample, -1 ))
 	{
 		return 0xFFFFFFFF	;
-	}
-
+	}*/
+	
 	// Pichpend
-	AIL_set_sample_user_data( handle, USER_DATA_RATE, AIL_sample_playback_rate(handle));
+	//AIL_set_sample_user_data( handle, USER_DATA_RATE, AIL_sample_playback_rate(handle));
 	if( pitchbend != 4096 )
 	{
-		AIL_set_sample_playback_rate(
-			handle,
-			Scale(AIL_sample_playback_rate(handle), pitchbend, 12)) ;
-
+		gSoloud->setSamplerate(gSoundHandleMapping[handle].soloudHandle, Scale((int)gSoloud->getSamplerate(gSoundHandleMapping[handle].soloudHandle), pitchbend, 12));
 	}
+	/*
 	AIL_set_sample_user_data( handle, USER_DATA_PITCHBEND, pitchbend);
-
+	*/
 	// Loop sample ( 0 = indefinitely )
-	AIL_set_sample_loop_count( handle, nbrepeat ) ;
+	gSoloud->setLooping(gSoundHandleMapping[handle].soloudHandle, nbrepeat != 1);
 
 	// Volume
+	/*
 	AIL_set_sample_user_data( handle, USER_DATA_VOLUME, volume);
 	AIL_set_sample_volume( handle,
 				SamplesFade?0:
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 				UseWaveMixer?volume:
-#endif//_WIN32
+#endif//YAZ_WIN32
 				Scale(volume, LibWaveMasterVolume, 7));
 
 	// Pan
 	if(pan>127)		pan = 127	;
 	else if(pan<0)		pan = 0		;
 	AIL_set_sample_pan( handle, pan^InversePanMask);
+	*/
 
 	// GO !!!
-	AIL_start_sample( handle )		;
+	gSoloud->setPause(gSoundHandleMapping[handle].soloudHandle, false);
 
 	// Compute handle
 	return GenerateSampleHandle(usernum, hnum);
@@ -650,10 +722,10 @@ U32	PlaySample(void *ptrsample, U32 usernum, S32 pitchbend, S32 nbrepeat, S32 vo
 
 //████████████████████████████████████████████████████████████████████████████
 
-#ifdef _WIN32
+#ifdef YAZ_WIN32
 static void WINAPI
 #else
-static void pascal
+static void //yazpascal
 #endif
 SampleCallBack(U32 user)
 {
@@ -671,20 +743,20 @@ U32	TimerPlaySample(void *ptrsample, U32 usernum, S32 pitchbend, S32 nbrepeat, S
 {
 	if( !Sample_Driver_Enabled )	return	FALSE	;
 
-	if(!HandleTimer)
+// 	if(!HandleTimer)
 	{
-#ifndef	_WIN32
-		if(	!AIL_vmm_lock_range(&SampleCallBack, &TimerPlaySample) OR
+#ifndef	YAZ_WIN32
+		/*if (!AIL_vmm_lock_range(&SampleCallBack, &TimerPlaySample) OR
 			!AIL_vmm_lock_range(&HandleTimer, &Sample_Handle[0]))
 		{
 			HandleTimer = (HTIMER)-1;
 			return	FALSE		;
-		}
+		}*/
 #endif
-		HandleTimer = AIL_register_timer( SampleCallBack ) ;
-		if (HandleTimer == -1)
+		//yaz HandleTimer = AIL_register_timer( SampleCallBack ) ;
+		//yaz if (HandleTimer == -1)
 		{
-			return FALSE ;
+		//yaz 	return FALSE ;
 		}
 	}
 
@@ -695,8 +767,8 @@ U32	TimerPlaySample(void *ptrsample, U32 usernum, S32 pitchbend, S32 nbrepeat, S
 	Timer_volume	= volume	;
 	Timer_pan	= pan		;
 
-	AIL_set_timer_period( HandleTimer, period*1000 ) ;
-	AIL_start_timer( HandleTimer ) 	;
+	//yaz AIL_set_timer_period( HandleTimer, period*1000 ) ;
+	//yaz AIL_start_timer( HandleTimer ) 	;
 	return TRUE			;
 }
 
@@ -706,16 +778,16 @@ void	TimerStopSample()
 {
 	if( !Sample_Driver_Enabled )	return	;
 
-	if(HandleTimer)
+	//if(HandleTimer)
 	{
-		AIL_stop_timer( HandleTimer ) 	;
+		//yaz AIL_stop_timer( HandleTimer ) 	;
 	}
 }
 
 //████████████████████████████████████████████████████████████████████████████
 void	ChangePitchbendSample( U32 sample, S32 pitchbend)
 {
-	HSAMPLE	handle	;
+	//HSAMPLE	handle	;
 	S32	hnum	;
 
 	if( !Sample_Driver_Enabled )	return	;
@@ -727,20 +799,20 @@ void	ChangePitchbendSample( U32 sample, S32 pitchbend)
 	if(hnum==-1)			return 	;
 
 	// Get sample handle
-	handle = Sample_Handle[hnum].handle	;
+//yaz	handle = Sample_Handle[hnum].handle	;
 
 	// check sample status
-	if(AIL_sample_status( handle )==SMP_DONE)
-		return	;
+	//yaz if(AIL_sample_status( handle )==SMP_DONE)
+	//yaz 	return	;
 
 	// pitchend
-	if( pitchbend != AIL_sample_user_data( handle, USER_DATA_PITCHBEND) )
+	//yaz if( pitchbend != AIL_sample_user_data( handle, USER_DATA_PITCHBEND) )
 	{
-		AIL_set_sample_playback_rate(
-			handle,
-			Scale(AIL_sample_user_data( handle, USER_DATA_RATE), pitchbend, 12)) ;
+		//yaz AIL_set_sample_playback_rate(
+		//yaz 	handle,
+		//yaz 	Scale(AIL_sample_user_data( handle, USER_DATA_RATE), pitchbend, 12)) ;
 
-		AIL_set_sample_user_data( handle, USER_DATA_PITCHBEND, pitchbend);
+		//yaz AIL_set_sample_user_data( handle, USER_DATA_PITCHBEND, pitchbend);
 	}
 }
 
@@ -748,7 +820,7 @@ void	ChangePitchbendSample( U32 sample, S32 pitchbend)
 
 void	ChangeVolumePanSample( U32 sample, S32 volume, S32 pan)
 {
-	HSAMPLE	handle	;
+	//HSAMPLE	handle	;
 	S32	hnum	;
 
 	if( !Sample_Driver_Enabled )	return	;
@@ -760,30 +832,30 @@ void	ChangeVolumePanSample( U32 sample, S32 volume, S32 pan)
 	if(hnum==-1)			return 	;
 
 	// Get sample handle
-	handle = Sample_Handle[hnum].handle	;
+//yaz	handle = Sample_Handle[hnum].handle	;
 
 	// check sample status
-	if(AIL_sample_status( handle )==SMP_DONE)
-		return	;
+	//yaz if(AIL_sample_status( handle )==SMP_DONE)
+	//yaz 	return	;
 
 	// Volume
-	AIL_set_sample_user_data( handle, USER_DATA_VOLUME, volume);
-	AIL_set_sample_volume( handle,
-				SamplesFade?0:
-#ifdef	_WIN32
-				UseWaveMixer?volume:
-#endif//_WIN32
-				Scale(volume, LibWaveMasterVolume, 7));
+	//yaz AIL_set_sample_user_data( handle, USER_DATA_VOLUME, volume);
+	//yaz AIL_set_sample_volume( handle,
+	//yaz 			SamplesFade?0:
+#ifdef	YAZ_WIN32
+	//yaz 			UseWaveMixer?volume:
+#endif//YAZ_WIN32
+	//yaz 			Scale(volume, LibWaveMasterVolume, 7));
 
 	// Pan
 	if(pan>127)		pan = 127	;
 	else if(pan<0)		pan = 0		;
-	AIL_set_sample_pan( handle, pan^InversePanMask);
+	//yaz AIL_set_sample_pan( handle, pan^InversePanMask);
 }
 
 //████████████████████████████████████████████████████████████████████████████
-
-HSAMPLE	GetSampleMSSHandle( U32 sample )
+/*
+FMOD::Sound*	GetSampleMSSHandle( U32 sample )
 {
 	S32	hnum	;
 
@@ -798,12 +870,12 @@ HSAMPLE	GetSampleMSSHandle( U32 sample )
 	// stop the sample
 	return Sample_Handle[hnum].handle		;
 }
-
+*/
 //████████████████████████████████████████████████████████████████████████████
 
 void	StopOneSample( U32 sample )
 {
-	HSAMPLE	handle	;
+	U32	handle	;
 	S32	hnum	;
 
 	if( !Sample_Driver_Enabled )	return	;
@@ -815,8 +887,8 @@ void	StopOneSample( U32 sample )
 	if(hnum==-1)			return ;
 
 	// stop the sample
-	handle = Sample_Handle[hnum].handle		;
-	AIL_end_sample(handle)				;
+	//handle = Sample_Handle[hnum].handle		;
+	//alSourceStop(handle);
 	Sample_Handle[hnum].sample = 0			;
 }
 
@@ -834,10 +906,11 @@ void	StopSamples()
 	// Stop everything!
 	for(hnum=0; hnum<Nb_Voices; hnum++)
 	{
-		HSAMPLE	handle	;
+		U32	handle	;
 
-		handle = Sample_Handle[hnum].handle	;
-		AIL_end_sample(handle)			;
+		//handle = Sample_Handle[hnum].handle	;
+		//alSourceStop(handle);
+		//yaz AIL_end_sample(handle)			;
 		Sample_Handle[hnum].sample = 0		;
 	}
 
@@ -861,7 +934,7 @@ void	PauseOneSample( U32 sample )
 	if(hnum==-1)			return	;
 
 	// stop the sample
-	AIL_stop_sample(Sample_Handle[hnum].handle)	;
+	//yaz AIL_stop_sample(Sample_Handle[hnum].handle)	;
 }
 
 //████████████████████████████████████████████████████████████████████████████
@@ -879,7 +952,7 @@ void	ResumeOneSample( U32 sample )
 	if(hnum==-1)			return	;
 
 	// stop the sample
-	AIL_resume_sample(Sample_Handle[hnum].handle)	;
+	//yaz AIL_resume_sample(Sample_Handle[hnum].handle)	;
 }
 
 //████████████████████████████████████████████████████████████████████████████
@@ -900,7 +973,10 @@ void	PauseSamples()
 	// Pause everything
 	for(hnum=0; hnum<Nb_Voices; hnum++)
 	{
-		AIL_stop_sample(Sample_Handle[hnum].handle)	;
+		if(Sample_Handle[hnum].sample)
+		{
+			//alSourcePause(Sample_Handle[hnum].handle);
+		}
 	}
 }
 
@@ -927,7 +1003,11 @@ void	ResumeSamples()
 	// Resume everything
 	for(hnum=0; hnum<Nb_Voices; hnum++)
 	{
-		AIL_resume_sample(Sample_Handle[hnum].handle)	;
+		if(Sample_Handle[hnum].sample)
+		{
+			//alSourcePlay(Sample_Handle[hnum].handle);
+		}
+		//yaz AIL_resume_sample(Sample_Handle[hnum].handle)	;
 	}
 }
 
@@ -947,9 +1027,17 @@ U32	IsSamplePlaying( U32 sample )
 	if(hnum==-1)			return 	FALSE 	;
 
 	// get sample status
-	return	AIL_sample_status(Sample_Handle[hnum].handle) == SMP_DONE ?
-		FALSE				:
-		Sample_Handle[hnum].timer	;
+	//ALint status;
+	//alGetSourcei(Sample_Handle[hnum].handle, AL_SOURCE_STATE, &status);
+
+	//if(status == AL_STOPPED)
+	{
+		return 0;
+	}
+	/*else
+	{
+		return Sample_Handle[hnum].timer;
+	}*/
 }
 
 //████████████████████████████████████████████████████████████████████████████
@@ -968,7 +1056,8 @@ S32	GetSamplePosition( U32 sample )
 	if(hnum==-1)			return 	-1	;
 
 	// get sample pos
-	return(AIL_sample_position(Sample_Handle[hnum].handle))	;
+	//yaz return(AIL_sample_position(Sample_Handle[hnum].handle))	;
+	return 0;
 
 }
 
@@ -991,13 +1080,13 @@ S32	GetPlayingSamples(SAMPLE_PLAYING tab[], S32 max)
 		{
 			continue;	// not playing
 		}
-		tab[hnum].Usernum 	= (Sample_Handle[i].sample>>8)&0xFFFF		;
-		tab[hnum].Pitch  	= AIL_sample_user_data(Sample_Handle[i].handle, USER_DATA_PITCHBEND);
-		tab[hnum].Repeat	= (U8)AIL_sample_loop_count(Sample_Handle[i].handle)	;
-		tab[hnum].Volume	= (U8)AIL_sample_user_data(Sample_Handle[i].handle, USER_DATA_VOLUME);
-		tab[hnum].Pan		= (U8)(AIL_sample_pan(Sample_Handle[i].handle)^InversePanMask);
+		//yaz tab[hnum].Usernum 	= (Sample_Handle[i].sample>>8)&0xFFFF		;
+		//yaz tab[hnum].Pitch  	= AIL_sample_user_data(Sample_Handle[i].handle, USER_DATA_PITCHBEND);
+		//yaz tab[hnum].Repeat	= (U8)AIL_sample_loop_count(Sample_Handle[i].handle)	;
+		//yaz tab[hnum].Volume	= (U8)AIL_sample_user_data(Sample_Handle[i].handle, USER_DATA_VOLUME);
+		//yaz tab[hnum].Pan		= (U8)(AIL_sample_pan(Sample_Handle[i].handle)^InversePanMask);
 
-		if(AIL_sample_status(Sample_Handle[i].handle) == SMP_DONE)
+		//yaz if(AIL_sample_status(Sample_Handle[i].handle) == SMP_DONE)
 		{
 			Sample_Handle[i].sample = 0	;
 			continue;	// not playing
@@ -1023,8 +1112,8 @@ S32	GetSamplePoly()
 	{
 		if(Sample_Handle[hnum].sample==0)
 			continue	;
-		if(AIL_sample_status(Sample_Handle[hnum].handle)==SMP_DONE)
-			continue	;
+		//yaz if(AIL_sample_status(Sample_Handle[hnum].handle)==SMP_DONE)
+		//yaz 	continue	;
 
 		count++	;
 	}
@@ -1048,7 +1137,7 @@ void	SetDataSample( U32 sample, S32 index, S32 value )
 	if(hnum==-1)			return 		;
 
 	// set data
-	AIL_set_sample_user_data(Sample_Handle[hnum].handle, USER_DATA_USER+index, value)	;
+	//yaz AIL_set_sample_user_data(Sample_Handle[hnum].handle, USER_DATA_USER+index, value)	;
 }
 
 //████████████████████████████████████████████████████████████████████████████
@@ -1067,7 +1156,8 @@ S32	GetDataSample( U32 sample, S32 index )
 	if(hnum==-1)			return 	0	;
 
 	// get data
-	return(AIL_sample_user_data(Sample_Handle[hnum].handle, USER_DATA_USER+index))	;
+	//yaz return(AIL_sample_user_data(Sample_Handle[hnum].handle, USER_DATA_USER+index))	;
+	return 0;
 }
 
 //████████████████████████████████████████████████████████████████████████████

@@ -12,6 +12,7 @@ U32		NbInput	= MAX_INPUT ;
 
 T_DEF_KEY      	DefKeysDefault[MAX_INPUT+1] =
 		{
+
 			{K_GRAY_UP,K_NUMPAD_8},		// I_UP
 			{K_GRAY_DOWN,K_NUMPAD_2},	// I_DOWN
 			{K_GRAY_LEFT,K_NUMPAD_4},	// I_LEFT
@@ -50,7 +51,7 @@ T_DEF_KEY      	DefKeysDefault[MAX_INPUT+1] =
 			{K_F,0},			// I_FOUDRE
 		} ;
 
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 // for WIN95
 
 T_DEF_KEY      	DefKeysDefault95[MAX_INPUT+1] =
@@ -131,7 +132,7 @@ void	InitInput( void )
 //-------------------------------------------------------------------------
 void	RestoreInput()
 {
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 	T_DEF_KEY *DEFKEYSDEFAULT	;
 
 	if(OSType == OS_WIN95)
@@ -159,17 +160,17 @@ void	ReadInputConfig( void )
 
 	winmode = DefFileBufferReadValueDefault( "WinMode", FALSE ) ;
 
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 	if( !winmode )
-#else	// _WIN32
+#else	// YAZ_WIN32
 	if( winmode )
-#endif	// _WIN32
+#endif	// YAZ_WIN32
 	{
 		RestoreInput()	;
 	}
 	else
 	{
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 		T_DEF_KEY *DEFKEYSDEFAULT	;
 
 		if(OSType == OS_WIN95)
@@ -211,7 +212,7 @@ void	WriteInputConfig( void )
 
 	if( !FileSize(PathConfigFile ) )	return ;
 
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 	DefFileBufferWriteValue( "WinMode", TRUE ) ;
 #else
 	DefFileBufferWriteValue( "WinMode", FALSE ) ;
@@ -233,7 +234,7 @@ void	WriteInputConfig( void )
 //-------------------------------------------------------------------------
 void    MyGetInput()
 {
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 	GetJoys((U32*)&TabKeys[256])	;
 #endif
 	GetInput( 0 ) ;	// no norepeat keys

@@ -9,24 +9,25 @@
 #include	<svga\logphys.h>
 #include	<svga\initmode.h>
 
-#include	<mem.h>
+//#include	<mem.h>
+#include	<string.h>
 #include	<ctype.h>
 
 //--------------------------------------------------------------------------
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 
 //--------------------------------------------------------------------------
 #include	<svga\ddraw.h>
 
 //--------------------------------------------------------------------------
-#else //_WIN32
+#else //YAZ_WIN32
 
 //--------------------------------------------------------------------------
 #include	<svga\vesa.h>
 #include	<svga\copybov.h>
 
 //--------------------------------------------------------------------------
-#endif//_WIN32
+#endif//YAZ_WIN32
 
 //--------------------------------------------------------------------------
 U32	ModeDesiredX	;
@@ -46,12 +47,11 @@ void	*MemoScreen		;
 //----------------------------------------------------------------------------
 S32	ParamsSvga()
 {
-	char	str[256];
+	char	str[256] = "";
 	char	*ptr	;
 	S32	result	;
 	S32	i	;
 
-	str[256] = 0	;
 	result = FALSE	;
 
 	i = 1	;
@@ -130,9 +130,9 @@ static	S32	InitDesiredMode()
 
 	res = DetectInitVESAMode(ModeDesiredX, ModeDesiredY, ModeDesiredDepth, VESAMemory)	;
 
-#ifndef	_WIN32
+#ifndef	YAZ_WIN32
 	CopyBoxVESA = CopyBoxVESAInit	;	// check gain for linear buffer
-#endif//_WIN32
+#endif//YAZ_WIN32
 
 	ModeDesiredSize = ModeDesiredX*ModeDesiredY;
 
@@ -153,6 +153,9 @@ static	S32	InitDesiredMode()
 		off += ModeDesiredX	;
 	}
 
+	__asm{
+		mov ebx, offset TabOffLine
+	}
 	SetScreenPitch(TabOffLine)	;
 
 	return	res	;
@@ -162,6 +165,7 @@ static	S32	InitDesiredMode()
 #ifdef	_WIN32
 
 //--------------------------------------------------------------------------
+
 S32	InitGraphSvga(U32 resx, U32 resy, U32 depth)
 {
 	static S32	flag = 0	;
@@ -230,7 +234,7 @@ S32	InitGraphSvga(U32 resx, U32 resy, U32 depth)
 }
 
 //--------------------------------------------------------------------------
-#else //_WIN32
+#else //YAZ_WIN32
 
 //--------------------------------------------------------------------------
 static	char	IBM_COMP[]	="IBM COMPATIBLE   ";
@@ -471,6 +475,7 @@ static	void	GetBiosInfo()
 }
 
 //--------------------------------------------------------------------------
+/*
 S32	InitGraphSvga(U32 resx, U32 resy, U32 depth)
 {
 	static S32	flag = 0	;
@@ -610,8 +615,9 @@ S32	InitGraphSvga(U32 resx, U32 resy, U32 depth)
 
 	return	0				;
 }
+*/
 
 //--------------------------------------------------------------------------
-#endif//_WIN32
+#endif//YAZ_WIN32
 
 //--------------------------------------------------------------------------

@@ -1,18 +1,20 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
-#include <mem.h>
+//#include <mem.h>
 #include <string.h>
-#include <dos.h>
+//#include <dos.h>
 
 #include <system.h>
 #include <svga.h>
 #include <3d.h>
 #include <object.h>
-#include <polygon.h>
+//#include <polygon.h>
 #include <menu.h>
 
-#ifndef	_WIN32
+#include "../yaz.h"
+
+#ifndef	YAZ_WIN32
 #define	DEBUG_TOOLS	1
 #endif
 

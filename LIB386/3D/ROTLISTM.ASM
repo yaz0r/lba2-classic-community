@@ -2,20 +2,20 @@
 
 		.386p
 
-		.model SMALL, SYSCALL
+		.model SMALL, C
 
 		include iammx.inc
 
 ;*══════════════════════════════════════════════════════════════════════════*
 		.DATA
 
-		extrn SYSCALL	MMX_DEMI:DWORD
+		extrn C	MMX_DEMI:DWORD
 
 ;*══════════════════════════════════════════════════════════════════════════*
 
 		.CODE
 
-		public SYSCALL	RotateListM
+		public C	RotateListM
 
 ;*══════════════════════════════════════════════════════════════════════════*
 ;void	RotateListM(TYPE_MAT *Mat, S32 *dst, S32 *src, S32 n)	;

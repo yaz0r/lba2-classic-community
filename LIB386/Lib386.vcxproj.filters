@@ -1,0 +1,1345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\3D">
+      <UniqueIdentifier>{3e9d3632-431d-4211-9729-db4df96b9555}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Anim">
+      <UniqueIdentifier>{b0b9338e-d9b4-4baf-a1a6-edd64c1977ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Menu">
+      <UniqueIdentifier>{add7ebd5-2d71-4d03-bd88-8c6a1d9b30f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Object">
+      <UniqueIdentifier>{33cb4a69-6e2a-4815-b1dd-ad5751fa4921}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Svga">
+      <UniqueIdentifier>{b3de5cca-5731-4da7-8c92-cf57d4e625f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\System">
+      <UniqueIdentifier>{ab297262-3e0d-4c90-a44a-c5b5357c6f2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3D\Headers">
+      <UniqueIdentifier>{36260cb2-270a-417b-b141-28849d015622}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Svga\Headers">
+      <UniqueIdentifier>{9efa2cbe-cd01-46f2-aa3a-2f0e8092540b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Svga\C">
+      <UniqueIdentifier>{6b243d41-4fce-4ae5-b5c1-3c9371ec6439}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\System\Headers">
+      <UniqueIdentifier>{dee882bf-ec80-4a98-97a6-19d52ecd0df8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\System\C">
+      <UniqueIdentifier>{6514fe4f-3ab4-4e5b-a558-4e3a4d519e69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\System\Asm">
+      <UniqueIdentifier>{2a6704c7-0818-4ff0-96c5-ff8f020c62cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Polygon">
+      <UniqueIdentifier>{a5ca0463-3b1e-425c-ace6-52b2657f61ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\AIL">
+      <UniqueIdentifier>{6d474373-d409-4bed-b1f5-240915e09377}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\fileIO">
+      <UniqueIdentifier>{198c8798-9968-4ebb-a12b-dded0f771432}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="H\3D.INC">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="H\AFF_OBJ.INC">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="H\ALIGN.INC">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="H\CPU.INC">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="H\FILLER.INC">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="H\IAMMX.INC">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="H\MAT.INC">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="MENU\MENUFUNC.CPP">
+      <Filter>Source Files\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="MENU\MENULIB.CPP">
+      <Filter>Source Files\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="MENU\SELECTOR.CPP">
+      <Filter>Source Files\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="H\INITADEL.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="yaz.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="3D\MOVE.CPP">
+      <Filter>Source Files\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="SVGA\DIRTYBOX.CPP">
+      <Filter>Source Files\Svga\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SVGA\DDRAW.CPP">
+      <Filter>Source Files\Svga\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SVGA\GPRINTF.CPP">
+      <Filter>Source Files\Svga\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SVGA\INIMOUSE.CPP">
+      <Filter>Source Files\Svga\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SVGA\INITMODE.CPP">
+      <Filter>Source Files\Svga\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SVGA\MOUSEDOS.CPP">
+      <Filter>Source Files\Svga\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SVGA\MOUSEWIN.CPP">
+      <Filter>Source Files\Svga\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SVGA\PAL.CPP">
+      <Filter>Source Files\Svga\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SVGA\PLOT.CPP">
+      <Filter>Source Files\Svga\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SVGA\RECT.CPP">
+      <Filter>Source Files\Svga\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\A_MALLOC.CPP">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\AVAILMEM.CPP">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\CMDLINE.CPP">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\DEFFILE.CPP">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\DISKDIR.CPP">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\DISPCPU.CPP">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\DISPOS.CPP">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\DLLLOAD.C">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\DOSSYS.CPP">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\EXIT.CPP">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\FILEBAK.cpp">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\FILECOPY.cpp">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\FILENAME.cpp">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\FILES.CPP">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\HQFILE.CPP">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\HQMEM.CPP">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\HQRLOAD.CPP">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\HQRMEM.cpp">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\HQRMLOAD.cpp">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\INITIMER.CPP">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\INITKEYB.CPP">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\HQRRESS.CPP">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\INPUT.CPP">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\ITOA.CPP">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\KEYBWIN.CPP">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\LOADMALL.CPP">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\LOADSAVE.cpp">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\LOGPRINT.CPP">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\N_MALLOC.CPP">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\S_MALLOC.CPP">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\SCANINP.CPP">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\TIMERWIN.CPP">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\WIN.CPP">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM\WINSYS.CPP">
+      <Filter>Source Files\System\C</Filter>
+    </ClCompile>
+    <ClCompile Include="ail\CD.CPP">
+      <Filter>Source Files\AIL</Filter>
+    </ClCompile>
+    <ClCompile Include="ail\COMMON.CPP">
+      <Filter>Source Files\AIL</Filter>
+    </ClCompile>
+    <ClCompile Include="ail\MIDDIG.CPP">
+      <Filter>Source Files\AIL</Filter>
+    </ClCompile>
+    <ClCompile Include="ail\MIDI.CPP">
+      <Filter>Source Files\AIL</Filter>
+    </ClCompile>
+    <ClCompile Include="ail\MIXER.CPP">
+      <Filter>Source Files\AIL</Filter>
+    </ClCompile>
+    <ClCompile Include="ail\SAMPLE.CPP">
+      <Filter>Source Files\AIL</Filter>
+    </ClCompile>
+    <ClCompile Include="ail\STREAM.CPP">
+      <Filter>Source Files\AIL</Filter>
+    </ClCompile>
+    <ClCompile Include="ail\TIMER.CPP">
+      <Filter>Source Files\AIL</Filter>
+    </ClCompile>
+    <ClCompile Include="yaz_screen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FILEIO\LOADPCX.CPP">
+      <Filter>Source Files\fileIO</Filter>
+    </ClCompile>
+    <ClCompile Include="FILEIO\PCX.CPP">
+      <Filter>Source Files\fileIO</Filter>
+    </ClCompile>
+    <ClCompile Include="FILEIO\SAVEPCX.CPP">
+      <Filter>Source Files\fileIO</Filter>
+    </ClCompile>
+    <ClCompile Include="adpcm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="H\SYSTEM.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H\ANIM\ANIM.H">
+      <Filter>Source Files\Anim</Filter>
+    </ClInclude>
+    <ClInclude Include="H\ANIM\BODY.H">
+      <Filter>Source Files\Anim</Filter>
+    </ClInclude>
+    <ClInclude Include="H\ANIM\CLEAR.H">
+      <Filter>Source Files\Anim</Filter>
+    </ClInclude>
+    <ClInclude Include="H\ANIM\FRAME.H">
+      <Filter>Source Files\Anim</Filter>
+    </ClInclude>
+    <ClInclude Include="H\ANIM\INTANIM.H">
+      <Filter>Source Files\Anim</Filter>
+    </ClInclude>
+    <ClInclude Include="H\ANIM\INTERDEP.H">
+      <Filter>Source Files\Anim</Filter>
+    </ClInclude>
+    <ClInclude Include="H\ANIM\INTFRAME.H">
+      <Filter>Source Files\Anim</Filter>
+    </ClInclude>
+    <ClInclude Include="H\ANIM\LIBINIT.H">
+      <Filter>Source Files\Anim</Filter>
+    </ClInclude>
+    <ClInclude Include="H\ANIM\STOFRAME.H">
+      <Filter>Source Files\Anim</Filter>
+    </ClInclude>
+    <ClInclude Include="H\ANIM\TEXTURE.H">
+      <Filter>Source Files\Anim</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H\AIL.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H\ANIM.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H\FILEIO.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H\MENU.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H\OBJECT.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H\POLYGON.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SMACKER.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA.H">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H\MENU\MENUFUNC.H">
+      <Filter>Source Files\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="H\MENU\MENULIB.H">
+      <Filter>Source Files\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="H\MENU\SELECTOR.H">
+      <Filter>Source Files\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="H\POLYGON\CLIPPERZ.H">
+      <Filter>Source Files\Polygon</Filter>
+    </ClInclude>
+    <ClInclude Include="H\POLYGON\POLY.H">
+      <Filter>Source Files\Polygon</Filter>
+    </ClInclude>
+    <ClInclude Include="H\POLYGON\TESTVUE.H">
+      <Filter>Source Files\Polygon</Filter>
+    </ClInclude>
+    <ClInclude Include="yaz.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\ARCSIN.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\CAMERA.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\COPYMAT.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\DATAMAT.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\DISTANCE.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\FLIPMAT.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\GETANG2D.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\GETANG3D.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\GMATTRA.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\IMAT.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\IMAT3DS.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\IMATSTD.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\IMATTRA.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\INVCAM.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\IROT3D.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\LIGHT.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\LIROT3D.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\LPROJ.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\LROT2D.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\LROT3D.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\LROTLIST.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\LROTRALI.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\MAT.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\MOVE.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\MULMAT.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\PROJ.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\REALVAL.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\REGLE3.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\ROT2D.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\ROT3D.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\ROTLIST.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\ROTMAT.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\ROTRALIS.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\ROTVECT.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\SINTAB.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\SINTABF.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\SQRROOT.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\3D\TANTAB.H">
+      <Filter>Source Files\3D\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\AFFSTR.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\BLITBOV.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\BLITBOX.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\BOX.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\CALCMASK.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\CLEABOV.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\CLIP.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\CLRBOX.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\copybov.h">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\COPYBOX.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\COPYMASK.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\CPYBLOCI.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\CPYBLOCK.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\DDRAW.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\DIRTYBOX.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\FIL_LINE.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\FONT.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\GPRINTF.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\GRAPH.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\INIMOUSE.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\INITMODE.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\LOGPHYS.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\MASK.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\MOUSE.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\PAL.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\PLOT.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\RECT.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\RESBLOCK.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\SAVBLOCK.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\SCALEBOX.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\SCALESPI.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\SCALESPT.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\SCREENXY.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\SHADE.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SVGA\VESA.H">
+      <Filter>Source Files\Svga\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\A_MALLOC.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\ADELINE.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\AVAILMEM.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\CMDLINE.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\CPU.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\DEFFILE.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\DISKDIR.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\DISPCPU.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\DISPOS.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\DOSMALLO.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\DOSSYS.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\EXIT.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\FASTCPY.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\FASTSET.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\FILEBAK.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\FILECOPY.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\FILENAME.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\FILES.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\HQFILE.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\HQMEM.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\HQR.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\HQRLOAD.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\HQRMEM.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\HQRMLOAD.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\HQRRESS.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\INITIMER.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\INITKEYB.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\INPUT.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\ITOA.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\KEYBDOS.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\KEYBWIN.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\LOADMALL.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\LOADSAVE.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\LOGPRINT.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\LZ.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\N_MALLOC.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\PATCH.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\S_MALLOC.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\TIMERDOS.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\TIMERWIN.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="H\SYSTEM\WINSYS.H">
+      <Filter>Source Files\System\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ail\MIXER.H">
+      <Filter>Source Files\AIL</Filter>
+    </ClInclude>
+    <ClInclude Include="glext.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FILEIO\PCXHEAD.H">
+      <Filter>Source Files\fileIO</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="3D\ARCSIN.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\CAMERA.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\WRPRO.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\TANTAB.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\SQRROOT.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\SINTABF.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\SINTAB.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\RPROISM.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\RPROISI.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\RPROIS.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\RPRO3DM.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\RPRO3DI.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\RPRO3D.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\RPRO.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\ROTVECT.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\ROTRALIM.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\ROTRALII.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\ROTRALIF.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\ROTRALI.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\ROTMATU.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\ROTMATI.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+	<MASM Include="3D\REGLE3.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\ROTMAT.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\ROTLISTM.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\ROTLISTI.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\ROTLISTF.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\ROTLIST.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\ROT3DM.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\ROT3DI.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\ROT3D.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\ROT2DM.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\ROT2DI.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\ROT2D.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\REALVAL.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\PROJ.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\PRLIISO.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\PRLI3DI.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\PRLI3DF.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\PRLI3D.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\PRLI.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\MULMATM.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\MULMATI.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\MULMATF.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\MULMAT.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LWRPRO3D.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LWRPRO.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LRPROISM.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LRPROISI.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LRPROISF.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LRPROIS.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LRPRO3DM.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LRPRO3DI.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LRPRO3DF.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LRPRO3D.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LRPRO.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LROTRLIM.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LROTRLII.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LROTRLIF.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LROTRLI.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LROTLISM.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LROTLISI.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LROTLISF.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LROTLIS.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LROT3DM.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LROT3DI.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LROT3DF.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LROT3D.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LROT2DM.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LROT2DI.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LROT2DF.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LROT2D.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LPROJISO.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LPROJ3DI.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LPROJ3DF.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LPROJ3D.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LPROJ.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LPRLIISO.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LPRLI3DI.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LPRLI3DF.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LPRLI3D.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LPRLI.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LITLISTM.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LITLISTI.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LITLISTF.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LITLIST.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LIROT3DM.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LIROT3DI.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LIROT3DF.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LIROT3D.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\LIGHT.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\IROT3DM.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\IROT3DI.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\IROT3D.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\IMATTRAM.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\IMATTRAI.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\IMATTRAF.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\IMATTRA.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\IMATSTDM.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\IMATSTDI.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\IMATSTDF.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\IMATSTD.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\IMAT3DSM.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\IMAT3DSI.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\IMAT3DSF.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\IMAT3DS.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\IMAT.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\GMATTRAM.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\GMATTRAI.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\GMATTRAF.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\GMATTRA.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\GETANG3D.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\GETANG2D.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\FLIPMATM.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\FLIPMATI.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\FLIPMAT.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\DISTANCE.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\DATAMAT.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\COPYMATM.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\COPYMATI.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\COPYMATF.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\COPYMAT.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="3D\WRPRO3D.ASM">
+      <Filter>Source Files\3D</Filter>
+    </MASM>
+    <MASM Include="ANIM\TEXTURE.ASM">
+      <Filter>Source Files\Anim</Filter>
+    </MASM>
+    <MASM Include="ANIM\STOFRAME.ASM">
+      <Filter>Source Files\Anim</Filter>
+    </MASM>
+    <MASM Include="ANIM\LIBINIT.ASM">
+      <Filter>Source Files\Anim</Filter>
+    </MASM>
+    <MASM Include="ANIM\INTFRAME.ASM">
+      <Filter>Source Files\Anim</Filter>
+    </MASM>
+    <MASM Include="ANIM\INTERDEP.ASM">
+      <Filter>Source Files\Anim</Filter>
+    </MASM>
+    <MASM Include="ANIM\INTANIM.ASM">
+      <Filter>Source Files\Anim</Filter>
+    </MASM>
+    <MASM Include="ANIM\FRAME.ASM">
+      <Filter>Source Files\Anim</Filter>
+    </MASM>
+    <MASM Include="ANIM\CLEAR.ASM">
+      <Filter>Source Files\Anim</Filter>
+    </MASM>
+    <MASM Include="ANIM\BODY.ASM">
+      <Filter>Source Files\Anim</Filter>
+    </MASM>
+    <MASM Include="ANIM\ANIM.ASM">
+      <Filter>Source Files\Anim</Filter>
+    </MASM>
+    <MASM Include="MENU\SORT.ASM">
+      <Filter>Source Files\Menu</Filter>
+    </MASM>
+    <MASM Include="OBJECT\AFF_OBJ.ASM">
+      <Filter>Source Files\Object</Filter>
+    </MASM>
+    <MASM Include="OBJECT\3D_OBJ.ASM">
+      <Filter>Source Files\Object</Filter>
+    </MASM>
+    <MASM Include="pol_work\POLY.ASM">
+      <Filter>Source Files\Polygon</Filter>
+    </MASM>
+    <MASM Include="pol_work\TESTVUEM.ASM">
+      <Filter>Source Files\Polygon</Filter>
+    </MASM>
+    <MASM Include="pol_work\TESTVUEI.ASM">
+      <Filter>Source Files\Polygon</Filter>
+    </MASM>
+    <MASM Include="pol_work\TESTVUEF.ASM">
+      <Filter>Source Files\Polygon</Filter>
+    </MASM>
+    <MASM Include="pol_work\POLYTZG.ASM">
+      <Filter>Source Files\Polygon</Filter>
+    </MASM>
+    <MASM Include="pol_work\POLYTZF.ASM">
+      <Filter>Source Files\Polygon</Filter>
+    </MASM>
+    <MASM Include="pol_work\POLYTEXZ.ASM">
+      <Filter>Source Files\Polygon</Filter>
+    </MASM>
+    <MASM Include="pol_work\POLYTEXT.ASM">
+      <Filter>Source Files\Polygon</Filter>
+    </MASM>
+    <MASM Include="pol_work\POLYLINE.ASM">
+      <Filter>Source Files\Polygon</Filter>
+    </MASM>
+    <MASM Include="pol_work\POLYGTEX.ASM">
+      <Filter>Source Files\Polygon</Filter>
+    </MASM>
+    <MASM Include="pol_work\POLYGOUR.ASM">
+      <Filter>Source Files\Polygon</Filter>
+    </MASM>
+    <MASM Include="pol_work\POLYFLAT.ASM">
+      <Filter>Source Files\Polygon</Filter>
+    </MASM>
+    <MASM Include="pol_work\POLYDISC.ASM">
+      <Filter>Source Files\Polygon</Filter>
+    </MASM>
+    <MASM Include="pol_work\POLYCLIP.ASM">
+      <Filter>Source Files\Polygon</Filter>
+    </MASM>
+    <MASM Include="pol_work\POLY_JMP.ASM">
+      <Filter>Source Files\Polygon</Filter>
+    </MASM>
+    <MASM Include="pol_work\TESTVUE.ASM">
+      <Filter>Source Files\Polygon</Filter>
+    </MASM>
+    <MASM Include="pol_work\POLY_HDR.ASM">
+      <Filter>Source Files\Polygon</Filter>
+    </MASM>
+    <MASM Include="SVGA\CLIP.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\CLEABOVI.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\CLEABOVF.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\CLEABOV.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\COPYBOXM.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\COPYBOXI.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\COPYBOXF.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\COPYBOX.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\COPYBOVM.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\COPYBOVI.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\COPYBOVF.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\COPYBOV.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\CLRBOXM.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\CLRBOXI.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\CLRBOXF.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\CLRBOX.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\CLEABOVM.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\CALCMASK.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\BOX.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\BLITBOXM.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\BLITBOXI.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\BLITBOXF.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\BLITBOX.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\BLITBOVM.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\BLITBOVI.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\BLITBOVF.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\BLITBOV.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\AFFSTR.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\COPYMASK.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\CPYBLOCI.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\CPYBLOCK.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\FONT.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\GRAPH.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\LOGPHYS.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\MASK.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\MOUSEDAT.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\RESBLOCK.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\SAVBLOCK.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\SCALEBOX.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\SCALESPI.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\SCALESPT.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\SCREENXY.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\SHADE.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SVGA\VESA.ASM">
+      <Filter>Source Files\Svga</Filter>
+    </MASM>
+    <MASM Include="SYSTEM\PATCH.ASM">
+      <Filter>Source Files\System\Asm</Filter>
+    </MASM>
+    <MASM Include="SYSTEM\LZ.ASM">
+      <Filter>Source Files\System\Asm</Filter>
+    </MASM>
+    <MASM Include="SYSTEM\KEYBDOS.ASM">
+      <Filter>Source Files\System\Asm</Filter>
+    </MASM>
+    <MASM Include="SYSTEM\FASTSETM.ASM">
+      <Filter>Source Files\System\Asm</Filter>
+    </MASM>
+    <MASM Include="SYSTEM\FASTSETI.ASM">
+      <Filter>Source Files\System\Asm</Filter>
+    </MASM>
+    <MASM Include="SYSTEM\FASTSETF.ASM">
+      <Filter>Source Files\System\Asm</Filter>
+    </MASM>
+    <MASM Include="SYSTEM\FASTSET.ASM">
+      <Filter>Source Files\System\Asm</Filter>
+    </MASM>
+    <MASM Include="SYSTEM\FASTCPYM.ASM">
+      <Filter>Source Files\System\Asm</Filter>
+    </MASM>
+    <MASM Include="SYSTEM\FASTCPYI.ASM">
+      <Filter>Source Files\System\Asm</Filter>
+    </MASM>
+    <MASM Include="SYSTEM\FASTCPYF.ASM">
+      <Filter>Source Files\System\Asm</Filter>
+    </MASM>
+    <MASM Include="SYSTEM\FASTCPY.ASM">
+      <Filter>Source Files\System\Asm</Filter>
+    </MASM>
+    <MASM Include="SYSTEM\DOSMALLO.ASM">
+      <Filter>Source Files\System\Asm</Filter>
+    </MASM>
+    <MASM Include="SYSTEM\CPU.ASM">
+      <Filter>Source Files\System\Asm</Filter>
+    </MASM>
+    <MASM Include="SYSTEM\TIMERDOS.ASM">
+      <Filter>Source Files\System\Asm</Filter>
+    </MASM>
+    <MASM Include="SYSTEM\CHOOSER.ASM">
+      <Filter>Source Files\System\Asm</Filter>
+    </MASM>
+  </ItemGroup>
+</Project>

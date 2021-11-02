@@ -5,7 +5,7 @@
 //──────────────────────────────────────────────────────────────────────────
 #ifndef	_BUILDING_LIB
 
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 
 #ifdef	cedric
 #pragma library ("F:\PROJET\LIB386\POL_WORK\NT_POLY.LIB")
@@ -15,7 +15,7 @@
 
 
 
-#else//	_WIN32
+#else//	YAZ_WIN32
 
 #ifdef	cedric
 #pragma library ("F:\PROJET\LIB386\POL_WORK\DOS_POLY.LIB")
@@ -23,7 +23,7 @@
 #pragma library ("DOS_POLY.LIB")
 #endif
 
-#endif//_WIN32
+#endif//YAZ_WIN32
 
 #endif//_BUILDING_LIB
 

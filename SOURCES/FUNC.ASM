@@ -1,38 +1,38 @@
 		.386p
 
-		.model FLAT, SYSCALL
+		.model FLAT, C
 
 ;*══════════════════════════════════════════════════════════════════════════*
 ;*──────────────────────────────────────────────────────────────────────────*
 		.code
 
 ;*──────────────────────────────────────────────────────────────────────────*
-ifndef	_WIN32
-		public	SYSCALL	GetHDFreeSize
+ifndef	YAZ_WIN32
+;		public	C	GetHDFreeSize
 endif
-		public	SYSCALL	SearchBoundColRGB
+		public	C	SearchBoundColRGB
 
 ;----------------------------------------------------------------------------
-ifndef	_WIN32
+ifndef	YAZ_WIN32
 
 ;*══════════════════════════════════════════════════════════════════════════*
 
-GetHDFreeSize		proc
+;GetHDFreeSize		proc
 
-			xor	eax, eax	;' Cause IMUL
-			xor	ebx, ebx	;' Cause IMUL
-			xor	ecx, ecx	;' Cause IMUL
+;			xor	eax, eax	;' Cause IMUL
+;			xor	ebx, ebx	;' Cause IMUL
+;			xor	ecx, ecx	;' Cause IMUL
 
-			mov	ah, 36h
-			xor	edx, edx	;' Current Drive
-			int	21h		;' Get Free Space
+;			mov	ah, 36h
+;			xor	edx, edx	;' Current Drive
+;			int	21h		;' Get Free Space
 
-			imul	ebx
-			imul	ecx		;' Bytes*Sectors*Clusters
+;			imul	ebx
+;			imul	ecx		;' Bytes*Sectors*Clusters
 
-			ret
+;			ret
 
-GetHDFreeSize		endp
+;GetHDFreeSize		endp
 
 ;*══════════════════════════════════════════════════════════════════════════*/
 endif

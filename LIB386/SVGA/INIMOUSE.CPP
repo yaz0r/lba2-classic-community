@@ -7,19 +7,18 @@
 #include	<svga\mouse.h>
 
 //──────────────────────────────────────────────────────────────────────────
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 
 //──────────────────────────────────────────────────────────────────────────
 #include	<system\winsys.h>
 
 //──────────────────────────────────────────────────────────────────────────
-#else //_WIN32
+#else //YAZ_WIN32
 
 //──────────────────────────────────────────────────────────────────────────
 #include	<system\exit.h>
-#include	<ail\mss.h>
 
-#include 	<i86.h>
+//#include 	<i86.h>
 #include 	<stdlib.h>
 
 //──────────────────────────────────────────────────────────────────────────
@@ -27,7 +26,7 @@ static	S32	Installed	= FALSE	;
 static	S32	LastFlagMouse	= FALSE	;
 
 //──────────────────────────────────────────────────────────────────────────
-#endif//_WIN32
+#endif//YAZ_WIN32
 
 //──────────────────────────────────────────────────────────────────────────
 volatile S32	Click = 0	;
@@ -55,7 +54,7 @@ extern	U8	BinGphMouse 	;
 #endif
 
 //──────────────────────────────────────────────────────────────────────────
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 
 //──────────────────────────────────────────────────────────────────────────
 extern	WINDOW_PROC_PTR	OldMouseWindowProc	;
@@ -82,10 +81,10 @@ void	ClearMouse()
 }
 
 //──────────────────────────────────────────────────────────────────────────
-#else //_WIN32
+#else //YAZ_WIN32
 
 //──────────────────────────────────────────────────────────────────────────
-static void _loadds far click_handler (int max, int mcx, int mdx)
+static void click_handler (int max, int mcx, int mdx)
 {
 	MouseX = mcx>>3	;
 	MouseY = mdx>>3	;
@@ -102,6 +101,7 @@ static void _loadds far click_handler (int max, int mcx, int mdx)
 //──────────────────────────────────────────────────────────────────────────
 void 	InitMouse()
 {
+#if YAZ
 	struct SREGS sregs		;
 	union REGS inregs, outregs	;
 
@@ -116,6 +116,7 @@ void 	InitMouse()
 	// check for mouse driver
 	inregs.w.ax = 0			;
 	int386 (0x33, &inregs, &outregs);
+#endif
 
 	SetMouseBox(0, 0, ModeDesiredX, ModeDesiredY)	;
 	SetMouseSpeed(4, 4)		;
@@ -127,12 +128,14 @@ void 	InitMouse()
 
 	UpdateMouseRes()		;
 
+#if YAZ
 	// install click watcher
 	inregs.w.ax = 0xC				;
 	inregs.w.cx = 0x01 | 0x02 | 0x04 | 0x08 | 0x10 	;
 	inregs.x.edx = FP_OFF( click_handler )		;
 	sregs.es     = FP_SEG( click_handler )		;
 	int386x( 0x33, &inregs, &outregs, &sregs )	;
+#endif
 
 	RegisterInitClear( InitMouse, ClearMouse )	;
 
@@ -144,6 +147,7 @@ void 	InitMouse()
 //──────────────────────────────────────────────────────────────────────────
 void	ClearMouse()
 {
+#if YAZ
 	union REGS inregs, outregs	;
 
 	if(!Installed)
@@ -160,11 +164,11 @@ void	ClearMouse()
 	AIL_vmm_unlock_range((void*)&MouseX, (void*)&MouseY)			;
 	AIL_vmm_unlock_range((void*)&Click, (void*)((&Click)+1))			;
 	AIL_vmm_unlock_range((void *)FP_OFF(click_handler), (void*)ShowMouse)	;
-
+#endif
 	Installed	= FALSE		;
 }
 
 //──────────────────────────────────────────────────────────────────────────
-#endif//_WIN32
+#endif//YAZ_WIN32
 
 //──────────────────────────────────────────────────────────────────────────

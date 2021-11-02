@@ -7,10 +7,6 @@
 #include	<system\hqfile.h>
 #include	<system\hqrress.h>
 
-#ifndef	_WIN32
-#include	<ail\mss.h>
-#endif
-
 #include	<string.h>
 
 //──────────────────────────────────────────────────────────────────────────
@@ -70,18 +66,18 @@ error:		Free(header)	;
 
 //──────────────────────────────────────────────────────────────────────────
 // lock le buffer
-#ifndef	_WIN32
+#ifndef	YAZ_WIN32
 void	HQR_Lock_Ressource(T_HQR_HEADER *header)
 {
 	header = header	;
 
-	AIL_vmm_lock((void*)header, sizeof(T_HQR_HEADER) +
+	/*AIL_vmm_lock((void*)header, sizeof(T_HQR_HEADER) +
 				sizeof(T_HQR_BLOC) * header->MaxIndex   ) ;
 
-	AIL_vmm_lock(header->Buffer, header->MaxSize+RECOVER_AREA);
+	AIL_vmm_lock(header->Buffer, header->MaxSize+RECOVER_AREA);*/
 }
 
-#endif//_WIN32
+#endif//YAZ_WIN32
 
 //──────────────────────────────────────────────────────────────────────────
 // vide le buffer d'une ressource
@@ -124,40 +120,74 @@ void	HQR_Free_Ressource(T_HQR_HEADER *header)
 		return		;
 	}
 
-	AIL_vmm_unlock((void*)header, sizeof(T_HQR_HEADER) +
+	/*AIL_vmm_unlock((void*)header, sizeof(T_HQR_HEADER) +
 				  sizeof(T_HQR_BLOC) * header->MaxIndex ) ;
 
 	AIL_vmm_unlock(header->Buffer, header->MaxSize+RECOVER_AREA);
-
+	*/
 	Free(header->Buffer)	;
 	Free(header)		;
 }
 
 //──────────────────────────────────────────────────────────────────────────
 // retourne le pointeur mémoire de la fiche (index) demandée
-T_HQR_BLOC	*HQR_GiveBloc(S32 index, S32 nbindex, T_HQR_BLOC *bloc)	;
+T_HQR_BLOC	*HQR_GiveBloc(S32 index, S32 nbindex, T_HQR_BLOC *bloc)
+{
+	T_HQR_BLOC* returnValue;
 
-#pragma aux HQR_GiveBloc       =               	\
-"               shl     ecx, 4          "       \
-"               jz      notfound        "       \
-"               lea     ebx, [eax+ecx]  "       \
-"               sub     eax, 16         "       \
-"               test    ecx, 16         "       \
-"               jnz     se1             "       \
-"               add     eax, 16         "       \
-"se0:           cmp     edx, [eax]      "       \
-"               je      quit            "       \
-"se1:           cmp     edx, [eax+16]   "       \
-"               je      quit2           "       \
-"               add     eax, 32         "       \
-"               cmp     eax, ebx        "       \
-"               jne     se0             "       \
-"notfound:      xor     eax, eax        "       \
-"               jmp     quit            "       \
-"quit2:         add     eax, 16         "       \
-"quit:                                  "       \
-        parm    [edx] [ecx] [eax]               \
+	__asm
+	{
+		pusha
+
+			mov edx, index
+			mov ecx, nbindex
+			mov eax, bloc
+		               shl     ecx, 4          
+			               jz      notfound        
+			               lea     ebx, [eax+ecx]  
+			               sub     eax, 16         
+			               test    ecx, 16         
+			               jnz     se1             
+			               add     eax, 16         
+			se0:           cmp     edx, [eax]      
+			               je      quit            
+			se1:           cmp     edx, [eax+16]   
+			               je      quit2           
+			               add     eax, 32         
+			               cmp     eax, ebx        
+			               jne     se0             
+			notfound:      xor     eax, eax        
+			               jmp     quit            
+			quit2:         add     eax, 16         
+quit:             
+						   mov returnValue, eax
+							   popa
+	}
+
+	return returnValue;
+	/*#pragma aux HQR_GiveBloc       =               	\
+	"               shl     ecx, 4          "       \
+	"               jz      notfound        "       \
+	"               lea     ebx, [eax+ecx]  "       \
+	"               sub     eax, 16         "       \
+	"               test    ecx, 16         "       \
+	"               jnz     se1             "       \
+	"               add     eax, 16         "       \
+	"se0:           cmp     edx, [eax]      "       \
+	"               je      quit            "       \
+	"se1:           cmp     edx, [eax+16]   "       \
+	"               je      quit2           "       \
+	"               add     eax, 32         "       \
+	"               cmp     eax, ebx        "       \
+	"               jne     se0             "       \
+	"notfound:      xor     eax, eax        "       \
+	"               jmp     quit            "       \
+	"quit2:         add     eax, 16         "       \
+	"quit:                                  "       \
+	parm    [edx] [ecx] [eax]               \
 	modify	[ebx]
+*/
+}
 
 //──────────────────────────────────────────────────────────────────────────
 // supprime une fiche dans le buffer d'une ressource

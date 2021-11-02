@@ -1,51 +1,51 @@
-;//───────────────────────────────────────────────────────────────────────
+;//──────────────────────────────────────────────────────────────────────?
 		.386p
 
 		.model SMALL, SYSCALL
 
-;//───────────────────────────────────────────────────────────────────────
+;//──────────────────────────────────────────────────────────────────────?
 		.DATA
 
-;//───────────────────────────────────────────────────────────────────────
+;//──────────────────────────────────────────────────────────────────────?
 		public	SYSCALL		Int15DataStart	; for VMM_lock
 		public	SYSCALL		Int15DataEnd
 
-;//───────────────────────────────────────────────────────────────────────
+;//──────────────────────────────────────────────────────────────────────?
 		public	SYSCALL		Int15Trans
 
 		public	SYSCALL		Old_PM15_Off
 		public	SYSCALL		Old_PM15_Sel
 
-;//───────────────────────────────────────────────────────────────────────
+;//──────────────────────────────────────────────────────────────────────?
 		extrn	SYSCALL	TimerSystemHR:DWORD
 
-;//───────────────────────────────────────────────────────────────────────
+;//──────────────────────────────────────────────────────────────────────?
 Int15DataStart	label	dword
 
 Int15Trans	dd	0
 
 Int15DataEnd	label	dword
 
-;//───────────────────────────────────────────────────────────────────────
+;//──────────────────────────────────────────────────────────────────────?
 
 Old_PM15_Off	dd	00
 Old_PM15_Sel    dd	00
 
 timer_temp	dd	0
 
-;//───────────────────────────────────────────────────────────────────────
+;//──────────────────────────────────────────────────────────────────────?
 		.CODE
 
-;//───────────────────────────────────────────────────────────────────────
+;//──────────────────────────────────────────────────────────────────────?
 		public	SYSCALL	Int15CodeStart	; for VMM_lock
 		public	SYSCALL	Int15CodeEnd
 
-;//───────────────────────────────────────────────────────────────────────
+;//──────────────────────────────────────────────────────────────────────?
 		public	SYSCALL	Int15CodeStart	; for VMM_lock
 		public	SYSCALL	Int15CodeEnd
 
 
-;//───────────────────────────────────────────────────────────────────────
+;//──────────────────────────────────────────────────────────────────────?
 Int15CodeStart	label	dword
 
 Int15Handler	PROC    FAR
@@ -67,18 +67,18 @@ Int15Handler	PROC    FAR
 		cmp	ax, 4FFEh		; triggered int 9 ?
 		jne	skip
 ok:
-		mov	ecx, [Int15Trans]
+		mov	ecx, [ds:Int15Trans]
 
 		test	ecx, ecx
 		jz	skip
 
 		mov	al, cl
-		mov	[Int15Trans], ebx
+		mov	[ds:Int15Trans], ebx
 skip:
 		popf
 
-		mov	ecx, [Old_PM15_Off]	; mess with the stack
-		mov	ebx, [Old_PM15_Sel]	; to reset all the register
+		mov	ecx, [ds:Old_PM15_Off]	; mess with the stack
+		mov	ebx, [ds:Old_PM15_Sel]	; to reset all the register
 				      		; and allow to do a retf
 		xchg	ecx, [esp+1*4]		; to chain with the bios
 		xchg	ebx, [esp+2*4]		; handler
@@ -98,14 +98,14 @@ iodelay		PROC
 		push	eax
 		push	ebx
 restart:
-		mov	eax, [timer_temp]
+		mov	eax, [ds:timer_temp]
 wait_timer:
-		mov	ebx, [TimerSystemHR]
+		mov	ebx, [ds:TimerSystemHR]
 		cmp	ebx, eax
 		jb	wait_timer
 
 		add	ebx, 5
-		mov	[timer_temp], ebx
+		mov	[ds:timer_temp], ebx
 
 		test	eax, eax
 		jz	restart

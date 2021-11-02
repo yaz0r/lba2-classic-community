@@ -55,7 +55,7 @@ extern	"C"	{
 #pragma	pack(push, 1)
 
 //--------------------------------------------------------------------------
-typedef struct
+struct Struc_Point
 	{
 		S16	Pt_XE;		// Screen coordinates
 		S16	Pt_YE;
@@ -64,7 +64,7 @@ typedef struct
 		U16	Pt_Light;	// intensity (0.8.0)
 		U16	Pt_ZO;		// normalized Z
 		U32	Pt_W;		// 2^31 / Z (non normalized)
-	}	Struc_Point;
+	};
 
 //--------------------------------------------------------------------------
 #pragma	pack(pop)
@@ -106,10 +106,11 @@ S32		INV64(S32 a);
 // Renvoie :    Le Z norme sur 16 bitspour le zbuffer 16 bits
 
 //--------------------------------------------------------------------------
-extern	void	Switch_Fillers(U32 Bank)	;
+//extern	void	Switch_Fillers(U32 Bank)	;
 
-#pragma	aux	Switch_Fillers	"*"		\
-		parm caller	[eax]
+extern void Switch_Fillers_C(U32 Bank);
+
+#define Switch_Fillers Switch_Fillers_C
 
 #define         FILL_POLY_TEXTURES	0       // Normal
 #define         FILL_POLY_NO_TEXTURES	1       // Simplified (no mapping)
@@ -133,9 +134,12 @@ typedef	S32	(FUNC_FILL_POLY)(	S32 Type_Poly, S32 Color_Poly,
 #pragma aux	(ARG_FILL_POLY)	FUNC_FILL_POLY
 
 //--------------------------------------------------------------------------
-extern	FUNC_FILL_POLY	*Fill_Poly	;
+//extern	FUNC_FILL_POLY	*Fill_Poly	;
 
-#pragma	aux	Fill_Poly	"*"
+#define Fill_Poly Fill_Poly_C
+
+S32	Fill_Poly_C(S32 Type_Poly, S32 Color_Poly,
+	S32 Nb_Points, Struc_Point *Ptr_Points) ;
 
 //--------------------------------------------------------------------------
 extern	FUNC_FILL_POLY	Fill_PolyFast	;

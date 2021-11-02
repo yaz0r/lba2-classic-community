@@ -1,27 +1,27 @@
 ;----------------------------------------------------------------------------
 			.386
 
-			.MODEL	FLAT, SYSCALL
+			.MODEL	FLAT, C
 
 ;----------------------------------------------------------------------------
 			.DATA
 
 ;----------------------------------------------------------------------------
-			extrn	SYSCALL	TabOffLine:DWORD
+			extrn	C	TabOffLine:DWORD
 
 ;----------------------------------------------------------------------------
 			.CODE
 
 ;----------------------------------------------------------------------------
-			public	SYSCALL	CopyBoxI
+			public	C	CopyBoxI
 
 ;----------------------------------------------------------------------------
-IFDEF	_WIN32
-		extrn  SYSCALL	AllowPatchAndPatch:PROC
+IFDEF	YAZ_WIN32
+		extrn  C	AllowPatchAndPatch:PROC
 ENDIF
 
 ;----------------------------------------------------------------------------
-IFDEF	_WIN32
+IFDEF	YAZ_WIN32
 
 CopyBoxIInit	proc
 
@@ -54,7 +54,7 @@ CopyBoxI		PROC
 
 			mov	ebx, [ebx+4]		; ebx = (XMax, YMax)
 			mov	eax, ebp
-IFDEF	_WIN32
+IFDEF	YAZ_WIN32
 x:
 			org	CopyBoxI
 

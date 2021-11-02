@@ -1,32 +1,31 @@
 ;*══════════════════════════════════════════════════════════════════════════*
 
 		.386p
-		OPTION	LANGUAGE:SYSCALL
-		OPTION	SCOPED
+		.MODEL SMALL, C
 
 ;*══════════════════════════════════════════════════════════════════════════*
 MAX_SCREEN_Y_RES	equ	1024
 
 ;*══════════════════════════════════════════════════════════════════════════*
-DGROUP		GROUP	_DATA
-
-_DATA		SEGMENT USE32 PAGE PUBLIC 'DATA'
+		.DATA
 
 ;*══════════════════════════════════════════════════════════════════════════*
-		PUBLIC	SYSCALL	Phys
-		PUBLIC	SYSCALL	Log
-		PUBLIC	SYSCALL	Screen
-		PUBLIC	SYSCALL	TabOffLine
-		PUBLIC	SYSCALL	TabOffPhysLine
+		PUBLIC	C	Phys
+		PUBLIC	C	Log
+		PUBLIC	C	Screen
+		PUBLIC	C	TabOffLine
+		PUBLIC	C	TabOffPhysLine
 
-		PUBLIC	SYSCALL	ModeResX
-		PUBLIC	SYSCALL	ModeResY
-		PUBLIC	SYSCALL	ModeMemory
+		PUBLIC	C	ModeResX
+		PUBLIC	C	ModeResY
+		PUBLIC	C	ModeMemory
 
-		PUBLIC	SYSCALL	BytesScanLine
+		PUBLIC	C	BytesScanLine
+
+		ASSUME DS:SEG TabOffLine
 
 ;*══════════════════════════════════════════════════════════════════════════*
-ALIGN	32					; already aligned
+;ALIGN	32					; already aligned
 
 Phys		dd	0
 Log		dd	0
@@ -43,7 +42,6 @@ TabOffLine	dd	MAX_SCREEN_Y_RES dup (?)
 TabOffPhysLine	dd	MAX_SCREEN_Y_RES dup (?)
 
 ;*══════════════════════════════════════════════════════════════════════════*
-_DATA		ENDS
 
 ;*══════════════════════════════════════════════════════════════════════════*
 ;		The

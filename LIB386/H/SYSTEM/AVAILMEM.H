@@ -10,12 +10,12 @@ extern	"C"	{
 //──────────────────────────────────────────────────────────────────────────
 extern	U32	AvailableMem()	;
 
-#ifndef	_WIN32
+#ifndef	YAZ_WIN32
 
 #pragma aux	AvailableMem		\
 	modify	[ebx ecx edx esi edi]
 
-#endif//_WIN32
+#endif//YAZ_WIN32
 
 //──────────────────────────────────────────────────────────────────────────
 

@@ -1,9 +1,6 @@
 #include        "c_extern.h"
-
-/*#ifndef DEMO
-#define THOMAS  1
-#endif
-*/
+#include        <SDL.h>
+#undef YAZ_WIN32
 
 extern  char    *Version ;
 
@@ -423,7 +420,7 @@ restartloop:
         {
 startloop:
 
-/*#ifdef  THOMAS
+/*#ifdef  0
 		if( DefKeys[0].Key1==0 )
 		{
 			PalOne( LBAWHITE, 255, 255, 255 ) ;
@@ -438,7 +435,7 @@ startloop:
 
         // DEBUG pour trouver bug Alpha
 
-#ifndef _WIN32
+#ifndef YAZ_WIN32
 /*              if( ModeHercule )
                 {
                         HStringf( 0, 0, "Alpha: %4d", ptrobj->Obj.Alpha ) ;
@@ -543,7 +540,7 @@ startloop:
 
 /*-------------------------------------------------------------------------*/
 
-#ifndef _WIN32
+#ifndef YAZ_WIN32
                 CriticalErrorCount = 0  ;// Init Critical Error Count
 #endif
 
@@ -871,7 +868,7 @@ startloop:
                         {
                                 NumVersion = NUM_VERSION|SAVE_COMPRESS ;
                                 CopyScreen( Screen, Log ) ;
-#ifdef  _WIN32
+#ifdef  YAZ_WIN32
                                 if( FileSize(OldGamePathname) ) Delete( OldGamePathname ) ;
 #endif
                                 SaveGame( TRUE ) ;
@@ -1946,11 +1943,12 @@ void    DebugHQR( char *titre, T_HQR_HEADER *hqr )
 
 void    V_ColorLine( U8 text, U8 back, U16 ncars )
 {
-#ifdef  _WIN32
+#ifdef  YAZ_WIN32
         text = text ;
         back = back ;
         ncars = ncars ;
 #else
+#if 0 // yaz
         union REGS      regs ;
 
         regs.h.ah = 0x09 ;
@@ -1960,6 +1958,7 @@ void    V_ColorLine( U8 text, U8 back, U16 ncars )
         regs.h.bl = (U8)((back<<4)|text) ;
 
         int386( 0x10, &regs, &regs ) ;
+#endif
 #endif
 }
 
@@ -2085,7 +2084,7 @@ void    Message(  char *mess, S32 flag )
 
 /*══════════════════════════════════════════════════════════════════════════*/
 
-#ifdef  _WIN32
+#ifdef  YAZ_WIN32
 
 void    ChangeProgDir()
 {
@@ -2138,7 +2137,7 @@ void    ChangeProgDir( char *path )
 /*══════════════════════════════════════════════════════════════════════════*/
 /*══════════════════════════════════════════════════════════════════════════*/
 
-#ifdef  _WIN32
+#ifdef  YAZ_WIN32
 int PASCAL WinMain(     HINSTANCE hInstance, HINSTANCE hPrevInstance,
                         LPSTR lpCmdLine, int nCmdShow                   )
 {
@@ -2149,24 +2148,24 @@ int PASCAL WinMain(     HINSTANCE hInstance, HINSTANCE hPrevInstance,
         lpCmdLine = lpCmdLine ;
         nCmdShow = nCmdShow ;
 
-#else //_WIN32
-int main(S32 argc, char *argv[])
+#else //YAZ_WIN32
+int main(int argc, char *argv[])
 {
         S32     load = FALSE ;
         U8      *ptrdos4gw ;
 
         // protect DOS4GW car il a besoin d'un peu de mémoire pour ses transferts fichiers
         ptrdos4gw = (U8*)DosMalloc( 256*256L ) ;
-#endif//_WIN32
+#endif//YAZ_WIN32
 
 #ifdef  DEBUG_TOOLS
         MemoMemory = AvailableMem() ;  // memory at start
         MemoDosMemory = DosAvailableMem() ;// Dos memory at start
 #endif
 
-#ifndef _WIN32
+#ifndef YAZ_WIN32
 	atexit(TheEndInfo)      ;
-	ChangeProgDir( argv[0] ) ;
+	//ChangeProgDir( argv[0] ) ;
 #else
 	ChangeProgDir() ;
 #endif
@@ -2188,7 +2187,7 @@ int main(S32 argc, char *argv[])
 	#define inits   INIT_DEFFILE|INIT_LOG|INIT_TIMER|INIT_SVGA|INIT_KEYB|INIT_SAMPLE|INIT_SMACKER
 	#include <initadel.c>
 
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 	atexit(TheEndInfo)      ;
 #endif
 
@@ -2204,8 +2203,8 @@ int main(S32 argc, char *argv[])
 	CreateLbaDirectories() ;
 #endif
 
-#ifndef _WIN32
-	InstallCriticalErrorHandler() ;
+#ifndef YAZ_WIN32
+//yaz	InstallCriticalErrorHandler() ;
 #endif
 
 //-------------------   buffer samples
@@ -2272,7 +2271,7 @@ int main(S32 argc, char *argv[])
 
 	do
 	{
-#ifdef  _WIN32
+#ifdef  YAZ_WIN32
 		// pour Windows car ca prend du temps a scaner le CD
 		Load_HQR( SCREEN_HQR_NAME, Log, PCR_CDROM ) ;
 		BoxStaticFullflip() ;
@@ -2297,7 +2296,7 @@ int main(S32 argc, char *argv[])
         }
         while( !cd ) ;
         }
-#ifdef  _WIN32
+#ifdef  YAZ_WIN32
         FadeToBlack( PtrPalNormal ) ;
 #endif
 
@@ -2314,7 +2313,7 @@ int main(S32 argc, char *argv[])
         if( !BufferAnim ) TheEnd( NOT_ENOUGH_MEM, "Buffer Anim" ) ;
 //-------------------
 
-#ifndef _WIN32
+#ifndef YAZ_WIN32
 #ifdef  DEBUG_TOOLS
         TestHercule() ;
 
@@ -2462,7 +2461,7 @@ int main(S32 argc, char *argv[])
         PtrPolySea = (S_ANI_POLY*)Malloc( SIZE_BUFFER_POLY_SEA ) ;
         if( !PtrPolySea )       MaxPolySea = 0 ;// Animation de l'eau non dispo
 
-#ifndef _WIN32
+#ifndef YAZ_WIN32
         // on redonne un peu de mémoire à DOS4GW avant de lancer l'usine
         if( ptrdos4gw ) Free( ptrdos4gw ) ;
 #endif

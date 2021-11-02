@@ -21,52 +21,52 @@ extern Func_WorldColBrick	WorldColBrick ;
 
 //-------------------------------------------------------------------
 extern U8	WorldColBrickFull( S32 xw, S32 yw, S32 zw, S32 ymax ) ;
-
+/*
 #pragma	aux     WorldColBrickFull	"*"	\
 		parm caller []			\
-		modify [eax ebx ecx edx]
+		modify [eax ebx ecx edx]*/
 
 //-------------------------------------------------------------------
 extern U8	WorldCodeBrick(    S32 xw, S32 yw, S32 zw ) ;
-
+/*
 #pragma aux	WorldCodeBrick	"*"			\
 		parm caller	[eax] [ebx] [ecx]	\
-		modify [edx]
+		modify [edx]*/
 
 //-------------------------------------------------------------------
 extern U8	GetBlockBrick(     S32 xw, S32 yw, S32 zw ) ;
-
+/*
 #pragma	aux	GetBlockBrick	"*"	\
 		parm caller [] 		\
-		modify [eax ecx edx]
+		modify [eax ecx edx]*/
 
 //▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 extern	U8	GetWorldColBrickVisible( S32 x, S32 y, S32 z ) ;
-
+/*
 #pragma	aux     GetWorldColBrickVisible	"*"	\
 		parm caller []			\
-		modify [eax ecx edx]
+		modify [eax ecx edx]*/
 
 //-------------------------------------------------------------------
 extern	void	DecompColonne( U8 *pts, U8 *ptd  ) ;
-
+/*
 #pragma	aux 	DecompColonne	"*"		\
 		parm caller	[esi] [edi]	\
 		modify [eax ecx edx]
-
+		*/
 //-------------------------------------------------------------------
 extern	void	Map2Screen( S32 x, S32 y, S32 z ) ;
-
+/*
 #pragma	aux	Map2Screen	"*"			\
 		parm caller	[eax] [ecx] [edx]	\
-		modify exact [eax ebx edx]
+		modify exact [eax ebx edx]*/
 
 //-------------------------------------------------------------------
 extern	U8	*GetAdrBlock( S32 numblock ) ;
 
-#pragma	aux 	GetAdrBlock	"*"	\
+/*#pragma	aux 	GetAdrBlock	"*"	\
 		parm caller	[ecx]	\
-		modify exact [eax]
+		modify exact [eax]*/
 
 //-------------------------------------------------------------------
 

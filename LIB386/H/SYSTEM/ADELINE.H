@@ -3,7 +3,8 @@
 #define LIB_SYSTEM_ADELINE
 
 //──────────────────────────────────────────────────────────────────────────
-#ifdef	_WIN32
+#pragma pack(8)   // n = 4
+#ifdef	YAZ_WIN32
 #include	<windows.h>
 #include 	<windowsx.h>
 #include	<winbase.h>
@@ -11,7 +12,8 @@
 #ifndef	_NO_DDRAW
 #include 	<ddraw.h>
 #endif//_NO_DDRAW
-#endif//_WIN32
+#endif//YAZ_WIN32
+#pragma pack(1)
 
 //──────────────────────────────────────────────────────────────────────────
 #ifndef TYPEDEFS
@@ -90,12 +92,12 @@ typedef unsigned char  UBYTE;
 typedef unsigned short UWORD;
 typedef unsigned long  ULONG;
 
-#ifndef	_WIN32
+#ifndef	YAZ_WIN32
 
-typedef char  BYTE;
-typedef short WORD;
+//typedef char  BYTE;
+//typedef short WORD;
 
-#endif//_WIN32
+#endif//YAZ_WIN32
 
 typedef long  LONG;
 
@@ -108,7 +110,7 @@ typedef long  LONG;
 #define	FALSE		0
 
 //──────────────────────────────────────────────────────────────────────────
-#ifdef  _WIN32
+#ifdef  YAZ_WIN32
 
 //──────────────────────────────────────────────────────────────────────────
 typedef	S32 (WINDOW_PROC)(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
@@ -121,31 +123,31 @@ typedef	WINDOW_PROC * WINDOW_PROC_PTR	;
 #pragma	aux	(Flat_Name)	WINDOW_PROC_PTR
 
 //──────────────────────────────────────────────────────────────────────────
-#endif//_WIN32
+#endif//YAZ_WIN32
 
 //──────────────────────────────────────────────────────────────────────────
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 
 //──────────────────────────────────────────────────────────────────────────
 #define	AIL_vmm_lock(a, b)
 #define	AIL_vmm_unlock(a, b)
 
 //──────────────────────────────────────────────────────────────────────────
-#else//	_WIN32
+#else//	YAZ_WIN32
 
 //──────────────────────────────────────────────────────────────────────────
-#define		ManageTime()
-#define		ManageSystem()	ManageEvents()
+//#define		ManageTime()
+#define	ManageSystem()	{ ManageEvents(); ManageTime(); } // to get time
 
 //──────────────────────────────────────────────────────────────────────────
-#endif//_WIN32
+#endif//YAZ_WIN32
 
 //──────────────────────────────────────────────────────────────────────────
-#ifndef _WIN32
+#ifndef YAZ_WIN32
 #ifndef  DPMI
 #define  DPMI	// we use DOS/4GW... mainly for DLLLOAD.C (Miles)
 #endif// DPMI
-#endif//_WIN32
+#endif//YAZ_WIN32
 
 //──────────────────────────────────────────────────────────────────────────
 #endif//TYPEDEFS
@@ -154,6 +156,8 @@ typedef	WINDOW_PROC * WINDOW_PROC_PTR	;
 #ifdef __cplusplus
 }
 #endif
+
+#include <yaz.h>
 
 //──────────────────────────────────────────────────────────────────────────
 #endif//LIB_SYSTEM_ADELINE

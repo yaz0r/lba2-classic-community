@@ -8,7 +8,7 @@
 #include	<direct.h>
 #include	<string.h>
 #include	<dos.h>
-#include	<mem.h>
+//#include	<mem.h>
 
 //──────────────────────────────────────────────────────────────────────────
 #define MAX_FILES	800
@@ -324,6 +324,7 @@ S32	FileSelector(	char *titre,
 
 	while( Click )
 	{
+		ManageEvents();
 		BoxUpdate()	;
 	}
 
@@ -351,6 +352,8 @@ S32	FileSelector(	char *titre,
 					if( StartFile < 0 )	StartFile = 0 ;
 					DrawListFiles(flags) ;
 					BoxUpdate()	;
+
+					ManageEvents(); // yaz
 				}
 				oldnum = -1 ;
 			}

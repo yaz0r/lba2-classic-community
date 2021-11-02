@@ -15,7 +15,7 @@ U32	OSMinor= -1 ;
 char	OSString[128];
 
 //----------------------------------------------------------------------------
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 void	DetectOS()
 {
 	OSVERSIONINFO	osVersionInfo	;
@@ -48,7 +48,7 @@ void	DetectOS()
 	strcpy(OSString, osVersionInfo.szCSDVersion) ;
 }
 //----------------------------------------------------------------------------
-#else //_WIN32
+#else //YAZ_WIN32
 
 S32	DOSVer()	;
 
@@ -61,9 +61,9 @@ S32	DOSVer()	;
 
 void	DetectOS()
 {
-	S32	ver ;
+	S32	ver = 0;
 
-	ver = DOSVer()	;
+	//ver = DOSVer()	;
 
 	OSType = OS_DOS	;
 
@@ -71,7 +71,7 @@ void	DetectOS()
 	OSMinor= (ver>>8) & 0xFF;
 }
 
-#endif//_WIN32
+#endif//YAZ_WIN32
 
 //----------------------------------------------------------------------------
 void	DisplayOS()
@@ -105,12 +105,11 @@ void	DisplayOS()
 //----------------------------------------------------------------------------
 S32	ParamsOS()
 {
-	char	str[256];
+	char	str[256] = "";
 	char	*ptr	;
 	S32	result	;
 	S32	i	;
 
-	str[256] = 0	;
 	result = FALSE	;
 
 	i = 1	;

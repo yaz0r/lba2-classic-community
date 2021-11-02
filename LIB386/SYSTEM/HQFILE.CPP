@@ -72,7 +72,7 @@ U32	HQF_LoadClose(void *ptr)
 		Read(HQF_File, ptrdecomp, HQF_header.CompressedSizeFile)	;
 
 		/* LZSS/LZMIT */
-		ExpandLZ(ptr, ptrdecomp, HQF_header.SizeFile, HQF_header.CompressMethod+1);
+		ExpandLZ(ptr, ptrdecomp, HQF_header.SizeFile, HQF_header.CompressMethod + 1);
 	}
 	else
 	{

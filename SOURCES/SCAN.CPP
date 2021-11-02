@@ -1,7 +1,7 @@
 #include        "c_extern.h"
 
 //──────────────────────────────────────────────────────────────────────────
-#ifdef  _WIN32
+#ifdef  YAZ_WIN32
 
 //──────────────────────────────────────────────────────────────────────────
 static  U8      KeyState[256+16*8]   ;
@@ -47,6 +47,8 @@ U32     GetBit(U32 val);
 //──────────────────────────────────────────────────────────────────────────
 S32     KeyDown()
 {
+	return 0;
+#if 0 // yaz
         S32     i       ;
         S32     found   ;
         U32     *Joys, *OldJoys ;
@@ -96,10 +98,11 @@ S32     KeyDown()
         }
 
         return  found   ;
+#endif
 }
 
 //──────────────────────────────────────────────────────────────────────────
-#else// _WIN32
+#else// YAZ_WIN32
 
 //──────────────────────────────────────────────────────────────────────────
 typedef struct {
@@ -109,6 +112,7 @@ typedef struct {
 
 //──────────────────────────────────────────────────────────────────────────
 T_KEY   ScanUnknown[] = {
+#if 0 // yaz
         { K_A, 'Q' },
         { K_Z, 'W' },
         { K_E, 'E' },
@@ -147,6 +151,7 @@ T_KEY   ScanUnknown[] = {
         { K_CARRE, '~' },
         { K_PARENTHESE, '-' },
         { K_EGAL, '+' },
+#endif
         { 0, 0 }        // End
         } ;
 
@@ -159,6 +164,7 @@ T_KEY   ScanUnknown[] = {
 //──────────────────────────────────────────────────────────────────────────
 void    InitInt15()
 {
+#if 0// yaz
         union   REGS    r               ;
         struct  SREGS   sr              ;
         void    far     *fh             ;
@@ -187,11 +193,13 @@ void    InitInt15()
         int386x( 0x21, &r, &r, &sr )    ;//     Invoke DPMI
 
         RegisterInitClear(InitInt15, ClearInt15);
+#endif
 }
 
 //──────────────────────────────────────────────────────────────────────────
 void    ClearInt15()
 {
+#if 0// yaz
         union   REGS    r               ;
         struct  SREGS   sr              ;
 
@@ -209,11 +217,13 @@ void    ClearInt15()
 
         AIL_vmm_unlock_range(&Int15CodeStart, &Int15CodeEnd)    ;
         AIL_vmm_unlock_range(&Int15DataStart, &Int15DataEnd)    ;
+#endif
 }
 
 //──────────────────────────────────────────────────────────────────────────
 void    ForceScanCode(U8 scan)
 {
+#if YAZ
         Int15Trans = scan       ;
 
 /*
@@ -225,6 +235,7 @@ void    ForceScanCode(U8 scan)
         keyboard_write(0xEE)    ;
 
         while(Int15Trans)       ;
+#endif
 }
 
 //──────────────────────────────────────────────────────────────────────────
@@ -252,10 +263,11 @@ S32     ScanToAscii(S32 scan)
                 return  0       ;
         }
 
+		/* yaz
         if(!Old_PM15_Sel)               // initialized ?
         {
                 InitInt15()     ;       // init
-        }
+        }*/
 
 //      DisableKeyb()           ;
 
@@ -328,6 +340,6 @@ S32     ScanToAscii(S32 scan)
 }
 
 //──────────────────────────────────────────────────────────────────────────
-#endif//_WIN32
+#endif//YAZ_WIN32
 
 //──────────────────────────────────────────────────────────────────────────

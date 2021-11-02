@@ -74,7 +74,7 @@ void	GereCheatCode( void )
 	S32	cheat, start ;
 	S32	text = -1 ;
 	S32	sprite = -1 ;
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 	S32	key	;
 
 	while((key = GetAscii()) != 0)
@@ -116,7 +116,7 @@ void	GereCheatCode( void )
 				start++;
 			}
 		}
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 		continue	;	// Cheat not found
 #else
 		return		;	// Cheat not found

@@ -5,7 +5,7 @@
 //──────────────────────────────────────────────────────────────────────────
 #ifndef	_BUILDING_LIB
 
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 
 #pragma library ("SMACKW32.LIB")
 
@@ -15,7 +15,7 @@
 #pragma library ("NT_SMKS.LIB")
 #endif//__SW_3R
 
-#else//	_WIN32
+#else//	YAZ_WIN32
 
 #pragma library ("SMACK.LIB")
 
@@ -25,13 +25,13 @@
 #pragma library ("DOS_SMKS.LIB")
 #endif//__SW_3R
 
-#endif//_WIN32
+#endif//YAZ_WIN32
 
 #endif//_BUILDING_LIB
 
 //──────────────────────────────────────────────────────────────────────────
-#include	<SMACKER\SMACK.H>
-#include	<SMACKER\SMACKER.H>
+//#include	<SMACKER\SMACK.H>
+// #include	<SMACKER\SMACKER.H>
 
 //──────────────────────────────────────────────────────────────────────────
 #endif//LIB_SMACKER

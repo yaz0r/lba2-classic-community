@@ -1,0 +1,6 @@
+[submodule "soloud"]
+	path = soloud
+	url = git@github.com:jarikomppa/soloud.git
+[submodule "SDL"]
+	path = SDL
+	url = git@github.com:libsdl-org/SDL.git

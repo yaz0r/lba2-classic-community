@@ -1,5 +1,5 @@
 //
-//	TEST VERSION ZBUFFER PAR 
+//	TEST VERSION ZBUFFER
 //
 
 #include	"c_extern.h"	// include LBA2
@@ -455,7 +455,7 @@ void	DrawListHoloGlobe(S32 pos)
 			{
 				angle = (angle+timer)&4095	;
 
-				if ( abs (angle-3072) < 64 )
+				if ( abs ((int)angle-3072) < 64 ) // yaz
 					DecalTimerRef[arrow] = 3072	;
 			}
 		}

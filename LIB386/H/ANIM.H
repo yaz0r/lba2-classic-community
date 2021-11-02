@@ -2,10 +2,26 @@
 #ifndef	LIB_ANIM
 #define	LIB_ANIM
 
+#define STATUS_FRAME 1
+#define STATUS_LAST 2
+#define STATUS_CHANGE 4
+#define STATUS_BODY 8
+
+typedef	unsigned	char		U8	;
+typedef	signed		char		S8	;
+typedef	unsigned	short		U16	;
+typedef	signed		short		S16	;
+typedef	unsigned	long		U32	;
+typedef	signed		long		S32	;
+
+extern "C" {
+	extern void* (*TransFctAnim)(S32 index);
+};
+
 //──────────────────────────────────────────────────────────────────────────
 #ifndef	_BUILDING_LIB
 
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 
 #ifdef	__SW_3R
 #pragma library ("NT_ANIR.LIB")
@@ -13,7 +29,7 @@
 #pragma library ("NT_ANIS.LIB")
 #endif//__SW_3R
 
-#else//	_WIN32
+#else//	YAZ_WIN32
 
 #ifdef	__SW_3R
 #pragma library ("DOS_ANIR.LIB")
@@ -21,7 +37,7 @@
 #pragma library ("DOS_ANIS.LIB")
 #endif//__SW_3R
 
-#endif//_WIN32
+#endif//YAZ_WIN32
 
 #endif//_BUILDING_LIB
 

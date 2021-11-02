@@ -48,7 +48,7 @@
 
 //=======================================================================
 // tous fichiers dans même dir
-//#define	ONE_GAME_DIRECTORY	1
+#define	ONE_GAME_DIRECTORY	1
 //=======================================================================
 
 //path des ressources
@@ -184,7 +184,7 @@
 #include	<conio.h>
 #include	<stdio.h>
 #include	<ctype.h>
-#include	<i86.h>
+//#include	<i86.h>
 #include	<process.h>
 #include	<limits.h>
 #include	<direct.h>
@@ -510,7 +510,7 @@ typedef	struct
 
 #ifndef	EDITLBA2
 
-#include	"F:\PROJET\LBA2\TOOLS\PERSO\3DEXT\EXTERN.H"
+#include	"3DEXT\EXTERN.H"
 #include	"PTRFUNC.H"
 //#include	"OLDSORT.H"
 #include	"SORT.H"
@@ -559,7 +559,7 @@ typedef	struct
 #include	"ZV.H"
 #include	"SCAN.H"
 #include	"KEYB.H"
-#ifdef	_WIN32
+#ifdef	YAZ_WIN32
 #include	"JOYSTICK.H"
 #else
 #include	"CRITICAL.H"
