@@ -132,7 +132,7 @@ void	*SmartMalloc(S32 size)
 
 bool IsCDPlaying()
 {
-	return false;
+	return true; // xesf force jingles until CD is done
 }
 
 void AIL_shutdown                  (void)

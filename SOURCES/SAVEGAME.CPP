@@ -1077,7 +1077,7 @@ void	SaveContexte( S32 savetimerrefhr )
 S32	LoadContexte( S32 *savetimerrefhr )
 {
 	T_OBJET		*ptrobj ;
-	S_PART_FLOW	*ptrf ;
+	S_PART_FLOW	*ptrf = nullptr; //xesf
 	T_INV_OBJ	*ptri ;
 	T_DART		*ptrd ;
 	T_ZONE		*ptrz ;
@@ -1453,12 +1453,14 @@ S32	LoadContexte( S32 *savetimerrefhr )
 	LbaRead( ListIncrustDisp, sizeof(T_INCRUST_DISP)*wbyte ) ;
 
 #ifndef	EDITLBA2
-	for( n=0; n<wbyte; n++, ptrf++ )
-	{
-		if( (ListIncrustDisp[n].Type&0xFF)==INCRUST_PLUIE )
+	if (ptrf) { //xesf
+		for (n = 0; n < wbyte; n++, ptrf++)
 		{
-			FlagRain = TRUE ;
-			RestartRainSample = TRUE ;
+			if ((ListIncrustDisp[n].Type & 0xFF) == INCRUST_PLUIE)
+			{
+				FlagRain = TRUE;
+				RestartRainSample = TRUE;
+			}
 		}
 	}
 #endif

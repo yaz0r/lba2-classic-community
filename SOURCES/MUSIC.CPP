@@ -8,7 +8,7 @@
 /*──────────────────────────────────────────────────────────────────────────*/
 
 #ifdef	CDROM
-char		CDDrive = 'Z'	;// Z by default
+char		CDDrive = 'D'	;// Z by default
 U32		CDVolume     = DEF_CD_VOLUME	;
 
 #ifndef	LBA_EDITOR
@@ -59,7 +59,7 @@ char	ListJingle[NB_JINGLE][9] = {
 	"TADPCM4",
 	"TADPCM5",
 	"JADPCM01",
-	"",	// Track6.wav
+	"TADPCM6",	//xesf Track6.wav
 	"JADPCM02",
 	"JADPCM03",
 	"JADPCM04",
@@ -105,11 +105,13 @@ void	InitJingle( void )
 		{
 			case UNKNOWN_VERSION:
 			case EA_VERSION:
-				sprintf( PathJingle, "%c:\\LBA2\\MUSIC\\", CDDrive ) ;
+				//xesf sprintf( PathJingle, "%c:\\LBA2\\MUSIC\\", CDDrive ) ;
+				sprintf(PathJingle, "%sMUSIC\\", PATH_RESSOURCE); // local read instead of CD
 				break ;
 
 			default:
-				sprintf( PathJingle, "%c:\\TWINSEN\\MUSIC\\", CDDrive ) ;
+				// xesf sprintf( PathJingle, "%c:\\TWINSEN\\MUSIC\\", CDDrive ) ;
+				sprintf(PathJingle, "%sMUSIC\\", PATH_RESSOURCE); // local read instead of CD
 		}
 #else
 #ifdef	CDROM
@@ -217,7 +219,7 @@ JINGLE| 4,	// Track03.wav
 JINGLE| 5,	// Track04.wav
 JINGLE| 6,	// Track05.wav
 JINGLE| 7,	// Jingle01.wav
-	8,	// Track06.wav
+JINGLE| 8,	// Track06.wav // xesf
 JINGLE| 9,	// Jingle02.wav
 JINGLE|10,	// Jingle03.wav
 JINGLE|11,	// Jingle04.wav
@@ -356,21 +358,23 @@ void	PlayMusic( S32 num, S32 playit )
 
 S32	GetMusic( void )
 {
-	S32	num ;
+	return GetNumJingle(StreamName());
+	//xesf
+//	S32	num ;
+//
+//#ifdef	CDROM
+//	num = IsCDPlaying() ;
+//#else
+//	num = 0 ;
+//#endif
 
-#ifdef	CDROM
-	num = IsCDPlaying() ;
-#else
-	num = 0 ;
-#endif
+	//if( !num )	// pas de music CD
+	//{
+	//	num = GetNumJingle( StreamName() ) ;
+	//}
+	//else	num += FirstCDTrack ;
 
-	if( !num )	// pas de music CD
-	{
-		num = GetNumJingle( StreamName() ) ;
-	}
-	else	num += FirstCDTrack ;
-
-	return num ;
+	// return num ;
 }
 
 /*──────────────────────────────────────────────────────────────────────────*/
