@@ -1,4 +1,11 @@
 #include	"c_extern.h"
+#include <smacker/smacker.h>
+
+#pragma pack(8)
+#include	"soloud.h"
+#include	"soloud_wav.h"
+#pragma pack(1)
+
 
 char		PathAcf[ADELINE_MAX_PATH] ;
 
@@ -11,6 +18,16 @@ U8  	*BufferSmack ;
 #else
 U8  	*BufferSmack ;// initialisé dans MEM.CPP
 #endif
+
+#define SMACKER_TRACK_SIZE 7
+
+struct soundHandle2
+{
+	U32 soloudHandle = 0;
+	SoLoud::Wav* soloudWave = nullptr;
+};
+
+soundHandle2 soundHandleMapping[SMACKER_TRACK_SIZE]; // smacker tracks
 
 //---------------------------------------------------------------------------
 
@@ -51,11 +68,13 @@ void	InitAcf( void )
 		{
 			case UNKNOWN_VERSION:
 			case EA_VERSION:
-				sprintf( PathAcf, "%c:\\LBA2\\VIDEO\\VIDEO.HQR", CDDrive ) ;
+				//xesf sprintf( PathAcf, "%c:\\LBA2\\VIDEO\\VIDEO.HQR", CDDrive ) ;
+				sprintf(PathAcf, "%sVIDEO\\VIDEO.HQR", PATH_RESSOURCE);
 				break ;
 
 			default:
-				sprintf( PathAcf, "%c:\\TWINSEN\\VIDEO\\VIDEO.HQR", CDDrive ) ;
+				//xesf sprintf( PathAcf, "%c:\\TWINSEN\\VIDEO\\VIDEO.HQR", CDDrive ) ;
+				sprintf(PathAcf, "%sVIDEO\\VIDEO.HQR", PATH_RESSOURCE);
 		}
 
 		//yaz if( !FileSize( PathAcf ) )	TheEnd( PROGRAM_OK, MessageNoCD ) ;
@@ -219,7 +238,202 @@ void	PlayAllAcf( void )
 
 S32	PlayAcf( char *name )
 {
-	return 0;
+	// xesf
+	U32	i, j, c, h, w, f;
+	S32	k, n;
+	S32	ret;
+	U32 fps, timer, size;
+	smk s;
+	double usf;
+	U8	a_t, a_c[SMACKER_TRACK_SIZE], a_d[SMACKER_TRACK_SIZE];
+	U32	a_r[SMACKER_TRACK_SIZE];
+	U8* decompbuf = nullptr;
+	U8* frame = nullptr;
+	U8* pal = nullptr;
+	S32 smackflags = SMK_AUDIO_TRACK_0;
+	U8* dest = nullptr;
+	SoLoud::Soloud* soloudStream = nullptr;
+	S32 rate = 22050;
+	S32 chans = 2;
+
+	if (!strnicmp(name, "INTRO", 5))
+	{
+		if (FlagSpeak)
+		{
+			switch (LanguageCD)
+			{
+			case 0:  // English
+				smackflags |= SMK_AUDIO_TRACK_3;
+				break;
+
+			case 1:	// Français
+				smackflags |= SMK_AUDIO_TRACK_1;
+				break;
+
+			case 2:	// Deutsch
+				smackflags |= SMK_AUDIO_TRACK_2;
+				break;
+			}
+		}
+	}
+
+	n = GetNumAcf(name);
+
+	if (n == -1)	return 0;
+
+	{
+		S32	var;
+		S32	bit;
+
+		var = n / 16;
+		if (n >= 32)
+		{
+			var = FLAG_ACF2;
+			bit = 1 << (n - 32);
+		}
+		else
+		{
+			var = FLAG_ACF;
+			bit = 1 << n;
+		}
+
+	}
+
+	StopMusic();
+
+	decompbuf = (U8 *)LoadMalloc_HQR(PathAcf, n);
+	size = LoadMallocFileSize;
+
+	if (!size)
+		TheEnd(PROGRAM_OK, MessageNoCD);
+
+	s = smk_open_memory(decompbuf, size);
+
+	if (!s)
+		TheEnd(PROGRAM_OK, MessageNoCD);
+
+	if (!decompbuf)
+	{
+		smk_close(s);
+		return 0;
+	}
+
+	SetBlackPal();
+
+	BoxReset();// pour etre sûr de ne pas utiliser Screen !
+	Cls();
+	BoxUpdate();
+
+	InitWaitNoKey();
+	InitWaitNoInput(I_JOY | I_FIRE | I_MENUS);
+
+	smk_info_all(s, NULL, &f, &usf);
+	smk_info_video(s, &w, &h, NULL);
+	smk_info_audio(s, &a_t, a_c, a_d, a_r);
+	fps = (U32)(1000000.0 / usf);
+
+	soloudStream = new SoLoud::Soloud();
+	soloudStream->init(SoLoud::Soloud::CLIP_ROUNDOFF, SoLoud::Soloud::BACKENDS::AUTO, rate, 0, chans);
+
+	// video & audio
+
+	smk_enable_all(s, SMK_VIDEO_TRACK | a_t);
+	smk_first(s);
+	
+	dest = (U8*)malloc(640 * 480);
+
+	timer = TimerRefHR + (1000/fps);
+	for (c = 0; c < f; c++)
+	{
+		U32 offset = 0;
+		frame = (U8 *)smk_get_video(s);
+		pal = (U8*)smk_get_palette(s);
+
+		// very hacky smacker full screen
+		// improve it with memcpy
+		memset(dest, 0, 640 * 480);
+		for (j = 0; j < h; j++) {
+			U32 innerOffset = 0;
+			for (k = 0; k < w; k++) {
+				*(dest + offset) = *(frame);
+				*(dest + offset + 1) = *(frame++);
+				offset += 2;
+			}
+			innerOffset = offset - 640;
+			for (k = 0; k < w; k++) {
+				*(dest + offset) = *(dest + innerOffset);
+				*(dest + offset + 1) = *(dest + innerOffset + 1);
+				offset += 2;
+				innerOffset += 2;
+			}
+		}
+
+		CopyBlock(0, 0, 640, 480, dest, 0, 40, Log);
+		PaletteSync(pal);
+
+		// play audio
+		for (i = 0; i < SMACKER_TRACK_SIZE; i++)
+		{
+			if (a_t & (1 << i) && (1 << i) & smackflags)
+			{
+				if (!soundHandleMapping[i].soloudWave) {
+					soundHandleMapping[i].soloudWave = new SoLoud::Wav();
+				}
+				if (a_d[i] == 16) {
+					soundHandleMapping[i].soloudWave->loadRawWave16((short*)smk_get_audio(s, i), smk_get_audio_size(s, i), a_r[i], 1);
+				}
+				else if (a_d[i] == 8) {
+					soundHandleMapping[i].soloudWave->loadRawWave8((U8*)smk_get_audio(s, i), smk_get_audio_size(s, i), a_r[i], 1);
+				}
+				//if (!soloudStream->isValidVoiceHandle(soundHandleMapping[i].soloudHandle))
+				soundHandleMapping[i].soloudHandle = soloudStream->play(*soundHandleMapping[i].soloudWave, -1, 0, false, 0);
+			}
+		}
+
+		do
+		{
+			MyGetInput();
+			ManageTime();
+
+			if ((MyKey == K_ESC OR(Input & I_MENUS)))
+			{
+				goto fin_play;
+			}
+		} while (timer > TimerRefHR);
+
+		timer = TimerRefHR + (1000 / fps);
+
+		smk_next(s);
+	}
+
+fin_play:
+	//FadeToBlack(smk->Palette);
+	Cls();
+	BoxStaticFullflip();
+	SetBlackPal();
+
+	smk_close(s);
+	free(dest);
+
+	for (i = 0; i < SMACKER_TRACK_SIZE; i++)
+	{
+		soloudStream->stop(soundHandleMapping[i].soloudHandle);
+
+		if (soundHandleMapping[i].soloudWave) {
+			delete soundHandleMapping[i].soloudWave;
+			soundHandleMapping[i].soloudWave = nullptr;
+		}
+		soundHandleMapping[i].soloudHandle = 0;
+	}
+	delete soloudStream;
+
+	ret = MyKey;
+
+	InitWaitNoKey();
+	InitWaitNoInput(I_MENUS);
+
+	return ret;
+
 #if 0
 	Smack		*smk	      	;
 	U32		frame	      	;

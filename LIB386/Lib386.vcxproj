@@ -688,7 +688,7 @@
     <MASM Include="SYSTEM\LZ.ASM">
       <FileType>Document</FileType>
     </MASM>
-	<MASM Include="3D\REGLE3.ASM">
+    <MASM Include="3D\REGLE3.ASM">
       <FileType>Document</FileType>
     </MASM>
     <MASM Include="SYSTEM\PATCH.ASM">
@@ -745,6 +745,9 @@
     <ClCompile Include="MENU\MENUFUNC.CPP" />
     <ClCompile Include="MENU\MENULIB.CPP" />
     <ClCompile Include="MENU\SELECTOR.CPP" />
+    <ClCompile Include="smacker\smacker.c" />
+    <ClCompile Include="smacker\smk_bitstream.c" />
+    <ClCompile Include="smacker\smk_hufftree.c" />
     <ClCompile Include="SVGA\DDRAW.CPP">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -1064,6 +1067,10 @@
     <ClInclude Include="H\SYSTEM\WINSYS.H">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="smacker\smacker.h" />
+    <ClInclude Include="smacker\smk_bitstream.h" />
+    <ClInclude Include="smacker\smk_hufftree.h" />
+    <ClInclude Include="smacker\smk_malloc.h" />
     <ClInclude Include="yaz.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
