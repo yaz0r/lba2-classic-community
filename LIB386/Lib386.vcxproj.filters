@@ -58,6 +58,9 @@
     <Filter Include="Source Files\fileIO">
       <UniqueIdentifier>{198c8798-9968-4ebb-a12b-dded0f771432}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\smacker">
+      <UniqueIdentifier>{938edb9e-1307-403d-ac5a-2435ec62322e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="H\3D.INC">
@@ -271,6 +274,15 @@
     </ClCompile>
     <ClCompile Include="adpcm.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="smacker\smacker.c">
+      <Filter>Source Files\smacker</Filter>
+    </ClCompile>
+    <ClCompile Include="smacker\smk_bitstream.c">
+      <Filter>Source Files\smacker</Filter>
+    </ClCompile>
+    <ClCompile Include="smacker\smk_hufftree.c">
+      <Filter>Source Files\smacker</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -706,6 +718,18 @@
     <ClInclude Include="FILEIO\PCXHEAD.H">
       <Filter>Source Files\fileIO</Filter>
     </ClInclude>
+    <ClInclude Include="smacker\smacker.h">
+      <Filter>Source Files\smacker</Filter>
+    </ClInclude>
+    <ClInclude Include="smacker\smk_bitstream.h">
+      <Filter>Source Files\smacker</Filter>
+    </ClInclude>
+    <ClInclude Include="smacker\smk_hufftree.h">
+      <Filter>Source Files\smacker</Filter>
+    </ClInclude>
+    <ClInclude Include="smacker\smk_malloc.h">
+      <Filter>Source Files\smacker</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <MASM Include="3D\ARCSIN.ASM">
@@ -771,7 +795,7 @@
     <MASM Include="3D\ROTMATI.ASM">
       <Filter>Source Files\3D</Filter>
     </MASM>
-	<MASM Include="3D\REGLE3.ASM">
+    <MASM Include="3D\REGLE3.ASM">
       <Filter>Source Files\3D</Filter>
     </MASM>
     <MASM Include="3D\ROTMAT.ASM">

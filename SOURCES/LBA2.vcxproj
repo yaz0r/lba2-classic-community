@@ -50,7 +50,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\Lib386\;..\Lib386\H;..\SDL\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Lib386\;..\Lib386\H;..\SDL\Include;..\soloud\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;OBJECT_PTR;LBA_GAME;CDROM;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StructMemberAlignment>1Byte</StructMemberAlignment>
       <DisableSpecificWarnings>4068</DisableSpecificWarnings>
